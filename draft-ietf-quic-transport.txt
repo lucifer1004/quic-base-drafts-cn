@@ -1601,9 +1601,9 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    addressing at lower protocol layers (UDP, IP) don't cause packets for
    a QUIC connection to be delivered to the wrong endpoint.  Each
    endpoint selects connection IDs using an implementation-specific (and
-   perhaps deployment-specific) method which will allow packets with
-   that connection ID to be routed back to the endpoint and to be
-   identified by the endpoint upon receipt.
+   perhaps deployment-specific) method that will allow packets with that
+   connection ID to be routed back to the endpoint and to be identified
+   by the endpoint upon receipt.
 
    Connection IDs MUST NOT contain any information that can be used by
    an external observer (that is, one that does not cooperate with the
@@ -4158,7 +4158,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    lead to an infinite exchange.
 
    An endpoint MUST ensure that every Stateless Reset that it sends is
-   smaller than the packet which triggered it, unless it maintains state
+   smaller than the packet that triggered it, unless it maintains state
    sufficient to prevent looping.  In the event of a loop, this results
    in packets eventually being too small to trigger a response.
 
@@ -4232,10 +4232,9 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    an unnecessary stateless reset.  Endpoints that have some alternative
    means to ensure that late-arriving packets on the connection do not
    induce a response, such as those that are able to close the UDP
-   socket, MAY use an abbreviated draining period which can allow for
-   faster resource recovery.  Servers that retain an open socket for
-   accepting new connections SHOULD NOT exit the closing or draining
-   period early.
+   socket, MAY use an abbreviated draining period to allow for faster
+   resource recovery.  Servers that retain an open socket for accepting
+   new connections SHOULD NOT exit the closing or draining period early.
 
    Once the closing or draining period has ended, an endpoint SHOULD
    discard all connection state.  This results in new packets on the
@@ -4248,6 +4247,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    An endpoint is not expected to handle key updates when it is closing
    or draining.  A key update might prevent the endpoint from moving
    from the closing state to draining, but it otherwise has no impact.
+
 
 
 
@@ -4407,7 +4407,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
 12.2.  Coalescing Packets
 
    Initial (Section 17.2.2), 0-RTT (Section 17.2.3), and Handshake
-   (Section 17.2.4) packets contain a Length field, which determines the
+   (Section 17.2.4) packets contain a Length field that determines the
    end of the packet.  The length includes both the Packet Number and
    Payload fields, both of which are confidentiality protected and
    initially of unknown length.  The length of the Payload field is
@@ -4496,7 +4496,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
 
    Conceptually, a packet number space is the context in which a packet
    can be processed and acknowledged.  Initial packets can only be sent
-   with Initial packet protection keys and acknowledged in packets which
+   with Initial packet protection keys and acknowledged in packets that
    are also Initial packets.  Similarly, Handshake packets are sent at
    the Handshake encryption level and can only be acknowledged in
    Handshake packets.
@@ -4803,7 +4803,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    response to receiving an ack-eliciting packet.
 
    An endpoint MUST NOT send a non-ack-eliciting packet in response to a
-   non-ack-eliciting packet, even if there are packet gaps which precede
+   non-ack-eliciting packet, even if there are packet gaps that precede
    the received packet.  This avoids an infinite feedback loop of
    acknowledgements, which could prevent the connection from ever
    becoming idle.  Non-ack-eliciting packets are eventually acknowledged
@@ -5826,7 +5826,7 @@ Iyengar & Thomson        Expires 30 January 2021              [Page 104]
 Internet-Draft           QUIC Transport Protocol               July 2020
 
 
-      byte.  This field indicates which version of QUIC is in use and
+      byte.  This field indicates the version of QUIC that is in use and
       determines how the rest of the protocol fields are interpreted.
 
    Destination Connection ID Length:  The byte following the version
@@ -5903,7 +5903,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
       only removing header protection can expose the endpoint to
       attacks; see Section 9.3 of [QUIC-TLS].
 
-   Packet Number Length:  In packet types which contain a Packet Number
+   Packet Number Length:  In packet types that contain a Packet Number
       field, the least significant two bits (those with a mask of 0x03)
       of byte 0 contain the length of the packet number, encoded as an
       unsigned, two-bit integer that is one less than the length of the
@@ -5975,7 +5975,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    IDs that are longer than 20 bytes.
 
    The remainder of the Version Negotiation packet is a list of 32-bit
-   versions which the server supports.
+   versions that the server supports.
 
    A Version Negotiation packet is not acknowledged.  It is only sent in
    response to a packet that indicates an unsupported version; see
@@ -6374,8 +6374,8 @@ Internet-Draft           QUIC Transport Protocol               July 2020
 
 17.3.  Short Header Packets
 
-   This version of QUIC defines a single packet type which uses the
-   short packet header.
+   This version of QUIC defines a single packet type that uses the short
+   packet header.
 
 
 
@@ -6565,7 +6565,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    The Transport Parameter Length field contains the length of the
    Transport Parameter Value field.
 
-   QUIC encodes transport parameters into a sequence of bytes, which are
+   QUIC encodes transport parameters into a sequence of bytes, which is
    then included in the cryptographic handshake.
 
 18.1.  Reserved Transport Parameters
@@ -6954,7 +6954,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
       determined by subtracting the First ACK Range value from the
       Largest Acknowledged.
 
-   ACK Ranges:  Contains additional ranges of packets which are
+   ACK Ranges:  Contains additional ranges of packets that are
       alternately not acknowledged (Gap) and acknowledged (ACK Range);
       see Section 19.3.1.
 
@@ -7103,7 +7103,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
 
    Application Protocol Error Code:  A variable-length integer
       containing the application protocol error code (see Section 20.2)
-      which indicates why the stream is being closed.
+      that indicates why the stream is being closed.
 
    Final Size:  A variable-length integer indicating the final size of
 
@@ -7459,9 +7459,9 @@ Internet-Draft           QUIC Transport Protocol               July 2020
       permits opening of a stream larger than this limit MUST be treated
       as a FRAME_ENCODING_ERROR.
 
-   Loss or reordering can cause a MAX_STREAMS frame to be received which
-   states a lower stream limit than an endpoint has previously received.
-   MAX_STREAMS frames which do not increase the stream limit MUST be
+   Loss or reordering can cause a MAX_STREAMS frame to be received that
+   state a lower stream limit than an endpoint has previously received.
+   MAX_STREAMS frames that do not increase the stream limit MUST be
    ignored.
 
    An endpoint MUST NOT open more streams than permitted by the current
@@ -7527,7 +7527,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
 
    STREAM_DATA_BLOCKED frames contain the following fields:
 
-   Stream ID:  A variable-length integer indicating the stream which is
+   Stream ID:  A variable-length integer indicating the stream that is
       blocked due to flow control.
 
    Maximum Stream Data:  A variable-length integer indicating the offset
@@ -7790,7 +7790,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
 
    CONNECTION_CLOSE frames contain the following fields:
 
-   Error Code:  A variable-length integer error code which indicates the
+   Error Code:  A variable-length integer error code that indicates the
       reason for closing this connection.  A CONNECTION_CLOSE frame of
       type 0x1c uses codes from the space defined in Section 20.1.  A
       CONNECTION_CLOSE frame of type 0x1d uses codes from the
@@ -7995,7 +7995,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    Once a connection is established QUIC endpoints might accept some
    unauthenticated ICMP packets (see Section 14.2.1), but the use of
    these packets is extremely limited.  The only other type of packet
-   that an endpoint might accept is a stateless reset (Section 10.3)
+   that an endpoint might accept is a stateless reset (Section 10.3),
    which relies on the token being kept secret until it is used.
 
    During the creation of a connection, QUIC only provides protection
@@ -8246,8 +8246,8 @@ Internet-Draft           QUIC Transport Protocol               July 2020
 
 21.10.  Version Downgrade
 
-   This document defines QUIC Version Negotiation packets in Section 6,
-   which can be used to negotiate the QUIC version used between two
+   This document defines QUIC Version Negotiation packets in Section 6
+   that can be used to negotiate the QUIC version used between two
    endpoints.  However, this document does not specify how this
    negotiation will be performed between this version and subsequent
    future versions.  In particular, Version Negotiation packets do not
@@ -8351,10 +8351,10 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    Computing the server's first flight for a full handshake is
    potentially expensive, requiring both a signature and a key exchange
    computation.  In order to prevent computational DoS attacks, the
-   Retry packet provides a cheap token exchange mechanism which allows
+   Retry packet provides a cheap token exchange mechanism that allows
    servers to validate a client's IP address prior to doing any
    expensive computations at the cost of a single round trip.  After a
-   successful handshake, servers can issue new tokens to a client which
+   successful handshake, servers can issue new tokens to a client, which
    will allow new connection establishment without incurring this cost.
 
 21.12.1.3.  On-Path Handshake Termination
@@ -8419,7 +8419,7 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    A blind attacker, one who injects packets without being able to
    observe valid packets for a connection, is unlikely to be successful,
    since packet protection ensures that valid packets are only generated
-   by endpoints which possess the key material established during the
+   by endpoints that possess the key material established during the
    handshake; see Section 7 and Section 21.12.1.  Similarly, any active
    attacker that observes packets and attempts to insert new data or
    modify existing data in those packets should not be able to generate
