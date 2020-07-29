@@ -1145,9 +1145,9 @@ Internet-Draft             QUIC Loss Detection                 July 2020
    (smoothed_rtt + max(4*rttvar, kGranularity) + max_ack_delay) *
        kPersistentCongestionThreshold
 
-   Note that unlike the PTO computation in Section 6.2, this duration
-   includes the max_ack_delay irrespective of the packet number spaces
-   in which losses are established.
+   Unlike the PTO computation in Section 6.2, this duration includes the
+   max_ack_delay irrespective of the packet number spaces in which
+   losses are established.
 
    This duration allows a sender to send enough packets, including some
    in response to PTO expiration, as TCP does with Tail Loss Probe
