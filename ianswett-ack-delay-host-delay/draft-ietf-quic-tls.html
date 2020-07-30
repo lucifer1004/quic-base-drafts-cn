@@ -1299,7 +1299,7 @@ Layer     |                      Records                      |
 <p id="section-2.1-4">Each Handshake layer message (e.g., Handshake, Alerts, and Application Data) is
 carried as a series of typed TLS records by the Record layer.  Records are
 individually cryptographically protected and then transmitted over a reliable
-transport (typically TCP) which provides sequencing and guaranteed delivery.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
+transport (typically TCP), which provides sequencing and guaranteed delivery.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
 <p id="section-2.1-5">The TLS authenticated key exchange occurs between two endpoints: client and
 server.  The client initiates the exchange and the server responds.  If the key
 exchange completes successfully, both client and server will agree on a secret.
@@ -1315,11 +1315,11 @@ learn and authenticate an identity for the client.  TLS supports X.509
 shared secrets that cannot be controlled by either participating peer.<a href="#section-2.1-7" class="pilcrow">¶</a></p>
 <p id="section-2.1-8">TLS provides two basic handshake modes of interest to QUIC:<a href="#section-2.1-8" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2.1-9.1">A full 1-RTT handshake in which the client is able to send Application Data
+<li class="normal" id="section-2.1-9.1">A full 1-RTT handshake, in which the client is able to send Application Data
 after one round trip and the server immediately responds after receiving the
 first handshake message from the client.<a href="#section-2.1-9.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.1-9.2">A 0-RTT handshake in which the client uses information it has previously
+          <li class="normal" id="section-2.1-9.2">A 0-RTT handshake, in which the client uses information it has previously
 learned about the server to send Application Data immediately.  This
 Application Data can be replayed by an attacker so it MUST NOT carry a
 self-contained trigger for any non-idempotent action.<a href="#section-2.1-9.2" class="pilcrow">¶</a>
@@ -1456,9 +1456,9 @@ protection being called out specially.<a href="#section-3-7" class="pilcrow">¶<
 <a href="#name-quic-and-tls-interactions" class="selfRef">QUIC and TLS Interactions</a>
         </figcaption></figure>
 </div>
-<p id="section-3-9">Unlike TLS over TCP, QUIC applications which want to send data do not send it
+<p id="section-3-9">Unlike TLS over TCP, QUIC applications that want to send data do not send it
 through TLS "application_data" records. Rather, they send it as QUIC STREAM
-frames or other frame types which are then carried in QUIC packets.<a href="#section-3-9" class="pilcrow">¶</a></p>
+frames or other frame types, which are then carried in QUIC packets.<a href="#section-3-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="carrying-tls">
@@ -1493,7 +1493,7 @@ application errors (type 0x1d) MUST only appear in the application data packet
 number space.<a href="#section-4-4.2" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-4-4.3">ACK frames MAY appear in any packet number space, but can only acknowledge
-packets which appeared in that packet number space.  However, as noted below,
+packets that appeared in that packet number space.  However, as noted below,
 0-RTT packets cannot contain ACK frames.<a href="#section-4-4.3" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-4-4.4">All other frame types MUST only be sent in the application data packet number
@@ -1650,7 +1650,7 @@ to find the proper location in the data sequence.  If the result of this
 process is that new data is available, then it is delivered to TLS in order.<a href="#section-4.1.3-10.1" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-4.1.3-10.2">If the packet is from a previously installed encryption level, it MUST NOT
-contain data which extends past the end of previously received data in that
+contain data that extends past the end of previously received data in that
 flow. Implementations MUST treat any violations of this requirement as a
 connection error of type PROTOCOL_VIOLATION.<a href="#section-4.1.3-10.2" class="pilcrow">¶</a>
 </li>
@@ -2273,7 +2273,7 @@ process.<a href="#section-5.4-4" class="pilcrow">¶</a></p>
 <p id="section-5.4.1-1">Header protection is applied after packet protection is applied (see <a href="#aead" class="xref">Section 5.3</a>).
 The ciphertext of the packet is sampled and used as input to an encryption
 algorithm.  The algorithm used depends on the negotiated AEAD.<a href="#section-5.4.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.4.1-2">The output of this algorithm is a 5-byte mask which is applied to the protected
+<p id="section-5.4.1-2">The output of this algorithm is a 5-byte mask that is applied to the protected
 header fields using exclusive OR.  The least significant bits of the first byte
 of the packet are masked by the least significant bits of the first mask byte,
 and the packet number is masked with the remaining bytes.  Any unused bytes of
@@ -2934,7 +2934,7 @@ but some - such as modifying ACKs - are not.<a href="#section-7-1" class="pilcro
 makes it appear that a packet had not been received or to create a false
 impression of the state of the connection (e.g., by modifying the ACK Delay).
 Note that such a packet could cause a legitimate packet to be dropped as a
-duplicate.  Implementations SHOULD use caution in relying on any data which is
+duplicate.  Implementations SHOULD use caution in relying on any data that is
 contained in Initial packets that is not otherwise authenticated.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3">It is also possible for the attacker to tamper with data that is carried in
 Handshake packets, but because that tampering requires modifying TLS handshake
@@ -3131,7 +3131,7 @@ limit the level of amplification.<a href="#section-9.3-2" class="pilcrow">¶</a>
 <a href="#section-9.4" class="section-number selfRef">9.4. </a><a href="#name-header-protection-analysis" class="section-name selfRef">Header Protection Analysis</a>
         </h3>
 <p id="section-9.4-1"><span>[<a href="#NAN" class="xref">NAN</a>]</span> analyzes authenticated encryption
-algorithms which provide nonce privacy, referred to as "Hide Nonce" (HN)
+algorithms that provide nonce privacy, referred to as "Hide Nonce" (HN)
 transforms. The general header protection construction in this document is
 one of those algorithms (HN1). Header protection uses the output of the packet
 protection AEAD to derive <code>sample</code>, and then encrypts the header field using
@@ -3761,8 +3761,8 @@ an attacker to gain a larger advantage than the target of 2^-57.<a href="#sectio
       <h2 id="name-change-log">
 <a href="#section-appendix.c" class="section-number selfRef">Appendix C. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-appendix.c-1.1">
+<ul class="ulEmpty normal">
+<li class="ulEmpty normal" id="section-appendix.c-1.1">
           <strong>RFC Editor's Note:</strong> Please remove this section prior to publication of a
 final version of this document.<a href="#section-appendix.c-1.1" class="pilcrow">¶</a>
 </li>
