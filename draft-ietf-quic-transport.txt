@@ -4999,6 +4999,10 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    processed.  An endpoint MUST NOT include delays that it does not
    control when populating the ACK Delay field in an ACK frame.
 
+   Since the acknowledgement delay is not used for Initial and Handshake
+   packets, the ACK Delay field in acknowledgements for those packet
+   types SHOULD be set to 0.
+
 13.2.7.  ACK Frames and Packet Protection
 
    ACK frames MUST only be carried in a packet that has the same packet
@@ -5029,10 +5033,6 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    whole.  The same applies to the frames that are contained within lost
    packets.  Instead, the information that might be carried in frames is
    sent again in new frames as needed.
-
-
-
-
 
 
 
@@ -6923,21 +6923,21 @@ Internet-Draft           QUIC Transport Protocol               July 2020
       generating the ACK frame.  Unlike the packet number in the QUIC
       long or short header, the value in an ACK frame is not truncated.
 
-   ACK Delay:  A variable-length integer representing the time delta in
-      microseconds between when the largest acknowledged packet, as
-      indicated in the Largest Acknowledged field, was received and the
-      ACK frame was sent.  The ACK Delay field carries this encoded time
-      difference.  It is decoded by multiplying the value in the ACK
-      Delay field by 2 to the power of the value of the
-      ack_delay_exponent transport parameter set by the sender of the
-      ACK frame; see Section 18.2.  Scaling in this fashion allows for a
-      larger range of values with a shorter encoding at the cost of
-      lower resolution.  Because the receiver doesn't use the value in
-      the ACK Delay field of Initial and Handshake packets, a sender
-      SHOULD send a value of 0.
+   ACK Delay:  A variable-length integer encoding the acknowledgement
+      delay in microseconds; see Section 13.2.6.  It is decoded by
+      multiplying the value in the field by 2 to the power of the
+      ack_delay_exponent transport parameter sent by the sender of the
+      ACK frame; see Section 18.2.  Compared to simply expressing the
+      delay as an integer, this encoding allows for a larger range of
+      values within the same number of bytes, at the cost of lower
+      resolution.
 
    ACK Range Count:  A variable-length integer specifying the number of
       Gap and ACK Range fields in the frame.
+
+   First ACK Range:  A variable-length integer indicating the number of
+
+
 
 
 
@@ -6946,7 +6946,6 @@ Iyengar & Thomson        Expires 31 January 2021              [Page 124]
 Internet-Draft           QUIC Transport Protocol               July 2020
 
 
-   First ACK Range:  A variable-length integer indicating the number of
       contiguous packets preceding the Largest Acknowledged that are
       being acknowledged.  The First ACK Range is encoded as an ACK
       Range; see Section 19.3.1 starting from the Largest Acknowledged.
@@ -6992,8 +6991,9 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    subtracted, so that each ACK Range describes progressively lower-
    numbered packets.
 
-
-
+   Each ACK Range acknowledges a contiguous range of packets by
+   indicating the number of acknowledged packets that precede the
+   largest packet number in that range.  A value of zero indicates that
 
 
 
@@ -7002,9 +7002,6 @@ Iyengar & Thomson        Expires 31 January 2021              [Page 125]
 Internet-Draft           QUIC Transport Protocol               July 2020
 
 
-   Each ACK Range acknowledges a contiguous range of packets by
-   indicating the number of acknowledged packets that precede the
-   largest packet number in that range.  A value of zero indicates that
    only the largest packet number is acknowledged.  Larger ACK Range
    values indicate a larger range, with corresponding lower values for
    the smallest packet number in the range.  Thus, given a largest
@@ -7050,6 +7047,9 @@ Internet-Draft           QUIC Transport Protocol               July 2020
 
    The three ECN Counts are:
 
+   ECT0 Count:  A variable-length integer representing the total number
+      of packets received with the ECT(0) codepoint in the packet number
+      space of the ACK frame.
 
 
 
@@ -7057,10 +7057,6 @@ Iyengar & Thomson        Expires 31 January 2021              [Page 126]
 
 Internet-Draft           QUIC Transport Protocol               July 2020
 
-
-   ECT0 Count:  A variable-length integer representing the total number
-      of packets received with the ECT(0) codepoint in the packet number
-      space of the ACK frame.
 
    ECT1 Count:  A variable-length integer representing the total number
       of packets received with the ECT(1) codepoint in the packet number
@@ -7106,6 +7102,10 @@ Internet-Draft           QUIC Transport Protocol               July 2020
       that indicates why the stream is being closed.
 
    Final Size:  A variable-length integer indicating the final size of
+      the stream by the RESET_STREAM sender, in unit of bytes; see
+      Section 4.4.
+
+
 
 
 
@@ -7113,9 +7113,6 @@ Iyengar & Thomson        Expires 31 January 2021              [Page 127]
 
 Internet-Draft           QUIC Transport Protocol               July 2020
 
-
-      the stream by the RESET_STREAM sender, in unit of bytes; see
-      Section 4.4.
 
 19.5.  STOP_SENDING Frame
 
@@ -7160,6 +7157,9 @@ Internet-Draft           QUIC Transport Protocol               July 2020
    optional length, and the end of the stream.
 
    The CRYPTO frame is shown in Figure 30.
+
+
+
 
 
 
