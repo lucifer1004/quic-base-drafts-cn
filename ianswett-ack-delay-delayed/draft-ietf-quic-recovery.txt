@@ -534,13 +534,17 @@ Internet-Draft             QUIC Loss Detection               August 2020
    delays, an endpoint:
 
    *  MUST ignore the ACK Delay field of the ACK frame for packets sent
-      in the Initial and Handshake packet number space, except for the
-      first ACK frame received in Handshake.
+      in the Initial packet number space.
+
+   *  MUST ignore the ACK Delay field of the ACK frame for packets sent
+      in the Handshake packet number space, unless the ACK frame only
+      acknowledges packets sent prior to the peer having decryption
+      keys.
 
    *  MUST use the lesser of the value reported in ACK Delay field of
       the ACK frame and the peer's max_ack_delay transport parameter,
-      unless it's the first ACK frame received for Handshake or
-      ApplicationData.
+      unless the ACK frame only acknowledges packets sent prior to the
+      peer having decryption keys.
 
    *  MUST NOT apply the adjustment if the resulting RTT sample is
       smaller than the min_rtt.  This limits the underestimation that a
@@ -549,11 +553,7 @@ Internet-Draft             QUIC Loss Detection               August 2020
    smoothed_rtt and rttvar are computed as follows, similar to
    [RFC6298].
 
-   When there are no samples for a network path, and on the first RTT
-   sample for the network path:
 
-   smoothed_rtt = rtt_sample
-   rttvar = rtt_sample / 2
 
 
 
@@ -561,6 +561,12 @@ Iyengar & Swett          Expires 5 February 2021               [Page 10]
 
 Internet-Draft             QUIC Loss Detection               August 2020
 
+
+   When there are no samples for a network path, and on the first RTT
+   sample for the network path:
+
+   smoothed_rtt = rtt_sample
+   rttvar = rtt_sample / 2
 
    Before any RTT samples are available, the initial RTT is used as
    rtt_sample.  On the first RTT sample for the network path, that
@@ -604,12 +610,6 @@ Internet-Draft             QUIC Loss Detection               August 2020
 
    A packet is declared lost if it meets all the following conditions:
 
-   *  The packet is unacknowledged, in-flight, and was sent prior to an
-      acknowledged packet.
-
-   *  Either its packet number is kPacketThreshold smaller than an
-      acknowledged packet (Section 6.1.1), or it was sent long enough in
-      the past (Section 6.1.2).
 
 
 
@@ -617,6 +617,13 @@ Iyengar & Swett          Expires 5 February 2021               [Page 11]
 
 Internet-Draft             QUIC Loss Detection               August 2020
 
+
+   *  The packet is unacknowledged, in-flight, and was sent prior to an
+      acknowledged packet.
+
+   *  Either its packet number is kPacketThreshold smaller than an
+      acknowledged packet (Section 6.1.1), or it was sent long enough in
+      the past (Section 6.1.2).
 
    The acknowledgement indicates that a packet sent later was delivered,
    and the packet and time thresholds provide some tolerance for packet
@@ -659,13 +666,6 @@ Internet-Draft             QUIC Loss Detection               August 2020
 
    max(kTimeThreshold * max(smoothed_rtt, latest_rtt), kGranularity)
 
-   If packets sent prior to the largest acknowledged packet cannot yet
-   be declared lost, then a timer SHOULD be set for the remaining time.
-
-   Using max(smoothed_rtt, latest_rtt) protects from the two following
-   cases:
-
-
 
 
 
@@ -673,6 +673,12 @@ Iyengar & Swett          Expires 5 February 2021               [Page 12]
 
 Internet-Draft             QUIC Loss Detection               August 2020
 
+
+   If packets sent prior to the largest acknowledged packet cannot yet
+   be declared lost, then a timer SHOULD be set for the remaining time.
+
+   Using max(smoothed_rtt, latest_rtt) protects from the two following
+   cases:
 
    *  the latest RTT sample is lower than the smoothed RTT, perhaps due
       to reordering where the acknowledgement encountered a shorter
@@ -717,12 +723,6 @@ Internet-Draft             QUIC Loss Detection               August 2020
    When an ack-eliciting packet is transmitted, the sender schedules a
    timer for the PTO period as follows:
 
-   PTO = smoothed_rtt + max(4*rttvar, kGranularity) + max_ack_delay
-
-   The PTO period is the amount of time that a sender ought to wait for
-   an acknowledgement of a sent packet.  This time period includes the
-   estimated network round-trip time (smoothed_rtt), the variation in
-
 
 
 Iyengar & Swett          Expires 5 February 2021               [Page 13]
@@ -730,6 +730,11 @@ Iyengar & Swett          Expires 5 February 2021               [Page 13]
 Internet-Draft             QUIC Loss Detection               August 2020
 
 
+   PTO = smoothed_rtt + max(4*rttvar, kGranularity) + max_ack_delay
+
+   The PTO period is the amount of time that a sender ought to wait for
+   an acknowledgement of a sent packet.  This time period includes the
+   estimated network round-trip time (smoothed_rtt), the variation in
    the estimate (4*rttvar), and max_ack_delay, to account for the
    maximum time by which a receiver might delay sending an
    acknowledgement.  When the PTO is armed for Initial or Handshake
@@ -773,11 +778,6 @@ Internet-Draft             QUIC Loss Detection               August 2020
    consecutive PTOs might be caused by loss of packets or
    acknowledgements due to severe congestion.  Even when there are ack-
    eliciting packets in-flight in multiple packet number spaces, the
-   exponential increase in probe timeout occurs across all spaces to
-   prevent excess load on the network.  For example, a timeout in the
-   Initial packet number space doubles the length of the timeout in the
-   Handshake packet number space.
-
 
 
 
@@ -785,6 +785,11 @@ Iyengar & Swett          Expires 5 February 2021               [Page 14]
 
 Internet-Draft             QUIC Loss Detection               August 2020
 
+
+   exponential increase in probe timeout occurs across all spaces to
+   prevent excess load on the network.  For example, a timeout in the
+   Initial packet number space doubles the length of the timeout in the
+   Handshake packet number space.
 
    The life of a connection that is experiencing consecutive PTOs is
    limited by the endpoint's idle timeout.
@@ -826,14 +831,9 @@ Internet-Draft             QUIC Loss Detection               August 2020
    that the server could fail to validate the client's address even if
    0-RTT is accepted.
 
-
-
-
-
-
-
-
-
+   Since the server could be blocked until more datagrams are received
+   from the client, it is the client's responsibility to send packets to
+   unblock the server until it is certain that the server has finished
 
 
 
@@ -842,9 +842,6 @@ Iyengar & Swett          Expires 5 February 2021               [Page 15]
 Internet-Draft             QUIC Loss Detection               August 2020
 
 
-   Since the server could be blocked until more datagrams are received
-   from the client, it is the client's responsibility to send packets to
-   unblock the server until it is certain that the server has finished
    its address validation (see Section 8 of [QUIC-TRANSPORT]).  That is,
    the client MUST set the probe timer if the client has not received an
    acknowledgement for one of its Handshake or 1-RTT packets and has not
@@ -890,6 +887,9 @@ Internet-Draft             QUIC Loss Detection               August 2020
    and Application Data in-flight, because the peer might only have
    receive keys for one of the two packet number spaces.
 
+   If the sender wants to elicit a faster acknowledgement on PTO, it can
+   skip a packet number to eliminate the acknowledgment delay.
+
 
 
 
@@ -897,9 +897,6 @@ Iyengar & Swett          Expires 5 February 2021               [Page 16]
 
 Internet-Draft             QUIC Loss Detection               August 2020
 
-
-   If the sender wants to elicit a faster acknowledgement on PTO, it can
-   skip a packet number to eliminate the acknowledgment delay.
 
    When the PTO timer expires, an ack-eliciting packet MUST be sent.  An
    endpoint SHOULD include new data in this packet.  Previously sent
@@ -943,7 +940,10 @@ Internet-Draft             QUIC Loss Detection               August 2020
    packet cannot be treated as an acknowledgment, because it does not
    indicate that a packet was processed or specify the packet number.
 
-
+   Clients that receive a Retry packet reset congestion control and loss
+   recovery state, including resetting any pending timers.  Other
+   connection state, in particular cryptographic handshake messages, is
+   retained; see Section 17.2.5 of [QUIC-TRANSPORT].
 
 
 
@@ -953,11 +953,6 @@ Iyengar & Swett          Expires 5 February 2021               [Page 17]
 
 Internet-Draft             QUIC Loss Detection               August 2020
 
-
-   Clients that receive a Retry packet reset congestion control and loss
-   recovery state, including resetting any pending timers.  Other
-   connection state, in particular cryptographic handshake messages, is
-   retained; see Section 17.2.5 of [QUIC-TRANSPORT].
 
    The client MAY compute an RTT estimate to the server as the time
    period from when the first Initial was sent to when a Retry or a
@@ -1001,6 +996,11 @@ Internet-Draft             QUIC Loss Detection               August 2020
    If an endpoint uses a different controller than that specified in
    this document, the chosen controller MUST conform to the congestion
    control guidelines specified in Section 3.1 of [RFC8085].
+
+
+
+
+
 
 
 
