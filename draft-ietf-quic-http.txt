@@ -2209,7 +2209,7 @@ Internet-Draft                   HTTP/3                      August 2020
       stream needs to be closed, but there is no error to signal.
 
    H3_GENERAL_PROTOCOL_ERROR (0x101):  Peer violated protocol
-      requirements in a way that doesn't match a more specific error
+      requirements in a way that does not match a more specific error
       code, or endpoint declines to use the more specific error code.
 
    H3_INTERNAL_ERROR (0x102):  An internal error has occurred in the
@@ -2312,7 +2312,7 @@ Internet-Draft                   HTTP/3                      August 2020
    complex.  As such, allocating new identifiers for new definitions of
    existing protocol elements is likely to be more effective.
 
-   This document doesn't mandate a specific method for negotiating the
+   This document does not mandate a specific method for negotiating the
    use of an extension but notes that a setting (Section 7.2.4.1) could
    be used for that purpose.  If both peers set a value that indicates
    willingness to use the extension, then the extension can be used.  If
@@ -2433,7 +2433,7 @@ Internet-Draft                   HTTP/3                      August 2020
    field compression - have legitimate uses.  These features become a
    burden only when they are used unnecessarily or to excess.
 
-   An endpoint that doesn't monitor this behavior exposes itself to a
+   An endpoint that does not monitor this behavior exposes itself to a
    risk of denial-of-service attack.  Implementations SHOULD track the
    use of these features and set limits on their use.  An endpoint MAY
    treat activity that is suspicious as a connection error (Section 8)
