@@ -4517,15 +4517,15 @@ are sufficient information to identify packets for a closing connection; an
 endpoint can discard all other connection state. An endpoint MAY retain packet
 protection keys for incoming packets to allow it to read and process a
 CONNECTION_CLOSE frame.<a href="#section-10.2.1-3" class="pilcrow">¶</a></p>
-<p id="section-10.2.1-4">An endpoint MAY drop packet protection keys when entering the closing period
-(<a href="#draining" class="xref">Section 10.2.2</a>) and send a packet containing a CONNECTION_CLOSE in response to
-any UDP datagram that is received. However, an endpoint without the packet
-protection keys cannot identify and discard invalid packets. To avoid being
-used for an amplication attack, such endpoints MUST limit the cumulative size
-of packets containing a CONNECTION_CLOSE frame to 3 times the cumulative size
-of the packets that cause those packets to be sent. To minimize the state that
-an endpoint maintains for a closing connection, endpoints MAY send the exact
-same packet.<a href="#section-10.2.1-4" class="pilcrow">¶</a></p>
+<p id="section-10.2.1-4">An endpoint MAY drop packet protection keys when starting the closing period
+and send a packet containing a CONNECTION_CLOSE in response to any UDP datagram
+that is received. However, an endpoint without the packet protection keys
+cannot identify and discard invalid packets. To avoid being used for an
+amplication attack, such endpoints MUST limit the cumulative size of packets
+containing a CONNECTION_CLOSE frame to 3 times the cumulative size of the
+packets that cause those packets to be sent. To minimize the state that an
+endpoint maintains for a closing connection, endpoints MAY send the exact same
+packet.<a href="#section-10.2.1-4" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-10.2.1-5">
             <dt id="section-10.2.1-5.1">Note:</dt>
             <dd id="section-10.2.1-5.2">

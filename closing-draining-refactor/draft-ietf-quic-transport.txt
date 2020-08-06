@@ -3781,16 +3781,15 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    keys for incoming packets to allow it to read and process a
    CONNECTION_CLOSE frame.
 
-   An endpoint MAY drop packet protection keys when entering the closing
-   period (Section 10.2.2) and send a packet containing a
-   CONNECTION_CLOSE in response to any UDP datagram that is received.
-   However, an endpoint without the packet protection keys cannot
-   identify and discard invalid packets.  To avoid being used for an
-   amplication attack, such endpoints MUST limit the cumulative size of
-   packets containing a CONNECTION_CLOSE frame to 3 times the cumulative
-   size of the packets that cause those packets to be sent.  To minimize
-   the state that an endpoint maintains for a closing connection,
-   endpoints MAY send the exact same packet.
+   An endpoint MAY drop packet protection keys when starting the closing
+   period and send a packet containing a CONNECTION_CLOSE in response to
+   any UDP datagram that is received.  However, an endpoint without the
+   packet protection keys cannot identify and discard invalid packets.
+   To avoid being used for an amplication attack, such endpoints MUST
+   limit the cumulative size of packets containing a CONNECTION_CLOSE
+   frame to 3 times the cumulative size of the packets that cause those
+   packets to be sent.  To minimize the state that an endpoint maintains
+   for a closing connection, endpoints MAY send the exact same packet.
 
    Note:  Allowing retransmission of a closing packet is an exception to
       the requirement that a new packet number be used for each packet
@@ -3802,6 +3801,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    While in the closing period, an endpoint could receive packets from a
    new source address, indicating a connection migration; see Section 9.
    New packets from unverified addresses could be used to create an
+   amplification attack; see Section 8.  To avoid being used for an
 
 
 
@@ -3810,7 +3810,6 @@ Iyengar & Thomson        Expires 7 February 2021               [Page 68]
 Internet-Draft           QUIC Transport Protocol             August 2020
 
 
-   amplification attack; see Section 8.  To avoid being used for an
    amplication attack, an endpoint in the closing state MUST either
    discard packets received from unvalidated addresses or limit the
    cumulative size of packets it sends to unvalidated addresses to 3
@@ -3858,6 +3857,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    discard all connection state.  This results in new packets on the
    connection being handled generically.  For instance, an endpoint MAY
    send a stateless reset in response to any further incoming packets.
+
 
 
 
