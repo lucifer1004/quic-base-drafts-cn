@@ -1169,10 +1169,7 @@ code and issues list for this draft can be found at
                     <p id="section-toc.1-1.10.2.2.2.2.1"><a href="#section-10.2.2" class="xref">10.2.2</a>.  <a href="#name-draining-connection-state" class="xref">Draining Connection State</a><a href="#section-toc.1-1.10.2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="toc ulEmpty compact" id="section-toc.1-1.10.2.2.2.3">
-                    <p id="section-toc.1-1.10.2.2.2.3.1"><a href="#section-10.2.3" class="xref">10.2.3</a>.  <a href="#name-terminal-connection-state" class="xref">Terminal Connection State</a><a href="#section-toc.1-1.10.2.2.2.3.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.10.2.2.2.4">
-                    <p id="section-toc.1-1.10.2.2.2.4.1"><a href="#section-10.2.4" class="xref">10.2.4</a>.  <a href="#name-immediate-close-during-the-" class="xref">Immediate Close During the Handshake</a><a href="#section-toc.1-1.10.2.2.2.4.1" class="pilcrow">¶</a></p>
+                    <p id="section-toc.1-1.10.2.2.2.3.1"><a href="#section-10.2.3" class="xref">10.2.3</a>.  <a href="#name-immediate-close-during-the-" class="xref">Immediate Close During the Handshake</a><a href="#section-toc.1-1.10.2.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
@@ -4496,13 +4493,23 @@ are needed to cause both endpoints to agree to close the connection, after which
 the application requests that the connection be closed.  When the application
 closes the connection, a CONNECTION_CLOSE frame with an appropriate error code
 will be used to signal closure.<a href="#section-10.2-4" class="pilcrow">¶</a></p>
+<p id="section-10.2-5">Disposing of connection state prior to the end of the closing or draining period
+could cause delayed or reordered packets to generate an unnecessary stateless
+reset. Endpoints that have some alternative means to ensure that late-arriving
+packets on the connection do not induce a response, such as those that are able
+to close the UDP socket, MAY use an abbreviated draining period to allow
+for faster resource recovery.  Servers that retain an open socket for accepting
+new connections SHOULD NOT exit the closing or draining period early.<a href="#section-10.2-5" class="pilcrow">¶</a></p>
+<p id="section-10.2-6">Once the closing or draining period has ended, an endpoint SHOULD discard all
+connection state.  This results in new packets on the connection being handled
+generically.  For instance, an endpoint MAY send a stateless reset in response
+to any further incoming packets.<a href="#section-10.2-6" class="pilcrow">¶</a></p>
 <div id="closing">
 <section id="section-10.2.1">
           <h4 id="name-closing-connection-state">
 <a href="#section-10.2.1" class="section-number selfRef">10.2.1. </a><a href="#name-closing-connection-state" class="section-name selfRef">Closing Connection State</a>
           </h4>
-<p id="section-10.2.1-1">An endpoint enters a closing period after initiating an immediate close;
-<a href="#immediate-close" class="xref">Section 10.2</a>.<a href="#section-10.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-10.2.1-1">An endpoint enters a closing period after initiating an immediate close.<a href="#section-10.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-10.2.1-2">During the closing period, an endpoint that sends a CONNECTION_CLOSE frame
 SHOULD respond to any incoming packet that can be decrypted with another packet
 containing a CONNECTION_CLOSE frame. An endpoint that is closing is not
@@ -4564,73 +4571,55 @@ is in the draining state.<a href="#section-10.2.2-1" class="pilcrow">¶</a></p>
 containing a CONNECTION_CLOSE frame before entering the draining state, using a
 CONNECTION_CLOSE frame and a NO_ERROR code if appropriate.  An endpoint MUST NOT
 send further packets, which could result in a constant exchange of
-CONNECTION_CLOSE frames until the closing period on either peer ended.<a href="#section-10.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-10.2.2-3">An endpoint MAY transition from the closing period to the draining period if it
+CONNECTION_CLOSE frames until the closing period on either peer ends.<a href="#section-10.2.2-2" class="pilcrow">¶</a></p>
+<p id="section-10.2.2-3">An endpoint MAY transition from the closing state to the draining state if it
 receives a CONNECTION_CLOSE frame or stateless reset, either of which indicate
 that the peer is also closing or draining.  The draining period SHOULD end when
 the closing period would have ended.  In other words, the endpoint can use the
 same end time, but cease retransmission of the closing packet.<a href="#section-10.2.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="terminal-connection-state">
-<section id="section-10.2.3">
-          <h4 id="name-terminal-connection-state">
-<a href="#section-10.2.3" class="section-number selfRef">10.2.3. </a><a href="#name-terminal-connection-state" class="section-name selfRef">Terminal Connection State</a>
-          </h4>
-<p id="section-10.2.3-1">Disposing of connection state prior to the end of the closing or draining period
-could cause delayed or reordered packets to generate an unnecessary stateless
-reset. Endpoints that have some alternative means to ensure that late-arriving
-packets on the connection do not induce a response, such as those that are able
-to close the UDP socket, MAY use an abbreviated draining period to allow
-for faster resource recovery.  Servers that retain an open socket for accepting
-new connections SHOULD NOT exit the closing or draining period early.<a href="#section-10.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-10.2.3-2">Once the closing or draining period has ended, an endpoint SHOULD discard all
-connection state.  This results in new packets on the connection being handled
-generically.  For instance, an endpoint MAY send a stateless reset in response
-to any further incoming packets.<a href="#section-10.2.3-2" class="pilcrow">¶</a></p>
-</section>
-</div>
 <div id="immediate-close-hs">
-<section id="section-10.2.4">
+<section id="section-10.2.3">
           <h4 id="name-immediate-close-during-the-">
-<a href="#section-10.2.4" class="section-number selfRef">10.2.4. </a><a href="#name-immediate-close-during-the-" class="section-name selfRef">Immediate Close During the Handshake</a>
+<a href="#section-10.2.3" class="section-number selfRef">10.2.3. </a><a href="#name-immediate-close-during-the-" class="section-name selfRef">Immediate Close During the Handshake</a>
           </h4>
-<p id="section-10.2.4-1">When sending CONNECTION_CLOSE, the goal is to ensure that the peer will process
+<p id="section-10.2.3-1">When sending CONNECTION_CLOSE, the goal is to ensure that the peer will process
 the frame.  Generally, this means sending the frame in a packet with the highest
 level of packet protection to avoid the packet being discarded.  After the
 handshake is confirmed (see Section 4.1.2 of <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span>), an endpoint MUST
 send any CONNECTION_CLOSE frames in a 1-RTT packet.  However, prior to
 confirming the handshake, it is possible that more advanced packet protection
 keys are not available to the peer, so another CONNECTION_CLOSE frame MAY be
-sent in a packet that uses a lower packet protection level.  More specifically:<a href="#section-10.2.4-1" class="pilcrow">¶</a></p>
+sent in a packet that uses a lower packet protection level.  More specifically:<a href="#section-10.2.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-10.2.4-2.1">A client will always know whether the server has Handshake keys (see
+<li class="normal" id="section-10.2.3-2.1">A client will always know whether the server has Handshake keys (see
 <a href="#discard-initial" class="xref">Section 17.2.2.1</a>), but it is possible that a server does not know whether
 the client has Handshake keys.  Under these circumstances, a server SHOULD
 send a CONNECTION_CLOSE frame in both Handshake and Initial packets to ensure
-that at least one of them is processable by the client.<a href="#section-10.2.4-2.1" class="pilcrow">¶</a>
+that at least one of them is processable by the client.<a href="#section-10.2.3-2.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-10.2.4-2.2">A client that sends CONNECTION_CLOSE in a 0-RTT packet cannot be assured that
+            <li class="normal" id="section-10.2.3-2.2">A client that sends CONNECTION_CLOSE in a 0-RTT packet cannot be assured that
 the server has accepted 0-RTT.  Sending a CONNECTION_CLOSE frame in an Initial
 packet makes it more likely that the server can receive the close signal, even
-if the application error code might not be received.<a href="#section-10.2.4-2.2" class="pilcrow">¶</a>
+if the application error code might not be received.<a href="#section-10.2.3-2.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-10.2.4-2.3">Prior to confirming the handshake, a peer might be unable to process 1-RTT
+            <li class="normal" id="section-10.2.3-2.3">Prior to confirming the handshake, a peer might be unable to process 1-RTT
 packets, so an endpoint SHOULD send CONNECTION_CLOSE in both Handshake and
 1-RTT packets.  A server SHOULD also send CONNECTION_CLOSE in an Initial
-packet.<a href="#section-10.2.4-2.3" class="pilcrow">¶</a>
+packet.<a href="#section-10.2.3-2.3" class="pilcrow">¶</a>
 </li>
           </ul>
-<p id="section-10.2.4-3">Sending a CONNECTION_CLOSE of type 0x1d in an Initial or Handshake packet could
+<p id="section-10.2.3-3">Sending a CONNECTION_CLOSE of type 0x1d in an Initial or Handshake packet could
 expose application state or be used to alter application state. A
 CONNECTION_CLOSE of type 0x1d MUST be replaced by a CONNECTION_CLOSE of type
 0x1c when sending the frame in Initial or Handshake packets. Otherwise,
 information about the application state might be revealed. Endpoints MUST clear
 the value of the Reason Phrase field and SHOULD use the APPLICATION_ERROR code
-when converting to a CONNECTION_CLOSE of type 0x1c.<a href="#section-10.2.4-3" class="pilcrow">¶</a></p>
-<p id="section-10.2.4-4">CONNECTION_CLOSE frames sent in multiple packet types can be coalesced into a
-single UDP datagram; see <a href="#packet-coalesce" class="xref">Section 12.2</a>.<a href="#section-10.2.4-4" class="pilcrow">¶</a></p>
-<p id="section-10.2.4-5">An endpoint might send a CONNECTION_CLOSE frame in an Initial packet or in
+when converting to a CONNECTION_CLOSE of type 0x1c.<a href="#section-10.2.3-3" class="pilcrow">¶</a></p>
+<p id="section-10.2.3-4">CONNECTION_CLOSE frames sent in multiple packet types can be coalesced into a
+single UDP datagram; see <a href="#packet-coalesce" class="xref">Section 12.2</a>.<a href="#section-10.2.3-4" class="pilcrow">¶</a></p>
+<p id="section-10.2.3-5">An endpoint might send a CONNECTION_CLOSE frame in an Initial packet or in
 response to unauthenticated information received in Initial or Handshake
 packets.  Such an immediate close might expose legitimate connections to a
 denial of service.  QUIC does not include defensive measures for on-path attacks
@@ -4639,11 +4628,11 @@ feedback about errors for legitimate peers, some forms of denial of service can
 be made more difficult for an attacker if endpoints discard illegal packets
 rather than terminating a connection with CONNECTION_CLOSE.  For this reason,
 endpoints MAY discard packets rather than immediately close if errors are
-detected in packets that lack authentication.<a href="#section-10.2.4-5" class="pilcrow">¶</a></p>
-<p id="section-10.2.4-6">An endpoint that has not established state, such as a server that detects an
+detected in packets that lack authentication.<a href="#section-10.2.3-5" class="pilcrow">¶</a></p>
+<p id="section-10.2.3-6">An endpoint that has not established state, such as a server that detects an
 error in an Initial packet, does not enter the closing state.  An endpoint that
 has no state for the connection does not enter a closing or draining period on
-sending a CONNECTION_CLOSE frame.<a href="#section-10.2.4-6" class="pilcrow">¶</a></p>
+sending a CONNECTION_CLOSE frame.<a href="#section-10.2.3-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -5974,7 +5963,7 @@ believes that the network path and peer both support the size that it chooses.<a
 payload that is less than the smallest allowed maximum packet size of 1200
 bytes.  A server MAY also immediately close the connection by sending a
 CONNECTION_CLOSE frame with an error code of PROTOCOL_VIOLATION; see
-<a href="#immediate-close-hs" class="xref">Section 10.2.4</a>.<a href="#section-14.1-3" class="pilcrow">¶</a></p>
+<a href="#immediate-close-hs" class="xref">Section 10.2.3</a>.<a href="#section-14.1-3" class="pilcrow">¶</a></p>
 <p id="section-14.1-4">The server MUST also limit the number of bytes it sends before validating the
 address of the client; see <a href="#address-validation" class="xref">Section 8</a>.<a href="#section-14.1-4" class="pilcrow">¶</a></p>
 </section>

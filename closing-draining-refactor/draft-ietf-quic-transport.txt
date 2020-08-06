@@ -154,14 +154,14 @@ Internet-Draft           QUIC Transport Protocol             August 2020
      10.2.  Immediate Close  . . . . . . . . . . . . . . . . . . . .  67
        10.2.1.  Closing Connection State . . . . . . . . . . . . . .  68
        10.2.2.  Draining Connection State  . . . . . . . . . . . . .  69
-       10.2.3.  Terminal Connection State  . . . . . . . . . . . . .  69
-       10.2.4.  Immediate Close During the Handshake . . . . . . . .  70
+       10.2.3.  Immediate Close During the Handshake . . . . . . . .  70
      10.3.  Stateless Reset  . . . . . . . . . . . . . . . . . . . .  71
        10.3.1.  Detecting a Stateless Reset  . . . . . . . . . . . .  74
        10.3.2.  Calculating a Stateless Reset Token  . . . . . . . .  75
        10.3.3.  Looping  . . . . . . . . . . . . . . . . . . . . . .  76
    11. Error Handling  . . . . . . . . . . . . . . . . . . . . . . .  76
      11.1.  Connection Errors  . . . . . . . . . . . . . . . . . . .  77
+     11.2.  Stream Errors  . . . . . . . . . . . . . . . . . . . . .  77
 
 
 
@@ -170,7 +170,6 @@ Iyengar & Thomson        Expires 7 February 2021                [Page 3]
 Internet-Draft           QUIC Transport Protocol             August 2020
 
 
-     11.2.  Stream Errors  . . . . . . . . . . . . . . . . . . . . .  77
    12. Packets and Frames  . . . . . . . . . . . . . . . . . . . . .  78
      12.1.  Protected Packets  . . . . . . . . . . . . . . . . . . .  78
      12.2.  Coalescing Packets . . . . . . . . . . . . . . . . . . .  79
@@ -218,6 +217,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
      18.2.  Transport Parameter Definitions  . . . . . . . . . . . . 119
    19. Frame Types and Formats . . . . . . . . . . . . . . . . . . . 123
      19.1.  PADDING Frame  . . . . . . . . . . . . . . . . . . . . . 123
+     19.2.  PING Frame . . . . . . . . . . . . . . . . . . . . . . . 123
 
 
 
@@ -226,7 +226,6 @@ Iyengar & Thomson        Expires 7 February 2021                [Page 4]
 Internet-Draft           QUIC Transport Protocol             August 2020
 
 
-     19.2.  PING Frame . . . . . . . . . . . . . . . . . . . . . . . 123
      19.3.  ACK Frames . . . . . . . . . . . . . . . . . . . . . . . 124
        19.3.1.  ACK Ranges . . . . . . . . . . . . . . . . . . . . . 125
        19.3.2.  ECN Counts . . . . . . . . . . . . . . . . . . . . . 127
@@ -274,6 +273,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
        22.1.3.  Reclaiming Provisional Codepoints  . . . . . . . . . 158
        22.1.4.  Permanent Registrations  . . . . . . . . . . . . . . 159
      22.2.  QUIC Transport Parameter Registry  . . . . . . . . . . . 159
+     22.3.  QUIC Frame Types Registry  . . . . . . . . . . . . . . . 160
 
 
 
@@ -282,7 +282,6 @@ Iyengar & Thomson        Expires 7 February 2021                [Page 5]
 Internet-Draft           QUIC Transport Protocol             August 2020
 
 
-     22.3.  QUIC Frame Types Registry  . . . . . . . . . . . . . . . 160
      22.4.  QUIC Transport Error Codes Registry  . . . . . . . . . . 161
    23. References  . . . . . . . . . . . . . . . . . . . . . . . . . 163
      23.1.  Normative References . . . . . . . . . . . . . . . . . . 163
@@ -330,6 +329,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
 
    *  Stream multiplexing
 
+   *  Stream- and connection-level flow control
 
 
 
@@ -337,8 +337,6 @@ Iyengar & Thomson        Expires 7 February 2021                [Page 6]
 
 Internet-Draft           QUIC Transport Protocol             August 2020
 
-
-   *  Stream- and connection-level flow control
 
    *  Low-latency connection establishment
 
@@ -387,14 +385,14 @@ Internet-Draft           QUIC Transport Protocol             August 2020
 
    *  Streams are the basic service abstraction that QUIC provides.
 
+      -  Section 2 describes core concepts related to streams,
+
 
 
 Iyengar & Thomson        Expires 7 February 2021                [Page 7]
 
 Internet-Draft           QUIC Transport Protocol             August 2020
 
-
-      -  Section 2 describes core concepts related to streams,
 
       -  Section 3 provides a reference model for stream states, and
 
@@ -442,6 +440,8 @@ Internet-Draft           QUIC Transport Protocol             August 2020
       -  Section 19 (Frames), and
 
       -  Section 20 (Errors).
+
+
 
 
 
@@ -3758,10 +3758,24 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    the connection, a CONNECTION_CLOSE frame with an appropriate error
    code will be used to signal closure.
 
+   Disposing of connection state prior to the end of the closing or
+   draining period could cause delayed or reordered packets to generate
+   an unnecessary stateless reset.  Endpoints that have some alternative
+   means to ensure that late-arriving packets on the connection do not
+   induce a response, such as those that are able to close the UDP
+   socket, MAY use an abbreviated draining period to allow for faster
+   resource recovery.  Servers that retain an open socket for accepting
+   new connections SHOULD NOT exit the closing or draining period early.
+
+   Once the closing or draining period has ended, an endpoint SHOULD
+   discard all connection state.  This results in new packets on the
+   connection being handled generically.  For instance, an endpoint MAY
+   send a stateless reset in response to any further incoming packets.
+
 10.2.1.  Closing Connection State
 
    An endpoint enters a closing period after initiating an immediate
-   close; Section 10.2.
+   close.
 
    During the closing period, an endpoint that sends a CONNECTION_CLOSE
    frame SHOULD respond to any incoming packet that can be decrypted
@@ -3780,6 +3794,21 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    all other connection state.  An endpoint MAY retain packet protection
    keys for incoming packets to allow it to read and process a
    CONNECTION_CLOSE frame.
+
+
+
+
+
+
+
+
+
+
+
+Iyengar & Thomson        Expires 7 February 2021               [Page 68]
+
+Internet-Draft           QUIC Transport Protocol             August 2020
+
 
    An endpoint MAY drop packet protection keys when starting the closing
    period and send a packet containing a CONNECTION_CLOSE in response to
@@ -3802,14 +3831,6 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    new source address, indicating a connection migration; see Section 9.
    New packets from unverified addresses could be used to create an
    amplification attack; see Section 8.  To avoid being used for an
-
-
-
-Iyengar & Thomson        Expires 7 February 2021               [Page 68]
-
-Internet-Draft           QUIC Transport Protocol             August 2020
-
-
    amplication attack, an endpoint in the closing state MUST either
    discard packets received from unvalidated addresses or limit the
    cumulative size of packets it sends to unvalidated addresses to 3
@@ -3833,30 +3854,9 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    draining state, using a CONNECTION_CLOSE frame and a NO_ERROR code if
    appropriate.  An endpoint MUST NOT send further packets, which could
    result in a constant exchange of CONNECTION_CLOSE frames until the
-   closing period on either peer ended.
+   closing period on either peer ends.
 
-   An endpoint MAY transition from the closing period to the draining
-   period if it receives a CONNECTION_CLOSE frame or stateless reset,
-   either of which indicate that the peer is also closing or draining.
-   The draining period SHOULD end when the closing period would have
-   ended.  In other words, the endpoint can use the same end time, but
-   cease retransmission of the closing packet.
 
-10.2.3.  Terminal Connection State
-
-   Disposing of connection state prior to the end of the closing or
-   draining period could cause delayed or reordered packets to generate
-   an unnecessary stateless reset.  Endpoints that have some alternative
-   means to ensure that late-arriving packets on the connection do not
-   induce a response, such as those that are able to close the UDP
-   socket, MAY use an abbreviated draining period to allow for faster
-   resource recovery.  Servers that retain an open socket for accepting
-   new connections SHOULD NOT exit the closing or draining period early.
-
-   Once the closing or draining period has ended, an endpoint SHOULD
-   discard all connection state.  This results in new packets on the
-   connection being handled generically.  For instance, an endpoint MAY
-   send a stateless reset in response to any further incoming packets.
 
 
 
@@ -3866,7 +3866,14 @@ Iyengar & Thomson        Expires 7 February 2021               [Page 69]
 Internet-Draft           QUIC Transport Protocol             August 2020
 
 
-10.2.4.  Immediate Close During the Handshake
+   An endpoint MAY transition from the closing state to the draining
+   state if it receives a CONNECTION_CLOSE frame or stateless reset,
+   either of which indicate that the peer is also closing or draining.
+   The draining period SHOULD end when the closing period would have
+   ended.  In other words, the endpoint can use the same end time, but
+   cease retransmission of the closing packet.
+
+10.2.3.  Immediate Close During the Handshake
 
    When sending CONNECTION_CLOSE, the goal is to ensure that the peer
    will process the frame.  Generally, this means sending the frame in a
@@ -3906,14 +3913,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    Reason Phrase field and SHOULD use the APPLICATION_ERROR code when
    converting to a CONNECTION_CLOSE of type 0x1c.
 
-   CONNECTION_CLOSE frames sent in multiple packet types can be
-   coalesced into a single UDP datagram; see Section 12.2.
 
-   An endpoint might send a CONNECTION_CLOSE frame in an Initial packet
-   or in response to unauthenticated information received in Initial or
-   Handshake packets.  Such an immediate close might expose legitimate
-   connections to a denial of service.  QUIC does not include defensive
-   measures for on-path attacks during the handshake; see Section 21.1.
 
 
 
@@ -3922,6 +3922,14 @@ Iyengar & Thomson        Expires 7 February 2021               [Page 70]
 Internet-Draft           QUIC Transport Protocol             August 2020
 
 
+   CONNECTION_CLOSE frames sent in multiple packet types can be
+   coalesced into a single UDP datagram; see Section 12.2.
+
+   An endpoint might send a CONNECTION_CLOSE frame in an Initial packet
+   or in response to unauthenticated information received in Initial or
+   Handshake packets.  Such an immediate close might expose legitimate
+   connections to a denial of service.  QUIC does not include defensive
+   measures for on-path attacks during the handshake; see Section 21.1.
    However, at the cost of reducing feedback about errors for legitimate
    peers, some forms of denial of service can be made more difficult for
    an attacker if endpoints discard illegal packets rather than
@@ -3962,14 +3970,6 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    An endpoint that receives packets that it cannot process sends a
    packet in the following layout:
 
-   Stateless Reset {
-     Fixed Bits (2) = 1,
-     Unpredictable Bits (38..),
-     Stateless Reset Token (128),
-   }
-
-                     Figure 10: Stateless Reset Packet
-
 
 
 
@@ -3977,6 +3977,14 @@ Iyengar & Thomson        Expires 7 February 2021               [Page 71]
 
 Internet-Draft           QUIC Transport Protocol             August 2020
 
+
+   Stateless Reset {
+     Fixed Bits (2) = 1,
+     Unpredictable Bits (38..),
+     Stateless Reset Token (128),
+   }
+
+                     Figure 10: Stateless Reset Packet
 
    This design ensures that a stateless reset packet is - to the extent
    possible - indistinguishable from a regular packet with a short
@@ -4019,20 +4027,17 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    packets.  With the set of AEAD functions defined in [QUIC-TLS],
    packets that are smaller than 21 bytes are never valid.
 
-   Endpoints MUST send stateless reset packets formatted as a packet
-   with a short header.  However, endpoints MUST treat any packet ending
-   in a valid stateless reset token as a stateless reset, as other QUIC
-   versions might allow the use of a long header.
-
-
-
-
 
 
 Iyengar & Thomson        Expires 7 February 2021               [Page 72]
 
 Internet-Draft           QUIC Transport Protocol             August 2020
 
+
+   Endpoints MUST send stateless reset packets formatted as a packet
+   with a short header.  However, endpoints MUST treat any packet ending
+   in a valid stateless reset token as a stateless reset, as other QUIC
+   versions might allow the use of a long header.
 
    An endpoint MAY send a stateless reset in response to a packet with a
    long header.  Sending a stateless reset is not effective prior to the
@@ -4074,11 +4079,6 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    prior to losing state).  Designers of new versions of QUIC need to be
    aware of this and either reuse this design, or use a portion of the
    packet other than the last 16 bytes for carrying data.
-
-
-
-
-
 
 
 
@@ -5422,7 +5422,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    datagram with a payload that is less than the smallest allowed
    maximum packet size of 1200 bytes.  A server MAY also immediately
    close the connection by sending a CONNECTION_CLOSE frame with an
-   error code of PROTOCOL_VIOLATION; see Section 10.2.4.
+   error code of PROTOCOL_VIOLATION; see Section 10.2.3.
 
    The server MUST also limit the number of bytes it sends before
    validating the address of the client; see Section 8.
