@@ -103,7 +103,7 @@ Table of Contents
    6.  Stream Mapping and Usage  . . . . . . . . . . . . . . . . . .  25
      6.1.  Bidirectional Streams . . . . . . . . . . . . . . . . . .  26
      6.2.  Unidirectional Streams  . . . . . . . . . . . . . . . . .  26
-       6.2.1.  Control Streams . . . . . . . . . . . . . . . . . . .  27
+       6.2.1.  Control Streams . . . . . . . . . . . . . . . . . . .  28
        6.2.2.  Push Streams  . . . . . . . . . . . . . . . . . . . .  28
        6.2.3.  Reserved Stream Types . . . . . . . . . . . . . . . .  29
 
@@ -919,31 +919,31 @@ Internet-Draft                   HTTP/3                      August 2020
 
 4.1.2.  Request Cancellation and Rejection
 
-   Clients can cancel requests by resetting and aborting the request
-   stream with an error code of H3_REQUEST_CANCELLED (Section 8.1).
-   When the client aborts reading a response, it indicates that this
-   response is no longer of interest.  Implementations SHOULD cancel
-   requests by abruptly terminating any directions of a stream that are
-   still open.
+   Once a request stream has been opened, the request MAY be cancelled
+   by either endpoint.  Clients cancel requests if the response is no
+   longer of interest; servers cancel requests if they are unable to or
+   choose not to respond.  When possible, it is RECOMMENDED that servers
+   send an HTTP response with an appropriate status code rather than
+   canceling a request it has already begun processing.
 
-   When the server rejects a request without performing any application
-   processing, it SHOULD abort its response stream with the error code
-   H3_REQUEST_REJECTED.  In this context, "processed" means that some
-   data from the stream was passed to some higher layer of software that
-   might have taken some action as a result.  The client can treat
-   requests rejected by the server as though they had never been sent at
-   all, thereby allowing them to be retried later on a new connection.
+   Implementations SHOULD cancel requests by abruptly terminating any
+   directions of a stream that are still open.  This means resetting the
+   sending parts of streams and aborting reading on receiving parts of
+   streams; see Section 2.4 of [QUIC-TRANSPORT].
+
+   When the server cancels a request without performing any application
+   processing, the request is considered "rejected."  The server SHOULD
+   abort its response stream with the error code H3_REQUEST_REJECTED.
+   In this context, "processed" means that some data from the stream was
+   passed to some higher layer of software that might have taken some
+   action as a result.  The client can treat requests rejected by the
+   server as though they had never been sent at all, thereby allowing
+   them to be retried later.
+
    Servers MUST NOT use the H3_REQUEST_REJECTED error code for requests
    that were partially or fully processed.  When a server abandons a
    response after partial processing, it SHOULD abort its response
    stream with the error code H3_REQUEST_CANCELLED.
-
-   When a client resets a request with the error code
-   H3_REQUEST_CANCELLED, a server MAY abruptly terminate the response
-   using the error code H3_REQUEST_REJECTED if no processing was
-   performed.  Clients MUST NOT use the H3_REQUEST_REJECTED error code,
-   except when a server has requested closure of the request stream with
-   this error code.
 
 
 
@@ -954,7 +954,14 @@ Bishop                  Expires 12 February 2021               [Page 17]
 Internet-Draft                   HTTP/3                      August 2020
 
 
-   If a stream is cancelled after receiving a complete response, the
+   Client SHOULD use the error code H3_REQUEST_CANCELLED to cancel
+   requests.  Upon receipt of this error code, a server MAY abruptly
+   terminate the response using the error code H3_REQUEST_REJECTED if no
+   processing was performed.  Clients MUST NOT use the
+   H3_REQUEST_REJECTED error code, except when a server has requested
+   closure of the request stream with this error code.
+
+   If a stream is canceled after receiving a complete response, the
    client MAY ignore the cancellation and use the response.  However, if
    a stream is cancelled after receiving a partial response, the
    response SHOULD NOT be used.  Automatically retrying such requests is
@@ -994,13 +1001,6 @@ Internet-Draft                   HTTP/3                      August 2020
    detected MUST be treated as a stream error (Section 8) of type
    H3_GENERAL_PROTOCOL_ERROR.
 
-   For malformed requests, a server MAY send an HTTP response prior to
-   closing or resetting the stream.  Clients MUST NOT accept a malformed
-   response.  Note that these requirements are intended to protect
-   against several types of common attacks against HTTP; they are
-   deliberately strict because being permissive can expose
-   implementations to these vulnerabilities.
-
 
 
 
@@ -1009,6 +1009,13 @@ Bishop                  Expires 12 February 2021               [Page 18]
 
 Internet-Draft                   HTTP/3                      August 2020
 
+
+   For malformed requests, a server MAY send an HTTP response prior to
+   closing or resetting the stream.  Clients MUST NOT accept a malformed
+   response.  Note that these requirements are intended to protect
+   against several types of common attacks against HTTP; they are
+   deliberately strict because being permissive can expose
+   implementations to these vulnerabilities.
 
 4.2.  The CONNECT Method
 
@@ -1049,6 +1056,16 @@ Internet-Draft                   HTTP/3                      August 2020
    number of TCP segments is not guaranteed to map predictably to the
    size and number of HTTP DATA or QUIC STREAM frames.
 
+
+
+
+
+
+Bishop                  Expires 12 February 2021               [Page 19]
+
+Internet-Draft                   HTTP/3                      August 2020
+
+
    Once the CONNECT method has completed, only DATA frames are permitted
    to be sent on the stream.  Extension frames MAY be used if
    specifically permitted by the definition of the extension.  Receipt
@@ -1058,14 +1075,6 @@ Internet-Draft                   HTTP/3                      August 2020
    The TCP connection can be closed by either peer.  When the client
    ends the request stream (that is, the receive stream at the proxy
    enters the "Data Recvd" state), the proxy will set the FIN bit on its
-
-
-
-Bishop                  Expires 12 February 2021               [Page 19]
-
-Internet-Draft                   HTTP/3                      August 2020
-
-
    connection to the TCP server.  When the proxy receives a packet with
    the FIN bit set, it will terminate the send stream that it sends to
    the client.  TCP connections that remain half-closed in a single
@@ -1103,15 +1112,6 @@ Internet-Draft                   HTTP/3                      August 2020
    sections MUST contain the same fields in the same order, and both the
    name and the value in each field MUST be exact matches.
 
-   Server push is only enabled on a connection when a client sends a
-   MAX_PUSH_ID frame; see Section 7.2.7.  A server cannot use server
-   push until it receives a MAX_PUSH_ID frame.  A client sends
-   additional MAX_PUSH_ID frames to control the number of pushes that a
-   server can promise.  A server SHOULD use Push IDs sequentially,
-   starting at 0.  A client MUST treat receipt of a push stream with a
-   Push ID that is greater than the maximum Push ID as a connection
-   error of type H3_ID_ERROR.
-
 
 
 
@@ -1121,6 +1121,15 @@ Bishop                  Expires 12 February 2021               [Page 20]
 
 Internet-Draft                   HTTP/3                      August 2020
 
+
+   Server push is only enabled on a connection when a client sends a
+   MAX_PUSH_ID frame; see Section 7.2.7.  A server cannot use server
+   push until it receives a MAX_PUSH_ID frame.  A client sends
+   additional MAX_PUSH_ID frames to control the number of pushes that a
+   server can promise.  A server SHOULD use Push IDs sequentially,
+   starting at 0.  A client MUST treat receipt of a push stream with a
+   Push ID that is greater than the maximum Push ID as a connection
+   error of type H3_ID_ERROR.
 
    The header section of the request message is carried by a
    PUSH_PROMISE frame (see Section 7.2.5) on the request stream that
@@ -1158,15 +1167,6 @@ Internet-Draft                   HTTP/3                      August 2020
    responses.  This reduces the chance that a client requests a resource
    that will be pushed by the server.
 
-   When a server later fulfills a promise, the server push response is
-   conveyed on a push stream; see Section 6.2.2.  The push stream
-   identifies the Push ID of the promise that it fulfills, then contains
-   a response to the promised request using the same format described
-   for responses in Section 4.1.
-
-
-
-
 
 
 
@@ -1177,6 +1177,12 @@ Bishop                  Expires 12 February 2021               [Page 21]
 
 Internet-Draft                   HTTP/3                      August 2020
 
+
+   When a server later fulfills a promise, the server push response is
+   conveyed on a push stream; see Section 6.2.2.  The push stream
+   identifies the Push ID of the promise that it fulfills, then contains
+   a response to the promised request using the same format described
+   for responses in Section 4.1.
 
    Due to reordering, push stream data can arrive before the
    corresponding PUSH_PROMISE frame.  When a client receives a new push
@@ -1221,12 +1227,6 @@ Internet-Draft                   HTTP/3                      August 2020
    than the server's advertised idle timeout, and SHOULD do so if
    approaching the idle timeout.
 
-   HTTP clients are expected to request that the transport keep
-   connections open while there are responses outstanding for requests
-   or server pushes, as described in Section 10.1.2 of [QUIC-TRANSPORT].
-   If the client is not expecting a response from the server, allowing
-   an idle connection to time out is preferred over expending effort
-
 
 
 Bishop                  Expires 12 February 2021               [Page 22]
@@ -1234,6 +1234,11 @@ Bishop                  Expires 12 February 2021               [Page 22]
 Internet-Draft                   HTTP/3                      August 2020
 
 
+   HTTP clients are expected to request that the transport keep
+   connections open while there are responses outstanding for requests
+   or server pushes, as described in Section 10.1.2 of [QUIC-TRANSPORT].
+   If the client is not expecting a response from the server, allowing
+   an idle connection to time out is preferred over expending effort
    maintaining a connection that might not be needed.  A gateway MAY
    maintain connections in anticipation of need rather than incur the
    latency cost of connection establishment to servers.  Servers SHOULD
@@ -1249,8 +1254,8 @@ Internet-Draft                   HTTP/3                      August 2020
    pushes that were or might be processed in this connection.  The
    server sends a client-initiated bidirectional Stream ID; the client
    sends a Push ID.  Requests or pushes with the indicated identifier or
-   greater are rejected by the sender of the GOAWAY.  This identifier
-   MAY be zero if no requests or pushes were processed.
+   greater are rejected (Section 4.1.2) by the sender of the GOAWAY.
+   This identifier MAY be zero if no requests or pushes were processed.
 
    The information in the GOAWAY frame enables a client and server to
    agree on which requests or pushes were accepted prior to the
@@ -1274,6 +1279,17 @@ Internet-Draft                   HTTP/3                      August 2020
       connection.  A client that is unable to retry requests loses all
       requests that are in flight when the server closes the connection.
 
+
+
+
+
+
+
+Bishop                  Expires 12 February 2021               [Page 23]
+
+Internet-Draft                   HTTP/3                      August 2020
+
+
       Requests on Stream IDs less than the Stream ID in a GOAWAY frame
       from the server might have been processed; their status cannot be
       known until a response is received, the stream is reset
@@ -1282,13 +1298,6 @@ Internet-Draft                   HTTP/3                      August 2020
 
       Servers MAY reject individual requests on streams below the
       indicated ID if these requests were not processed.
-
-
-
-Bishop                  Expires 12 February 2021               [Page 23]
-
-Internet-Draft                   HTTP/3                      August 2020
-
 
    *  If a server receives a GOAWAY frame after having promised pushes
       with a Push ID greater than or equal to the identifier received in
@@ -1327,6 +1336,16 @@ Internet-Draft                   HTTP/3                      August 2020
    server, the client MAY send subsequent GOAWAY frames so long as the
    specified Push ID is no greater than any previously sent value.
 
+
+
+
+
+
+Bishop                  Expires 12 February 2021               [Page 24]
+
+Internet-Draft                   HTTP/3                      August 2020
+
+
    Even when a GOAWAY indicates that a given request or push will not be
    processed or accepted upon receipt, the underlying transport
    resources still exist.  The endpoint that initiated these requests
@@ -1337,14 +1356,6 @@ Internet-Draft                   HTTP/3                      August 2020
    immediate closure of the connection.  An endpoint that completes a
    graceful shutdown SHOULD use the H3_NO_ERROR code when closing the
    connection.
-
-
-
-
-Bishop                  Expires 12 February 2021               [Page 24]
-
-Internet-Draft                   HTTP/3                      August 2020
-
 
    If a client has consumed all available bidirectional stream IDs with
    requests, the server need not send a GOAWAY frame, since the client
@@ -1383,17 +1394,6 @@ Internet-Draft                   HTTP/3                      August 2020
    this framing is invisible to the HTTP framing layer.  The transport
    layer buffers and orders received QUIC STREAM frames, exposing the
    data contained within as a reliable byte stream to the application.
-   Although QUIC permits out-of-order delivery within a stream, HTTP/3
-   does not make use of this feature.
-
-   QUIC streams can be either unidirectional, carrying data only from
-   initiator to receiver, or bidirectional.  Streams can be initiated by
-   either the client or the server.  For more detail on QUIC streams,
-   see Section 2 of [QUIC-TRANSPORT].
-
-
-
-
 
 
 
@@ -1401,6 +1401,14 @@ Bishop                  Expires 12 February 2021               [Page 25]
 
 Internet-Draft                   HTTP/3                      August 2020
 
+
+   Although QUIC permits out-of-order delivery within a stream, HTTP/3
+   does not make use of this feature.
+
+   QUIC streams can be either unidirectional, carrying data only from
+   initiator to receiver, or bidirectional.  Streams can be initiated by
+   either the client or the server.  For more detail on QUIC streams,
+   see Section 2 of [QUIC-TRANSPORT].
 
    When HTTP fields and data are sent over QUIC, the QUIC layer handles
    most of the stream management.  HTTP does not need to do any separate
@@ -1439,6 +1447,17 @@ Internet-Draft                   HTTP/3                      August 2020
 
                    Figure 1: Unidirectional Stream Header
 
+
+
+
+
+
+
+Bishop                  Expires 12 February 2021               [Page 26]
+
+Internet-Draft                   HTTP/3                      August 2020
+
+
    Some stream types are reserved (Section 6.2.3).  Two stream types are
    defined in this document: control streams (Section 6.2.1) and push
    streams (Section 6.2.2).  [QPACK] defines two additional stream
@@ -1450,14 +1469,6 @@ Internet-Draft                   HTTP/3                      August 2020
    unidirectional streams.  Endpoints that excessively restrict the
    number of streams or the flow control window of these streams will
    increase the chance that the remote peer reaches the limit early and
-
-
-
-Bishop                  Expires 12 February 2021               [Page 26]
-
-Internet-Draft                   HTTP/3                      August 2020
-
-
    becomes blocked.  In particular, implementations should consider that
    remote peers may wish to exercise reserved stream behavior
    (Section 6.2.3) with some of the unidirectional streams they are
@@ -1494,6 +1505,15 @@ Internet-Draft                   HTTP/3                      August 2020
    closed or reset prior to the reception of the unidirectional stream
    header.
 
+
+
+
+
+Bishop                  Expires 12 February 2021               [Page 27]
+
+Internet-Draft                   HTTP/3                      August 2020
+
+
 6.2.1.  Control Streams
 
    A control stream is indicated by a stream type of 0x00.  Data on this
@@ -1506,14 +1526,6 @@ Internet-Draft                   HTTP/3                      August 2020
    H3_MISSING_SETTINGS.  Only one control stream per peer is permitted;
    receipt of a second stream claiming to be a control stream MUST be
    treated as a connection error of type H3_STREAM_CREATION_ERROR.  The
-
-
-
-Bishop                  Expires 12 February 2021               [Page 27]
-
-Internet-Draft                   HTTP/3                      August 2020
-
-
    sender MUST NOT close the control stream, and the receiver MUST NOT
    request that the sender close the control stream.  If either control
    stream is closed at any point, this MUST be treated as a connection
@@ -1550,18 +1562,6 @@ Internet-Draft                   HTTP/3                      August 2020
 
                         Figure 2: Push Stream Header
 
-   Each Push ID MUST only be used once in a push stream header.  If a
-   push stream header includes a Push ID that was used in another push
-   stream header, the client MUST treat this as a connection error of
-   type H3_ID_ERROR.
-
-
-
-
-
-
-
-
 
 
 
@@ -1569,6 +1569,11 @@ Bishop                  Expires 12 February 2021               [Page 28]
 
 Internet-Draft                   HTTP/3                      August 2020
 
+
+   Each Push ID MUST only be used once in a push stream header.  If a
+   push stream header includes a Push ID that was used in another push
+   stream header, the client MUST treat this as a connection error of
+   type H3_ID_ERROR.
 
 6.2.3.  Reserved Stream Types
 
@@ -1593,11 +1598,6 @@ Internet-Draft                   HTTP/3                      August 2020
    their permitted stream types; see Table 1 for an overview.  A
    comparison between HTTP/2 and HTTP/3 frames is provided in
    Appendix A.2.
-
-
-
-
-
 
 
 
