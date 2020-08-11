@@ -2804,13 +2804,9 @@ Internet-Draft                   HTTP/3                      August 2020
 
    In addition to common fields as described in Section 11.2, this
    registry includes two additional fields.  Permanent registrations in
-   this registry SHOULD include the following field:
+   this registry MUST include the following field:
 
-   Name:  A name for the error code.  Specifying an error code name is
-      optional.
-
-   Permanent registrations in this registry MUST include the following
-   field:
+   Name:  A name for the error code.
 
    Description:  A brief description of the error code semantics.
 
@@ -2850,6 +2846,10 @@ Internet-Draft                   HTTP/3                      August 2020
    | H3_EXCESSIVE_LOAD         | 0x0107 | Peer         | Section 8.1   |
    |                           |        | generating   |               |
    |                           |        | excessive    |               |
+   |                           |        | load         |               |
+   +---------------------------+--------+--------------+---------------+
+   | H3_ID_ERROR               | 0x0108 | An           | Section 8.1   |
+   |                           |        | identifier   |               |
 
 
 
@@ -2858,10 +2858,6 @@ Bishop                  Expires 12 February 2021               [Page 51]
 Internet-Draft                   HTTP/3                      August 2020
 
 
-   |                           |        | load         |               |
-   +---------------------------+--------+--------------+---------------+
-   | H3_ID_ERROR               | 0x0108 | An           | Section 8.1   |
-   |                           |        | identifier   |               |
    |                           |        | was used     |               |
    |                           |        | incorrectly  |               |
    +---------------------------+--------+--------------+---------------+
@@ -2900,6 +2896,10 @@ Internet-Draft                   HTTP/3                      August 2020
    Additionally, each code of the format "0x1f * N + 0x21" for non-
    negative integer values of N (that is, 0x21, 0x40, ..., through
    0x3FFFFFFFFFFFFFFE) MUST NOT be assigned by IANA.
+
+
+
+
 
 
 
