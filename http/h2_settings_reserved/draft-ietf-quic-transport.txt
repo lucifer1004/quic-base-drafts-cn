@@ -3322,9 +3322,6 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    path via the attacker.  This places the attacker on path, giving it
    the ability to observe or drop all subsequent packets.
 
-   Unlike the attack described in Section 9.3.2, the attacker can ensure
-   that the new path is successfully validated.
-
    This style of attack relies on the attacker using a path that is
    approximately as fast as the direct path between endpoints.  The
    attack is more reliable if relatively few packets are sent or if
@@ -3354,6 +3351,9 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    original path despite multiple attempts to use that original path, it
    is not possible to distinguish between attack and an improvement in
    routing.
+
+
+
 
 
 
