@@ -1292,10 +1292,11 @@ Internet-Draft                   HTTP/3                      August 2020
 
    *  Upon receipt of a GOAWAY frame, if the client has already sent
       requests with a Stream ID greater than or equal to the identifier
-      received in a GOAWAY frame, those requests will not be processed.
-      Clients can safely retry unprocessed requests on a different
-      connection.  A client that is unable to retry requests loses all
-      requests that are in flight when the server closes the connection.
+      contained in the GOAWAY frame, those requests will not be
+      processed.  Clients can safely retry unprocessed requests on a
+      different connection.  A client that is unable to retry requests
+      loses all requests that are in flight when the server closes the
+      connection.
 
       Requests on Stream IDs less than the Stream ID in a GOAWAY frame
       from the server might have been processed; their status cannot be
@@ -1307,8 +1308,8 @@ Internet-Draft                   HTTP/3                      August 2020
       indicated ID if these requests were not processed.
 
    *  If a server receives a GOAWAY frame after having promised pushes
-      with a Push ID greater than or equal to the identifier received in
-      a GOAWAY frame, those pushes will not be accepted.
+      with a Push ID greater than or equal to the identifier contained
+      in the GOAWAY frame, those pushes will not be accepted.
 
    Servers SHOULD send a GOAWAY frame when the closing of a connection
    is known in advance, even if the advance notice is small, so that the
@@ -1337,7 +1338,6 @@ Internet-Draft                   HTTP/3                      August 2020
    A client has more flexibility in the value it chooses for the Push ID
    in a GOAWAY that it sends.  A value of 2^62 - 1 indicates that the
    server can continue fulfilling pushes that have already been
-   promised.  A smaller value indicates the client will reject pushes
 
 
 
@@ -1346,6 +1346,7 @@ Bishop                  Expires 13 February 2021               [Page 24]
 Internet-Draft                   HTTP/3                      August 2020
 
 
+   promised.  A smaller value indicates the client will reject pushes
    with Push IDs greater than or equal to this value.  Like the server,
    the client MAY send subsequent GOAWAY frames so long as the specified
    Push ID is no greater than any previously sent value.
@@ -1389,7 +1390,6 @@ Internet-Draft                   HTTP/3                      August 2020
    If a connection terminates without a GOAWAY frame, clients MUST
    assume that any request that was sent, whether in whole or in part,
    might have been processed.
-
 
 
 
