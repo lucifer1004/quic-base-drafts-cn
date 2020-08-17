@@ -2622,8 +2622,8 @@ values.<a href="#section-7.3-7" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-7.4-1">Implementations can also choose to protect sensitive fields by not compressing
 them and instead encoding their value as literals.<a href="#section-7.4-1" class="pilcrow">¶</a></p>
-<p id="section-7.4-2">Refusing to insert a field into the dynamic table is only effective if doing so
-is avoided on all hops. The never indexed literal bit (see
+<p id="section-7.4-2">Refusing to insert a field line into the dynamic table is only effective if
+doing so is avoided on all hops. The never indexed literal bit (see
 <a href="#literal-name-reference" class="xref">Section 4.5.4</a>) can be used to signal to intermediaries that a
 particular value was intentionally sent as a literal.<a href="#section-7.4-2" class="pilcrow">¶</a></p>
 <p id="section-7.4-3">An intermediary MUST NOT re-encode a value that uses a literal representation
@@ -3515,8 +3515,8 @@ return encoderBuffer, prefixBuffer + streamBuffer
       <h2 id="name-change-log">
 <a href="#section-appendix.c" class="section-number selfRef">Appendix C. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-appendix.c-1.1">
+<ul class="ulEmpty normal">
+<li class="ulEmpty normal" id="section-appendix.c-1.1">
           <strong>RFC Editor's Note:</strong> Please remove this section prior to publication of a
 final version of this document.<a href="#section-appendix.c-1.1" class="pilcrow">¶</a>
 </li>

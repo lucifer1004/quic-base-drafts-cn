@@ -1600,10 +1600,11 @@ Internet-Draft                    QPACK                      August 2020
    Implementations can also choose to protect sensitive fields by not
    compressing them and instead encoding their value as literals.
 
-   Refusing to insert a field into the dynamic table is only effective
-   if doing so is avoided on all hops.  The never indexed literal bit
-   (see Section 4.5.4) can be used to signal to intermediaries that a
-   particular value was intentionally sent as a literal.
+   Refusing to insert a field line into the dynamic table is only
+   effective if doing so is avoided on all hops.  The never indexed
+   literal bit (see Section 4.5.4) can be used to signal to
+   intermediaries that a particular value was intentionally sent as a
+   literal.
 
    An intermediary MUST NOT re-encode a value that uses a literal
    representation with the 'N' bit set with another representation that
@@ -1617,7 +1618,6 @@ Internet-Draft                    QPACK                      August 2020
    entire field value, short or low-entropy values are more readily
    recovered by an adversary.  Therefore, an encoder might choose not to
    index values with low entropy.
-
 
 
 
