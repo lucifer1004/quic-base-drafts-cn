@@ -5487,10 +5487,8 @@ either:
 * When the packet has a packet number larger than any other ack-eliciting packet
   that has been received and there are missing packets between that other packet
   and this packet.<a href="#section-13.2.1-4" class="pilcrow">¶</a></p>
-<p id="section-13.2.1-5">The endpoint SHOULD NOT continue sending ACK frames immediately unless more
-ack-eliciting packets are received out of order. If every subsequent
-ack-eliciting packet arrives out of order, then an ACK frame is sent immediately
-for every received ack-eliciting packet.<a href="#section-13.2.1-5" class="pilcrow">¶</a></p>
+<p id="section-13.2.1-5">The endpoint SHOULD NOT continue sending ACK frames immediately unless one of
+the above criteria are satisfied.<a href="#section-13.2.1-5" class="pilcrow">¶</a></p>
 <p id="section-13.2.1-6">Similarly, packets marked with the ECN Congestion Experienced (CE) codepoint in
 the IP header SHOULD be acknowledged immediately, to reduce the peer's response
 time to congestion events.<a href="#section-13.2.1-6" class="pilcrow">¶</a></p>
@@ -9984,8 +9982,8 @@ incurred.<a href="#section-appendix.b-8" class="pilcrow">¶</a></p>
       <h2 id="name-change-log">
 <a href="#section-appendix.c" class="section-number selfRef">Appendix C. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-appendix.c-1.1">
+<ul class="ulEmpty normal">
+<li class="ulEmpty normal" id="section-appendix.c-1.1">
           <strong>RFC Editor's Note:</strong> Please remove this section prior to publication of a
 final version of this document.<a href="#section-appendix.c-1.1" class="pilcrow">¶</a>
 </li>
