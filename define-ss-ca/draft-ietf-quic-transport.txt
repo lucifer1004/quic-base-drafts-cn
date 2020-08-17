@@ -3797,11 +3797,11 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    CONNECTION_CLOSE frames sent in multiple packet types can be
    coalesced into a single UDP datagram; see Section 12.2.
 
-   An endpoint can send a CONNECTION_CLOSE frame in an Initial packet.
-   This might be in response to unauthenticated information received in
-   Initial or Handshake packets.  Such an immediate close might expose
-   legitimate connections to a denial of service.  QUIC does not include
-   defensive measures for on-path attacks during the handshake; see
+   An endpoint might send a CONNECTION_CLOSE frame in an Initial packet
+   or in response to unauthenticated information received in Initial or
+   Handshake packets.  Such an immediate close might expose legitimate
+   connections to a denial of service.  QUIC does not include defensive
+   measures for on-path attacks during the handshake; see Section 21.1.
 
 
 
@@ -3810,12 +3810,12 @@ Iyengar & Thomson       Expires 18 February 2021               [Page 68]
 Internet-Draft           QUIC Transport Protocol             August 2020
 
 
-   Section 21.1.  However, at the cost of reducing feedback about errors
-   for legitimate peers, some forms of denial of service can be made
-   more difficult for an attacker if endpoints discard illegal packets
-   rather than terminating a connection with CONNECTION_CLOSE.  For this
-   reason, endpoints MAY discard packets rather than immediately close
-   if errors are detected in packets that lack authentication.
+   However, at the cost of reducing feedback about errors for legitimate
+   peers, some forms of denial of service can be made more difficult for
+   an attacker if endpoints discard illegal packets rather than
+   terminating a connection with CONNECTION_CLOSE.  For this reason,
+   endpoints MAY discard packets rather than immediately close if errors
+   are detected in packets that lack authentication.
 
    An endpoint that has not established state, such as a server that
    detects an error in an Initial packet, does not enter the closing
