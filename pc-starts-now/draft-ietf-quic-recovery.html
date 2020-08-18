@@ -3026,7 +3026,7 @@ variables as follows:<a href="#section-b.3-1" class="pilcrow">¶</a></p>
    bytes_in_flight = 0
    congestion_recovery_start_time = 0
    ssthresh = infinite
-   first_rtt_sample = never
+   first_rtt_sample = 0
    for pn_space in [ Initial, Handshake, ApplicationData ]:
      ecn_ce_counters[pn_space] = 0
 </pre><a href="#section-b.3-2" class="pilcrow">¶</a>
@@ -3068,7 +3068,7 @@ newly acked_packets from sent_packets.<a href="#section-b.5-1" class="pilcrow">�
     // Remove from bytes_in_flight.
     bytes_in_flight -= acked_packet.sent_bytes
 
-    if (first_rtt_sample is never):
+    if (first_rtt_sample == 0):
       first_rtt_sample = now()
 
     // Do not increase congestion_window if application
@@ -3150,7 +3150,7 @@ window.<a href="#section-b.6-1" class="pilcrow">¶</a></p>
 
      // Only look for persistent congestion if the period
      // starts after getting the first RTT sample.
-     assert(first_rtt_sample is not never)
+     assert(first_rtt_sample != 0)
      if (largest_lost.time_sent - pc_period &gt; first_rtt_sample):
        return false
 
@@ -3205,8 +3205,8 @@ OnPacketNumberSpaceDiscarded(pn_space):
       <h2 id="name-change-log">
 <a href="#section-appendix.c" class="section-number selfRef">Appendix C. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-appendix.c-1.1">
+<ul class="ulEmpty normal">
+<li class="ulEmpty normal" id="section-appendix.c-1.1">
           <strong>RFC Editor's Note:</strong>  Please remove this section prior to
 publication of a final version of this document.<a href="#section-appendix.c-1.1" class="pilcrow">¶</a>
 </li>
