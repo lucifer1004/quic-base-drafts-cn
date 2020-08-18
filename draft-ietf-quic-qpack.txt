@@ -103,9 +103,9 @@ Table of Contents
      4.2.  Encoder and Decoder Streams . . . . . . . . . . . . . . .  16
      4.3.  Encoder Instructions  . . . . . . . . . . . . . . . . . .  17
        4.3.1.  Set Dynamic Table Capacity  . . . . . . . . . . . . .  17
-       4.3.2.  Insert With Name Reference  . . . . . . . . . . . . .  17
+       4.3.2.  Insert With Name Reference  . . . . . . . . . . . . .  18
        4.3.3.  Insert Without Name Reference . . . . . . . . . . . .  18
-       4.3.4.  Duplicate . . . . . . . . . . . . . . . . . . . . . .  18
+       4.3.4.  Duplicate . . . . . . . . . . . . . . . . . . . . . .  19
 
 
 
@@ -131,7 +131,7 @@ Internet-Draft                    QPACK                      August 2020
      7.1.  Probing Dynamic Table State . . . . . . . . . . . . . . .  27
      7.2.  Applicability to QPACK and HTTP . . . . . . . . . . . . .  28
      7.3.  Mitigation  . . . . . . . . . . . . . . . . . . . . . . .  28
-     7.4.  Never Indexed Literals  . . . . . . . . . . . . . . . . .  29
+     7.4.  Never-Indexed Literals  . . . . . . . . . . . . . . . . .  29
      7.5.  Static Huffman Encoding . . . . . . . . . . . . . . . . .  30
      7.6.  Memory Consumption  . . . . . . . . . . . . . . . . . . .  30
      7.7.  Implementation Limits . . . . . . . . . . . . . . . . . .  31
@@ -174,12 +174,12 @@ Internet-Draft                    QPACK                      August 2020
 
 1.  Introduction
 
-   The QUIC transport protocol [QUIC-TRANSPORT] is designed to support
+   The QUIC transport protocol ([QUIC-TRANSPORT]) is designed to support
    HTTP semantics, and its design subsumes many of the features of
-   HTTP/2 [RFC7540].  HTTP/2 uses HPACK [RFC7541] for compression of the
-   header and trailer sections.  If HPACK were used for HTTP/3 [HTTP3],
-   it would induce head-of-line blocking for field sections due to
-   built-in assumptions of a total ordering across frames on all
+   HTTP/2 ([RFC7540]).  HTTP/2 uses HPACK ([RFC7541]) for compression of
+   the header and trailer sections.  If HPACK were used for HTTP/3
+   ([HTTP3]), it would induce head-of-line blocking for field sections
+   due to built-in assumptions of a total ordering across frames on all
    streams.
 
    QPACK reuses core concepts from HPACK, but is redesigned to allow
@@ -596,9 +596,9 @@ Internet-Draft                    QPACK                      August 2020
 
 3.1.  Static Table
 
-   The static table consists of a predefined static list of field lines,
-   each of which has a fixed index over time.  Its entries are defined
-   in Appendix A.
+   The static table consists of a predefined list of field lines, each
+   of which has a fixed index over time.  Its entries are defined in
+   Appendix A.
 
    All entries in the static table have a name and a value.  However,
    values can be empty (that is, have a length of 0).  Each entry is
@@ -693,7 +693,7 @@ Internet-Draft                    QPACK                      August 2020
    the maximum value the encoder is permitted to set for the dynamic
    table capacity.  In HTTP/3, this limit is determined by the value of
    SETTINGS_QPACK_MAX_TABLE_CAPACITY sent by the decoder; see Section 5.
-   The encoder MUST not set a dynamic table capacity that exceeds this
+   The encoder MUST NOT set a dynamic table capacity that exceeds this
    maximum, but it can choose to use a lower dynamic table capacity; see
    Section 4.3.1.
 
@@ -849,7 +849,7 @@ Internet-Draft                    QPACK                      August 2020
    data.  When Huffman encoding is enabled, the Huffman table from
    Appendix B of [RFC7541] is used without modification.
 
-   This document expands the definition of string literals and permits
+   This document expands the definition of string literals by permitting
    them to begin other than on a byte boundary.  An "N-bit prefix string
    literal" begins with the same Huffman flag, followed by the length
    encoded as an (N-1)-bit prefix integer.  The prefix size, N, can have
@@ -880,8 +880,8 @@ Internet-Draft                    QPACK                      August 2020
    stream type MUST be treated as a connection error of type
    H3_CLOSED_CRITICAL_STREAM.
 
-   An endpoint MAY avoid creating an encoder stream if it's not going to
-   be used (for example if its encoder does not wish to use the dynamic
+   An endpoint MAY avoid creating an encoder stream if it will not be
+   used (for example if its encoder does not wish to use the dynamic
    table, or if the maximum size of the dynamic table permitted by the
    peer is zero).
 
@@ -908,8 +908,6 @@ Internet-Draft                    QPACK                      August 2020
    as a string literal.  For entries that already exist in the dynamic
    table, the full entry can also be used by reference, creating a
    duplicate entry.
-
-   This section specifies the following encoder instructions.
 
 4.3.1.  Set Dynamic Table Capacity
 
@@ -938,14 +936,16 @@ Internet-Draft                    QPACK                      August 2020
    dynamic table is not acknowledged as this instruction does not insert
    an entry.
 
-4.3.2.  Insert With Name Reference
 
-   An encoder adds an entry to the dynamic table where the field name
-   matches the field name of an entry stored in the static or the
-   dynamic table using an instruction that starts with the '1' one-bit
-   pattern.  The second ('T') bit indicates whether the reference is to
-   the static or dynamic table.  The 6-bit prefix integer
-   (Section 4.1.1) that follows is used to locate the table entry for
+
+
+
+
+
+
+
+
+
 
 
 
@@ -954,6 +954,14 @@ Krasic, et al.          Expires 19 February 2021               [Page 17]
 Internet-Draft                    QPACK                      August 2020
 
 
+4.3.2.  Insert With Name Reference
+
+   An encoder adds an entry to the dynamic table where the field name
+   matches the field name of an entry stored in the static or the
+   dynamic table using an instruction that starts with the '1' one-bit
+   pattern.  The second ('T') bit indicates whether the reference is to
+   the static or dynamic table.  The 6-bit prefix integer
+   (Section 4.1.1) that follows is used to locate the table entry for
    the field name.  When T=1, the number represents the static table
    index; when T=0, the number is the relative index of the entry in the
    dynamic table.
@@ -995,20 +1003,19 @@ Internet-Draft                    QPACK                      August 2020
 
                   Figure 7: Insert Field Line -- New Name
 
-4.3.4.  Duplicate
-
-   An encoder duplicates an existing entry in the dynamic table using an
-   instruction that begins with the '000' three-bit pattern.  This is
-   followed by the relative index of the existing entry represented as
-   an integer with a 5-bit prefix; see Section 4.1.1.
-
-
 
 
 Krasic, et al.          Expires 19 February 2021               [Page 18]
 
 Internet-Draft                    QPACK                      August 2020
 
+
+4.3.4.  Duplicate
+
+   An encoder duplicates an existing entry in the dynamic table using an
+   instruction that begins with the '000' three-bit pattern.  This is
+   followed by the relative index of the existing entry represented as
+   an integer with a 5-bit prefix; see Section 4.1.1.
 
         0   1   2   3   4   5   6   7
       +---+---+---+---+---+---+---+---+
@@ -1027,8 +1034,6 @@ Internet-Draft                    QPACK                      August 2020
    A decoder sends decoder instructions on the decoder stream to inform
    the encoder about the processing of field sections and table updates
    to ensure consistency of the dynamic table.
-
-   This section specifies the following decoder instructions.
 
 4.4.1.  Section Acknowledgement
 
@@ -1050,14 +1055,9 @@ Internet-Draft                    QPACK                      August 2020
 
    If an encoder receives a Section Acknowledgement instruction
    referring to a stream on which every encoded field section with a
-   non-zero Required Insert Count has already been acknowledged, that
+   non-zero Required Insert Count has already been acknowledged, this
    MUST be treated as a connection error of type
    QPACK_DECODER_STREAM_ERROR.
-
-   The Section Acknowledgement instruction might increase the Known
-   Received Count; see Section 2.1.4.
-
-
 
 
 
@@ -1065,6 +1065,9 @@ Krasic, et al.          Expires 19 February 2021               [Page 19]
 
 Internet-Draft                    QPACK                      August 2020
 
+
+   The Section Acknowledgement instruction might increase the Known
+   Received Count; see Section 2.1.4.
 
 4.4.2.  Stream Cancellation
 
@@ -1111,9 +1114,6 @@ Internet-Draft                    QPACK                      August 2020
    representations reference the static table or the dynamic table in a
    particular state, but do not modify that state.
 
-   Encoded field sections are carried in frames on streams defined by
-   the enclosing protocol.
-
 
 
 
@@ -1122,11 +1122,14 @@ Krasic, et al.          Expires 19 February 2021               [Page 20]
 Internet-Draft                    QPACK                      August 2020
 
 
+   Encoded field sections are carried in frames on streams defined by
+   the enclosing protocol.
+
 4.5.1.  Encoded Field Section Prefix
 
    Each encoded field section is prefixed with two integers.  The
    Required Insert Count is encoded as an integer with an 8-bit prefix
-   after the encoding described in Section 4.5.1.1).  The Base is
+   using the encoding described in Section 4.5.1.1).  The Base is
    encoded as a sign bit ('S') and a Delta Base value with a 7-bit
    prefix; see Section 4.5.1.2.
 
@@ -1167,9 +1170,6 @@ Internet-Draft                    QPACK                      August 2020
 
    This encoding limits the length of the prefix on long-lived
    connections.
-
-
-
 
 
 
@@ -1246,13 +1246,13 @@ Internet-Draft                    QPACK                      August 2020
 
    A single-pass encoder determines the Base before encoding a field
    section.  If the encoder inserted entries in the dynamic table while
-   encoding the field section, Required Insert Count will be greater
-   than the Base, so the encoded difference is negative and the sign bit
-   is set to 1.  If the field section was not encoded using
-   representations that reference the most recent entry in the table and
-   did not insert any new entries, the Base will be greater than the
-   Required Insert Count, so the delta will be positive and the sign bit
-   is set to 0.
+   encoding the field section and is referencing them, Required Insert
+   Count will be greater than the Base, so the encoded difference is
+   negative and the sign bit is set to 1.  If the field section was not
+   encoded using representations that reference the most recent entry in
+   the table and did not insert any new entries, the Base will be
+   greater than the Required Insert Count, so the delta will be positive
+   and the sign bit is set to 0.
 
    An encoder that produces table updates before encoding a field
    section might set Base to the value of Required Insert Count.  In
@@ -1435,7 +1435,7 @@ Internet-Draft                    QPACK                      August 2020
 6.  Error Handling
 
    The following error codes are defined for HTTP/3 to indicate failures
-   of QPACK that prevent the connection from continuing:
+   of QPACK that prevent the stream or connection from continuing:
 
    QPACK_DECOMPRESSION_FAILED (0x200):  The decoder failed to interpret
       an encoded field section and is not able to continue decoding that
@@ -1496,9 +1496,9 @@ Internet-Draft                    QPACK                      August 2020
       given guess.  Padding schemes also work directly against
       compression by increasing the number of bits that are transmitted.
 
-   Attacks like CRIME [CRIME] demonstrated the existence of these
+   Attacks like CRIME ([CRIME]) demonstrated the existence of these
    general attacker capabilities.  The specific attack exploited the
-   fact that DEFLATE [RFC1951] removes redundancy based on prefix
+   fact that DEFLATE ([RFC1951]) removes redundancy based on prefix
    matching.  This permitted the attacker to confirm guesses a character
    at a time, reducing an exponential-time attack into a linear-time
    attack.
@@ -1517,7 +1517,7 @@ Internet-Draft                    QPACK                      August 2020
 7.2.  Applicability to QPACK and HTTP
 
    QPACK mitigates but does not completely prevent attacks modeled on
-   CRIME [CRIME] by forcing a guess to match an entire header field
+   CRIME ([CRIME]) by forcing a guess to match an entire header field
    value, rather than individual characters.  An attacker can only learn
    whether a guess is correct or not, so is reduced to a brute force
    guess for the header field values.
@@ -1543,7 +1543,7 @@ Internet-Draft                    QPACK                      August 2020
       shared connection toward a client.
 
    Web browsers also need to assume that requests made on the same
-   connection by different web origins [RFC6454] are made by mutually
+   connection by different web origins ([RFC6454]) are made by mutually
    distrustful entities.
 
 7.3.  Mitigation
@@ -1595,13 +1595,13 @@ Internet-Draft                    QPACK                      August 2020
    header field might occur for shorter values more quickly or with
    higher probability than for longer values.
 
-7.4.  Never Indexed Literals
+7.4.  Never-Indexed Literals
 
    Implementations can also choose to protect sensitive header fields by
    not compressing them and instead encoding their value as literals.
 
    Refusing to insert a header field into the dynamic table is only
-   effective if doing so is avoided on all hops.  The never indexed
+   effective if doing so is avoided on all hops.  The never-indexed
    literal bit (see Section 4.5.4) can be used to signal to
    intermediaries that a particular value was intentionally sent as a
    literal.
@@ -1610,7 +1610,7 @@ Internet-Draft                    QPACK                      August 2020
    representation with the 'N' bit set with another representation that
    would index it.  If QPACK is used for re-encoding, a literal
    representation with the 'N' bit set MUST be used.  If HPACK is used
-   for re-encoding, the never indexed literal representation (see
+   for re-encoding, the never-indexed literal representation (see
    Section 6.2.3 of [RFC7541]) MUST be used.
 
    The choice to mark that a header field should never be indexed
@@ -1636,7 +1636,7 @@ Internet-Draft                    QPACK                      August 2020
    requests and is sent to any server.  In that case, confirmation that
    a particular User-Agent value has been used provides little value.
 
-   Note that these criteria for deciding to use a never indexed literal
+   Note that these criteria for deciding to use a never-indexed literal
    representation will evolve over time as new attacks are discovered.
 
 7.5.  Static Huffman Encoding
@@ -1723,9 +1723,9 @@ Internet-Draft                    QPACK                      August 2020
    create security weaknesses.
 
    An implementation has to set a limit for the values it accepts for
-   integers, as well as for the encoded length (see Section 4.1.1).  In
+   integers, as well as for the encoded length; see Section 4.1.1.  In
    the same way, it has to set a limit to the length it accepts for
-   string literals (see Section 4.1.2).
+   string literals; see Section 4.1.2.
 
 
 
