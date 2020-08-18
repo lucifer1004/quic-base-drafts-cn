@@ -1819,53 +1819,45 @@ CONNECTION_CLOSE. These cause a recipient to send an acknowledgment; see
 <a href="#sending-acknowledgements" class="xref">Section 13.2.1</a>.<a href="#section-1.2-3.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-1.2-3.7">Out-of-order packet:</dt>
+<dt id="section-1.2-3.7">Endpoint:</dt>
           <dd id="section-1.2-3.8">
-  A packet that does not increase the largest received packet number for its
-packet number space (<a href="#packet-numbers" class="xref">Section 12.3</a>) by exactly one. A packet can arrive
-out of order if it is delayed, if earlier packets are lost or delayed, or if
-the sender intentionally skips a packet number.<a href="#section-1.2-3.8" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.2-3.9">Endpoint:</dt>
-          <dd id="section-1.2-3.10">
   An entity that can participate in a QUIC connection by generating, receiving,
 and processing QUIC packets. There are only two types of endpoint in QUIC:
-client and server.<a href="#section-1.2-3.10" class="pilcrow">¶</a>
+client and server.<a href="#section-1.2-3.8" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-1.2-3.11">Client:</dt>
+<dt id="section-1.2-3.9">Client:</dt>
+          <dd id="section-1.2-3.10">
+  The endpoint that initiates a QUIC connection.<a href="#section-1.2-3.10" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.2-3.11">Server:</dt>
           <dd id="section-1.2-3.12">
-  The endpoint that initiates a QUIC connection.<a href="#section-1.2-3.12" class="pilcrow">¶</a>
+  The endpoint that accepts a QUIC connection.<a href="#section-1.2-3.12" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-1.2-3.13">Server:</dt>
+<dt id="section-1.2-3.13">Address:</dt>
           <dd id="section-1.2-3.14">
-  The endpoint that accepts a QUIC connection.<a href="#section-1.2-3.14" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.2-3.15">Address:</dt>
-          <dd id="section-1.2-3.16">
   When used without qualification, the tuple of IP version, IP address, and UDP
-port number that represents one end of a network path.<a href="#section-1.2-3.16" class="pilcrow">¶</a>
+port number that represents one end of a network path.<a href="#section-1.2-3.14" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-1.2-3.17">Connection ID:</dt>
-          <dd id="section-1.2-3.18">
+<dt id="section-1.2-3.15">Connection ID:</dt>
+          <dd id="section-1.2-3.16">
   An identifier that is used to identify a QUIC connection at an endpoint.
 Each endpoint selects one or more Connection IDs for its peer to include in
-packets sent towards the endpoint.  This value is opaque to the peer.<a href="#section-1.2-3.18" class="pilcrow">¶</a>
+packets sent towards the endpoint.  This value is opaque to the peer.<a href="#section-1.2-3.16" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-1.2-3.19">Stream:</dt>
-          <dd id="section-1.2-3.20">
+<dt id="section-1.2-3.17">Stream:</dt>
+          <dd id="section-1.2-3.18">
   A unidirectional or bidirectional channel of ordered bytes within a QUIC
-connection. A QUIC connection can carry multiple simultaneous streams.<a href="#section-1.2-3.20" class="pilcrow">¶</a>
+connection. A QUIC connection can carry multiple simultaneous streams.<a href="#section-1.2-3.18" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-1.2-3.21">Application:</dt>
-          <dd id="section-1.2-3.22">
-  An entity that uses QUIC to send and receive data.<a href="#section-1.2-3.22" class="pilcrow">¶</a>
+<dt id="section-1.2-3.19">Application:</dt>
+          <dd id="section-1.2-3.20">
+  An entity that uses QUIC to send and receive data.<a href="#section-1.2-3.20" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 </dl>
