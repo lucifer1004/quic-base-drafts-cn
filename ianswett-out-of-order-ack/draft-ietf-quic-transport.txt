@@ -180,11 +180,11 @@ Internet-Draft           QUIC Transport Protocol             August 2020
        13.2.1.  Sending ACK Frames . . . . . . . . . . . . . . . . .  86
        13.2.2.  Acknowledgement Frequency  . . . . . . . . . . . . .  87
        13.2.3.  Managing ACK Ranges  . . . . . . . . . . . . . . . .  88
-       13.2.4.  Receiver Tracking of ACK Frames  . . . . . . . . . .  89
+       13.2.4.  Receiver Tracking of ACK Frames  . . . . . . . . . .  88
        13.2.5.  Limiting ACK Ranges  . . . . . . . . . . . . . . . .  89
        13.2.6.  Measuring and Reporting Host Delay . . . . . . . . .  90
        13.2.7.  ACK Frames and Packet Protection . . . . . . . . . .  90
-       13.2.8.  PADDING Frames Consume Congestion Window . . . . . .  91
+       13.2.8.  PADDING Frames Consume Congestion Window . . . . . .  90
      13.3.  Retransmission of Information  . . . . . . . . . . . . .  91
      13.4.  Explicit Congestion Notification . . . . . . . . . . . .  93
        13.4.1.  ECN Counts . . . . . . . . . . . . . . . . . . . . .  94
@@ -4836,9 +4836,6 @@ Internet-Draft           QUIC Transport Protocol             August 2020
       numbered ack-eliciting packet that has been received and there are
       missing packets between that packet and this packet.
 
-   The endpoint SHOULD NOT continue sending ACK frames immediately
-   unless one of the above criteria are satisfied.
-
    Similarly, packets marked with the ECN Congestion Experienced (CE)
    codepoint in the IP header SHOULD be acknowledged immediately, to
    reduce the peer's response time to congestion events.
@@ -4864,8 +4861,11 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    response to ack-eliciting packets.  This determination involves a
    trade-off.
 
-
-
+   Endpoints rely on timely acknowledgment to detect loss; see Section 6
+   of [QUIC-RECOVERY].  Window-based congestion controllers, such as the
+   one in Section 7 of [QUIC-RECOVERY], rely on acknowledgments to
+   manage their congestion window.  In both cases, delaying
+   acknowledgments can adversely affect performance.
 
 
 
@@ -4873,12 +4873,6 @@ Iyengar & Thomson       Expires 19 February 2021               [Page 87]
 
 Internet-Draft           QUIC Transport Protocol             August 2020
 
-
-   Endpoints rely on timely acknowledgment to detect loss; see Section 6
-   of [QUIC-RECOVERY].  Window-based congestion controllers, such as the
-   one in Section 7 of [QUIC-RECOVERY], rely on acknowledgments to
-   manage their congestion window.  In both cases, delaying
-   acknowledgments can adversely affect performance.
 
    On the other hand, reducing the frequency of packets that carry only
    acknowledgements reduces packet transmission and processing cost at
@@ -4919,7 +4913,13 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    acknowledgments to be lost.  A sender cannot expect to receive an
    acknowledgment for every packet that the receiver processes.
 
+13.2.4.  Receiver Tracking of ACK Frames
 
+   When a packet containing an ACK frame is sent, the largest
+   acknowledged in that frame may be saved.  When a packet containing an
+   ACK frame is acknowledged, the receiver can stop acknowledging
+   packets less than or equal to the largest acknowledged in the sent
+   ACK frame.
 
 
 
@@ -4929,14 +4929,6 @@ Iyengar & Thomson       Expires 19 February 2021               [Page 88]
 
 Internet-Draft           QUIC Transport Protocol             August 2020
 
-
-13.2.4.  Receiver Tracking of ACK Frames
-
-   When a packet containing an ACK frame is sent, the largest
-   acknowledged in that frame may be saved.  When a packet containing an
-   ACK frame is acknowledged, the receiver can stop acknowledging
-   packets less than or equal to the largest acknowledged in the sent
-   ACK frame.
 
    In cases without ACK frame loss, this algorithm allows for a minimum
    of 1 RTT of reordering.  In cases with ACK frame loss and reordering,
@@ -4979,13 +4971,6 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    value than what was included in a previous ACK frame could cause ECN
    to be unnecessarily disabled; see Section 13.4.2.
 
-
-
-Iyengar & Thomson       Expires 19 February 2021               [Page 89]
-
-Internet-Draft           QUIC Transport Protocol             August 2020
-
-
    A receiver that sends only non-ack-eliciting packets, such as ACK
    frames, might not receive an acknowledgement for a long period of
    time.  This could cause the receiver to maintain state for a large
@@ -4993,6 +4978,13 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    sends could be unnecessarily large.  In such a case, a receiver could
    send a PING or other small ack-eliciting frame occasionally, such as
    once per round trip, to elicit an ACK from the peer.
+
+
+
+Iyengar & Thomson       Expires 19 February 2021               [Page 89]
+
+Internet-Draft           QUIC Transport Protocol             August 2020
+
 
    A receiver MUST NOT send an ack-eliciting frame in all packets that
    would otherwise be non-ack-eliciting, to avoid an infinite feedback
@@ -5029,7 +5021,15 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    Note that the same limitation applies to other data sent by the
    server protected by the 1-RTT keys.
 
+13.2.8.  PADDING Frames Consume Congestion Window
 
+   Packets containing PADDING frames are considered to be in flight for
+   congestion control purposes [QUIC-RECOVERY].  Packets containing only
+   PADDING frames therefore consume congestion window but do not
+   generate acknowledgments that will open the congestion window.  To
+   avoid a deadlock, a sender SHOULD ensure that other frames are sent
+   periodically in addition to PADDING frames to elicit acknowledgments
+   from the receiver.
 
 
 
@@ -5041,16 +5041,6 @@ Iyengar & Thomson       Expires 19 February 2021               [Page 90]
 
 Internet-Draft           QUIC Transport Protocol             August 2020
 
-
-13.2.8.  PADDING Frames Consume Congestion Window
-
-   Packets containing PADDING frames are considered to be in flight for
-   congestion control purposes [QUIC-RECOVERY].  Packets containing only
-   PADDING frames therefore consume congestion window but do not
-   generate acknowledgments that will open the congestion window.  To
-   avoid a deadlock, a sender SHOULD ensure that other frames are sent
-   periodically in addition to PADDING frames to elicit acknowledgments
-   from the receiver.
 
 13.3.  Retransmission of Information
 
@@ -5089,15 +5079,6 @@ Internet-Draft           QUIC Transport Protocol             August 2020
       The content of a RESET_STREAM frame MUST NOT change when it is
       sent again.
 
-
-
-
-
-Iyengar & Thomson       Expires 19 February 2021               [Page 91]
-
-Internet-Draft           QUIC Transport Protocol             August 2020
-
-
    *  Similarly, a request to cancel stream transmission, as encoded in
       a STOP_SENDING frame, is sent until the receiving part of the
       stream enters either a "Data Recvd" or "Reset Recvd" state; see
@@ -5106,6 +5087,16 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    *  Connection close signals, including packets that contain
       CONNECTION_CLOSE frames, are not sent again when packet loss is
       detected, but as described in Section 10.
+
+
+
+
+
+
+Iyengar & Thomson       Expires 19 February 2021               [Page 91]
+
+Internet-Draft           QUIC Transport Protocol             August 2020
+
 
    *  The current connection maximum data is sent in MAX_DATA frames.
       An updated value is sent in a MAX_DATA frame if the packet
@@ -5144,16 +5135,6 @@ Internet-Draft           QUIC Transport Protocol             August 2020
       validation checking.  PATH_CHALLENGE frames include a different
       payload each time they are sent.
 
-
-
-
-
-
-Iyengar & Thomson       Expires 19 February 2021               [Page 92]
-
-Internet-Draft           QUIC Transport Protocol             August 2020
-
-
    *  Responses to path validation using PATH_RESPONSE frames are sent
       just once.  The peer is expected to send more PATH_CHALLENGE
       frames as necessary to evoke additional PATH_RESPONSE frames.
@@ -5164,6 +5145,14 @@ Internet-Draft           QUIC Transport Protocol             August 2020
       value.  Likewise, retired connection IDs are sent in
       RETIRE_CONNECTION_ID frames and retransmitted if the packet
       containing them is lost.
+
+
+
+
+Iyengar & Thomson       Expires 19 February 2021               [Page 92]
+
+Internet-Draft           QUIC Transport Protocol             August 2020
+
 
    *  NEW_TOKEN frames are retransmitted if the packet containing them
       is lost.  No special support is made for detecting reordered and
@@ -5202,6 +5191,17 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    Endpoints react to congestion by reducing their sending rate in
    response, as described in [QUIC-RECOVERY].
 
+   To use ECN, QUIC endpoints first determine whether a path supports
+   ECN marking and the peer is able to access the ECN codepoint in the
+   IP header.  A network path does not support ECN if ECN marked packets
+   get dropped or ECN markings are rewritten on the path.  An endpoint
+   validates the use of ECN on the path, both during connection
+   establishment and when migrating to a new path (Section 9).
+
+
+
+
+
 
 
 
@@ -5209,13 +5209,6 @@ Iyengar & Thomson       Expires 19 February 2021               [Page 93]
 
 Internet-Draft           QUIC Transport Protocol             August 2020
 
-
-   To use ECN, QUIC endpoints first determine whether a path supports
-   ECN marking and the peer is able to access the ECN codepoint in the
-   IP header.  A network path does not support ECN if ECN marked packets
-   get dropped or ECN markings are rewritten on the path.  An endpoint
-   validates the use of ECN on the path, both during connection
-   establishment and when migrating to a new path (Section 9).
 
 13.4.1.  ECN Counts
 
@@ -5257,6 +5250,13 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    the presence of such devices, each endpoint independently validates
    ECN counts and disables ECN if errors are detected.
 
+   Endpoints validate ECN for packets sent on each network path
+   independently.  An endpoint thus validates ECN on new connection
+   establishment, when switching to a server's preferred address, and on
+   active connection migration to a new path.  Appendix B describes one
+   possible algorithm for testing paths for ECN support.
+
+
 
 
 
@@ -5265,12 +5265,6 @@ Iyengar & Thomson       Expires 19 February 2021               [Page 94]
 
 Internet-Draft           QUIC Transport Protocol             August 2020
 
-
-   Endpoints validate ECN for packets sent on each network path
-   independently.  An endpoint thus validates ECN on new connection
-   establishment, when switching to a server's preferred address, and on
-   active connection migration to a new path.  Appendix B describes one
-   possible algorithm for testing paths for ECN support.
 
    Even if an endpoint does not use ECN markings on packets it
    transmits, the endpoint MUST provide feedback about ECN markings
@@ -5314,6 +5308,12 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    ECN counts are not present in the ACK frame.  This check detects a
    network element that zeroes out ECN bits or a peer that is unable to
    access ECN markings.
+
+
+
+
+
+
 
 
 
