@@ -1046,7 +1046,8 @@ Internet-Draft             QUIC Loss Detection               August 2020
 
    The congestion controller is in slow start any time the congestion
    window is below the slow start threshold.  The congestion controller
-   begins in slow start.
+   begins in slow start because the slow start threshold is initialized
+   to an infinite value.
 
    While the congestion controller is in slow start, the congestion
    window increases by the number of bytes acknowledged when each
@@ -1055,7 +1056,6 @@ Internet-Draft             QUIC Loss Detection               August 2020
 
    The congestion controller exits slow start and enters congestion
    avoidance when a packet is lost or when the ECN-CE count increases.
-
 
 
 
