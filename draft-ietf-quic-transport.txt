@@ -1445,7 +1445,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    with a value greater than 2^60, this would allow a maximum stream ID
    that cannot be expressed as a variable-length integer; see
    Section 16.  If either is received, the connection MUST be closed
-   immediately with a connection error of type STREAM_LIMIT_ERROR; see
+   immediately with a connection error of type FRAME_ENCODING_ERROR; see
    Section 10.2.
 
 
