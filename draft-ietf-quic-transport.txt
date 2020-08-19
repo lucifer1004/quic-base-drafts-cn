@@ -3140,7 +3140,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
 
    When migrating, the new path might not support the endpoint's current
    sending rate.  Therefore, the endpoint resets its congestion
-   controller, as described in Section 9.4.
+   controller and RTT estimate, as described in Section 9.4.
 
    The new path might not have the same ECN capability.  Therefore, the
    endpoint verifies ECN capability as described in Section 13.4.
