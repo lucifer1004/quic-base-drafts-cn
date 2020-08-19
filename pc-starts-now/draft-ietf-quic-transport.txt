@@ -1445,7 +1445,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    with a value greater than 2^60, this would allow a maximum stream ID
    that cannot be expressed as a variable-length integer; see
    Section 16.  If either is received, the connection MUST be closed
-   immediately with a connection error of type STREAM_LIMIT_ERROR; see
+   immediately with a connection error of type FRAME_ENCODING_ERROR; see
    Section 10.2.
 
 
@@ -6530,21 +6530,21 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    connection ID.
 
    If the spin bit is enabled for the connection, the endpoint maintains
-   a spin value and sets the spin bit in the short header to the
-   currently stored value when a packet with a short header is sent out.
-   The spin value is initialized to 0 in the endpoint at connection
-   start.  Each endpoint also remembers the highest packet number seen
-   from its peer on the connection.
+   a spin value for each network path and sets the spin bit in the short
+   header to the currently stored value when a packet with a short
+   header is sent on that path.  The spin value is initialized to 0 in
+   the endpoint for each network path.  Each endpoint also remembers the
+   highest packet number seen from its peer on each path.
 
-   When a server receives a short header packet that increments the
-   highest packet number seen by the server from the client, it sets the
-   spin value to be equal to the spin bit in the received packet.
+   When a server receives a short header packet that increases the
+   highest packet number seen by the server from the client on a given
+   network path, it sets the spin value for that path to be equal to the
+   spin bit in the received packet.
 
-   When a client receives a short header packet that increments the
-   highest packet number seen by the client from the server, it sets the
-   spin value to the inverse of the spin bit in the received packet.
-
-
+   When a client receives a short header packet that increases the
+   highest packet number seen by the client from the server on a given
+   network path, it sets the spin value for that path to the inverse of
+   the spin bit in the received packet.
 
 
 
@@ -6554,10 +6554,8 @@ Iyengar & Thomson       Expires 20 February 2021              [Page 117]
 Internet-Draft           QUIC Transport Protocol             August 2020
 
 
-   An endpoint resets its spin value to zero when sending the first
-   packet of a given connection with a new connection ID.  This reduces
-   the risk that transient spin bit state can be used to link flows
-   across connection migration or ID change.
+   An endpoint resets the spin value for a network path to zero when
+   changing the connection ID being used on that network path.
 
    With this mechanism, the server reflects the spin value received,
    while the client 'spins' it after one RTT.  On-path observers can
@@ -6600,6 +6598,8 @@ Internet-Draft           QUIC Transport Protocol             August 2020
    integer values of N are reserved to exercise the requirement that
    unknown transport parameters be ignored.  These transport parameters
    have no semantics, and may carry arbitrary values.
+
+
 
 
 
