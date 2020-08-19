@@ -2147,7 +2147,7 @@ protocol.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
           </h4>
 <p id="section-4.5.1-1">Each encoded field section is prefixed with two integers.  The Required Insert
 Count is encoded as an integer with an 8-bit prefix using the encoding described
-in <a href="#ric" class="xref">Section 4.5.1.1</a>).  The Base is encoded as a sign bit ('S') and a Delta Base value
+in <a href="#ric" class="xref">Section 4.5.1.1</a>.  The Base is encoded as a sign bit ('S') and a Delta Base value
 with a 7-bit prefix; see <a href="#base" class="xref">Section 4.5.1.2</a>.<a href="#section-4.5.1-1" class="pilcrow">¶</a></p>
 <span id="name-encoded-field-section"></span><div id="fig-base-index">
 <figure id="figure-12">
@@ -2546,9 +2546,10 @@ attack into a linear-time attack.<a href="#section-7.1-5" class="pilcrow">¶</a>
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-applicability-to-qpack-and-" class="section-name selfRef">Applicability to QPACK and HTTP</a>
         </h3>
 <p id="section-7.2-1">QPACK mitigates but does not completely prevent attacks modeled on CRIME
-(<span>[<a href="#CRIME" class="xref">CRIME</a>]</span>) by forcing a guess to match an entire field value, rather than
+(<span>[<a href="#CRIME" class="xref">CRIME</a>]</span>) by forcing a guess to match an entire field line, rather than
 individual characters. An attacker can only learn whether a guess is correct or
-not, so is reduced to a brute force guess for the header field values.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+not, so is reduced to a brute force guess for the field values associated with a
+given field name.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 <p id="section-7.2-2">The viability of recovering specific field values therefore depends on the
 entropy of values. As a result, values with high entropy are unlikely to be
 recovered successfully. However, values with low entropy remain vulnerable.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
@@ -2591,10 +2592,10 @@ extract that value.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
 tagged as being public. For example, a web browser might make the values of the
 Accept-Encoding header field available in all requests.<a href="#section-7.3-4" class="pilcrow">¶</a></p>
 <p id="section-7.3-5">An encoder without good knowledge of the provenance of field values might
-instead introduce a penalty for a field name with many different values, such
-that a large number of attempts to guess a field value results in the field not
-being compared to the dynamic table entries in future messages, effectively
-preventing further guesses.<a href="#section-7.3-5" class="pilcrow">¶</a></p>
+instead introduce a penalty for many field lines with the same field name and
+different values.  This penalty could cause a large number of attempts to guess
+a field value to result in the field not being compared to the dynamic table
+entries in future messages, effectively preventing further guesses.<a href="#section-7.3-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7.3-6">
           <dt id="section-7.3-6.1">Note:</dt>
           <dd id="section-7.3-6.2">

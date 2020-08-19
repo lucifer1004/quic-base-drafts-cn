@@ -1129,9 +1129,9 @@ Internet-Draft                    QPACK                      August 2020
 
    Each encoded field section is prefixed with two integers.  The
    Required Insert Count is encoded as an integer with an 8-bit prefix
-   using the encoding described in Section 4.5.1.1).  The Base is
-   encoded as a sign bit ('S') and a Delta Base value with a 7-bit
-   prefix; see Section 4.5.1.2.
+   using the encoding described in Section 4.5.1.1.  The Base is encoded
+   as a sign bit ('S') and a Delta Base value with a 7-bit prefix; see
+   Section 4.5.1.2.
 
      0   1   2   3   4   5   6   7
    +---+---+---+---+---+---+---+---+
@@ -1517,10 +1517,10 @@ Internet-Draft                    QPACK                      August 2020
 7.2.  Applicability to QPACK and HTTP
 
    QPACK mitigates but does not completely prevent attacks modeled on
-   CRIME ([CRIME]) by forcing a guess to match an entire field value,
+   CRIME ([CRIME]) by forcing a guess to match an entire field line,
    rather than individual characters.  An attacker can only learn
    whether a guess is correct or not, so is reduced to a brute force
-   guess for the header field values.
+   guess for the field values associated with a given field name.
 
    The viability of recovering specific field values therefore depends
    on the entropy of values.  As a result, values with high entropy are
@@ -1576,11 +1576,11 @@ Internet-Draft                    QPACK                      August 2020
    requests.
 
    An encoder without good knowledge of the provenance of field values
-   might instead introduce a penalty for a field name with many
-   different values, such that a large number of attempts to guess a
-   field value results in the field not being compared to the dynamic
-   table entries in future messages, effectively preventing further
-   guesses.
+   might instead introduce a penalty for many field lines with the same
+   field name and different values.  This penalty could cause a large
+   number of attempts to guess a field value to result in the field not
+   being compared to the dynamic table entries in future messages,
+   effectively preventing further guesses.
 
    Note:  Simply removing entries corresponding to the field from the
       dynamic table can be ineffectual if the attacker has a reliable
