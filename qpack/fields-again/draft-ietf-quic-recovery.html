@@ -805,7 +805,7 @@ address div.right {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Iyengar &amp; Swett</td>
-<td class="center">Expires 18 February 2021</td>
+<td class="center">Expires 20 February 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -818,12 +818,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-quic-recovery-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-08-17" class="published">17 August 2020</time>
+<time datetime="2020-08-19" class="published">19 August 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-02-18">18 February 2021</time></dd>
+<dd class="expires"><time datetime="2021-02-20">20 February 2021</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -875,7 +875,7 @@ code and issues list for this draft can be found at
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 18 February 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 20 February 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1951,7 +1951,8 @@ not describe a mechanism for doing so.<a href="#section-7-4" class="pilcrow">¶<
 window in bytes.<a href="#section-7-5" class="pilcrow">¶</a></p>
 <p id="section-7-6">An endpoint MUST NOT send a packet if it would cause bytes_in_flight (see
 <a href="#vars-of-interest" class="xref">Appendix B.2</a>) to be larger than the congestion window, unless the packet
-is sent on a PTO timer expiration; see <a href="#pto" class="xref">Section 6.2</a>.<a href="#section-7-6" class="pilcrow">¶</a></p>
+is sent on a PTO timer expiration (see <a href="#pto" class="xref">Section 6.2</a>) or when entering recovery
+(see <a href="#recovery-period" class="xref">Section 7.5</a>).<a href="#section-7-6" class="pilcrow">¶</a></p>
 <div id="congestion-ecn">
 <section id="section-7.1">
         <h3 id="name-explicit-congestion-notific">
@@ -2314,11 +2315,11 @@ difficult to detect.<a href="#section-8.3-4" class="pilcrow">¶</a></p>
 <dl class="references">
 <dt id="QUIC-TLS">[QUIC-TLS]</dt>
         <dd>
-<span class="refAuthor">Thomson, M., Ed.</span><span class="refAuthor"> and S. Turner, Ed.</span>, <span class="refTitle">"Using TLS to Secure QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-tls-latest</span>, <time datetime="2020-08-17" class="refDate">17 August 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-tls-latest">https://tools.ietf.org/html/draft-ietf-quic-tls-latest</a>&gt;</span>. </dd>
+<span class="refAuthor">Thomson, M., Ed.</span><span class="refAuthor"> and S. Turner, Ed.</span>, <span class="refTitle">"Using TLS to Secure QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-tls-latest</span>, <time datetime="2020-08-19" class="refDate">19 August 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-tls-latest">https://tools.ietf.org/html/draft-ietf-quic-tls-latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QUIC-TRANSPORT">[QUIC-TRANSPORT]</dt>
         <dd>
-<span class="refAuthor">Iyengar, J., Ed.</span><span class="refAuthor"> and M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-transport-latest</span>, <time datetime="2020-08-17" class="refDate">17 August 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-transport-latest">https://tools.ietf.org/html/draft-ietf-quic-transport-latest</a>&gt;</span>. </dd>
+<span class="refAuthor">Iyengar, J., Ed.</span><span class="refAuthor"> and M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-transport-latest</span>, <time datetime="2020-08-19" class="refDate">19 August 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-transport-latest">https://tools.ietf.org/html/draft-ietf-quic-transport-latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -2498,11 +2499,11 @@ recommends a value of 1ms.<a href="#section-a.2-2.6" class="pilcrow">¶</a>
 </dl>
 <div class="artwork art-text alignLeft" id="section-a.2-3">
 <pre>
-  enum kPacketNumberSpace {
-    Initial,
-    Handshake,
-    ApplicationData,
-  }
+enum kPacketNumberSpace {
+  Initial,
+  Handshake,
+  ApplicationData,
+}
 </pre><a href="#section-a.2-3" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2590,17 +2591,17 @@ about them.  Described in detail above in <a href="#tracking-sent-packets" class
 follows:<a href="#section-a.4-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-a.4-2">
 <pre>
-   loss_detection_timer.reset()
-   pto_count = 0
-   latest_rtt = 0
-   smoothed_rtt = kInitialRtt
-   rttvar = kInitialRtt / 2
-   min_rtt = 0
-   max_ack_delay = 0
-   for pn_space in [ Initial, Handshake, ApplicationData ]:
-     largest_acked_packet[pn_space] = infinite
-     time_of_last_ack_eliciting_packet[pn_space] = 0
-     loss_time[pn_space] = 0
+loss_detection_timer.reset()
+pto_count = 0
+latest_rtt = 0
+smoothed_rtt = kInitialRtt
+rttvar = kInitialRtt / 2
+min_rtt = 0
+max_ack_delay = 0
+for pn_space in [ Initial, Handshake, ApplicationData ]:
+  largest_acked_packet[pn_space] = infinite
+  time_of_last_ack_eliciting_packet[pn_space] = 0
+  loss_time[pn_space] = 0
 </pre><a href="#section-a.4-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2615,21 +2616,21 @@ to OnPacketSent are described in detail above in <a href="#sent-packets-fields" 
 <p id="section-a.5-2">Pseudocode for OnPacketSent follows:<a href="#section-a.5-2" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-a.5-3">
 <pre>
- OnPacketSent(packet_number, pn_space, ack_eliciting,
-              in_flight, sent_bytes):
-   sent_packets[pn_space][packet_number].packet_number =
-                                            packet_number
-   sent_packets[pn_space][packet_number].time_sent = now()
-   sent_packets[pn_space][packet_number].ack_eliciting =
-                                            ack_eliciting
-   sent_packets[pn_space][packet_number].in_flight = in_flight
-   if (in_flight):
-     if (ack_eliciting):
-       time_of_last_ack_eliciting_packet[pn_space] = now()
-     OnPacketSentCC(sent_bytes)
-     sent_packets[pn_space][packet_number].sent_bytes =
-       sent_bytes
-     SetLossDetectionTimer()
+OnPacketSent(packet_number, pn_space, ack_eliciting,
+             in_flight, sent_bytes):
+  sent_packets[pn_space][packet_number].packet_number =
+                                           packet_number
+  sent_packets[pn_space][packet_number].time_sent = now()
+  sent_packets[pn_space][packet_number].ack_eliciting =
+                                           ack_eliciting
+  sent_packets[pn_space][packet_number].in_flight = in_flight
+  if (in_flight):
+    if (ack_eliciting):
+      time_of_last_ack_eliciting_packet[pn_space] = now()
+    OnPacketSentCC(sent_bytes)
+    sent_packets[pn_space][packet_number].sent_bytes =
+      sent_bytes
+    SetLossDetectionTimer()
 </pre><a href="#section-a.5-3" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3017,12 +3018,12 @@ acknowledged.<a href="#section-b.2-2.12" class="pilcrow">¶</a>
 variables as follows:<a href="#section-b.3-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-b.3-2">
 <pre>
-   congestion_window = kInitialWindow
-   bytes_in_flight = 0
-   congestion_recovery_start_time = 0
-   ssthresh = infinite
-   for pn_space in [ Initial, Handshake, ApplicationData ]:
-     ecn_ce_counters[pn_space] = 0
+congestion_window = kInitialWindow
+bytes_in_flight = 0
+congestion_recovery_start_time = 0
+ssthresh = infinite
+for pn_space in [ Initial, Handshake, ApplicationData ]:
+  ecn_ce_counters[pn_space] = 0
 </pre><a href="#section-b.3-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3036,8 +3037,8 @@ variables as follows:<a href="#section-b.3-1" class="pilcrow">¶</a></p>
 increases bytes_in_flight.<a href="#section-b.4-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-b.4-2">
 <pre>
-   OnPacketSentCC(bytes_sent):
-     bytes_in_flight += bytes_sent
+OnPacketSentCC(bytes_sent):
+  bytes_in_flight += bytes_sent
 </pre><a href="#section-b.4-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3051,34 +3052,31 @@ increases bytes_in_flight.<a href="#section-b.4-1" class="pilcrow">¶</a></p>
 newly acked_packets from sent_packets.<a href="#section-b.5-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-b.5-2">
 <pre>
-  InCongestionRecovery(sent_time):
-    return sent_time &lt;= congestion_recovery_start_time
+InCongestionRecovery(sent_time):
+  return sent_time &lt;= congestion_recovery_start_time
 
-  OnPacketsAcked(acked_packets):
-    for acked_packet in acked_packets:
-      OnPacketAcked(acked_packet)
+OnPacketsAcked(acked_packets):
+  for acked_packet in acked_packets:
+    OnPacketAcked(acked_packet)
 
-  OnPacketAcked(acked_packet):
-    // Remove from bytes_in_flight.
-    bytes_in_flight -= acked_packet.sent_bytes
-
-    // Do not increase congestion_window if application
-    // limited or flow control limited.
-    if (IsAppOrFlowControlLimited())
-      return
-
-    // Do not increase congestion window in recovery period.
-    if (InCongestionRecovery(acked_packet.time_sent)):
-      return
-
-    if (congestion_window &lt; ssthresh):
-      // Slow start.
-      congestion_window += acked_packet.sent_bytes
-    else:
-      // Congestion avoidance.
-      congestion_window +=
-        max_datagram_size * acked_packet.sent_bytes
-        / congestion_window
+OnPacketAcked(acked_packet):
+  // Remove from bytes_in_flight.
+  bytes_in_flight -= acked_packet.sent_bytes
+  // Do not increase congestion_window if application
+  // limited or flow control limited.
+  if (IsAppOrFlowControlLimited())
+    return
+  // Do not increase congestion window in recovery period.
+  if (InCongestionRecovery(acked_packet.time_sent)):
+    return
+  if (congestion_window &lt; ssthresh):
+    // Slow start.
+    congestion_window += acked_packet.sent_bytes
+  else:
+    // Congestion avoidance.
+    congestion_window +=
+      max_datagram_size * acked_packet.sent_bytes
+      / congestion_window
 </pre><a href="#section-b.5-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3093,16 +3091,16 @@ detected. May start a new recovery period and reduces the congestion
 window.<a href="#section-b.6-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-b.6-2">
 <pre>
-   OnCongestionEvent(sent_time):
-     // Start a new congestion event if packet was sent after the
-     // start of the previous congestion recovery period.
-     if (!InCongestionRecovery(sent_time)):
-       congestion_recovery_start_time = now()
-       congestion_window *= kLossReductionFactor
-       congestion_window = max(congestion_window, kMinimumWindow)
-       ssthresh = congestion_window
-       // A packet can be sent to speed up loss recovery.
-       MaybeSendOnePacket()
+OnCongestionEvent(sent_time):
+  // Start a new congestion event if packet was sent after the
+  // start of the previous congestion recovery period.
+  if (!InCongestionRecovery(sent_time)):
+    congestion_recovery_start_time = now()
+    congestion_window *= kLossReductionFactor
+    congestion_window = max(congestion_window, kMinimumWindow)
+    ssthresh = congestion_window
+    // A packet can be sent to speed up loss recovery.
+    MaybeSendOnePacket()
 </pre><a href="#section-b.6-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3115,13 +3113,13 @@ window.<a href="#section-b.6-1" class="pilcrow">¶</a></p>
 <p id="section-b.7-1">Invoked when an ACK frame with an ECN section is received from the peer.<a href="#section-b.7-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-b.7-2">
 <pre>
-   ProcessECN(ack, pn_space):
-     // If the ECN-CE counter reported by the peer has increased,
-     // this could be a new congestion event.
-     if (ack.ce_counter &gt; ecn_ce_counters[pn_space]):
-       ecn_ce_counters[pn_space] = ack.ce_counter
-       sent_time = sent_packets[ack.largest_acked].time_sent
-       OnCongestionEvent(sent_time)
+ProcessECN(ack, pn_space):
+  // If the ECN-CE counter reported by the peer has increased,
+  // this could be a new congestion event.
+  if (ack.ce_counter &gt; ecn_ce_counters[pn_space]):
+    ecn_ce_counters[pn_space] = ack.ce_counter
+    sent_time = sent_packets[ack.largest_acked].time_sent
+    OnCongestionEvent(sent_time)
 </pre><a href="#section-b.7-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3134,28 +3132,27 @@ window.<a href="#section-b.6-1" class="pilcrow">¶</a></p>
 <p id="section-b.8-1">Invoked when DetectAndRemoveLostPackets deems packets lost.<a href="#section-b.8-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-b.8-2">
 <pre>
-   InPersistentCongestion(largest_lost):
-     // Persistent congestion cannot be declared on the
-     // first RTT sample.
-     if (is first RTT sample):
-       return false
-     pto = smoothed_rtt + max(4 * rttvar, kGranularity) +
-       max_ack_delay
-     congestion_period = pto * kPersistentCongestionThreshold
-     // Determine if all packets in the time period before the
-     // largest newly lost packet, including the edges and
-     // across all packet number spaces, are marked lost.
-     return AreAllPacketsLost(largest_lost, congestion_period)
+InPersistentCongestion(largest_lost):
+  // Persistent congestion cannot be declared on the
+  // first RTT sample.
+  if (is first RTT sample):
+    return false
+  pto = smoothed_rtt + max(4 * rttvar, kGranularity) +
+    max_ack_delay
+  congestion_period = pto * kPersistentCongestionThreshold
+  // Determine if all packets in the time period before the
+  // largest newly lost packet, including the edges and
+  // across all packet number spaces, are marked lost.
+  return AreAllPacketsLost(largest_lost, congestion_period)
 
-   OnPacketsLost(lost_packets):
-     // Remove lost packets from bytes_in_flight.
-     for lost_packet in lost_packets:
-       bytes_in_flight -= lost_packet.sent_bytes
-     OnCongestionEvent(lost_packets.largest().time_sent)
-
-     // Collapse congestion window if persistent congestion
-     if (InPersistentCongestion(lost_packets.largest())):
-       congestion_window = kMinimumWindow
+OnPacketsLost(lost_packets):
+  // Remove lost packets from bytes_in_flight.
+  for lost_packet in lost_packets:
+    bytes_in_flight -= lost_packet.sent_bytes
+  OnCongestionEvent(lost_packets.largest().time_sent)
+  // Collapse congestion window if persistent congestion
+  if (InPersistentCongestion(lost_packets.largest())):
+    congestion_window = kMinimumWindow
 </pre><a href="#section-b.8-2" class="pilcrow">¶</a>
 </div>
 </section>
