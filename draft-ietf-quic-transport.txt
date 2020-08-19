@@ -1263,7 +1263,7 @@ Internet-Draft           QUIC Transport Protocol             August 2020
       receiver's buffer capacity for the connection, by limiting the
       total bytes of stream data sent in STREAM frames on all streams.
 
-   Senders MUST not send data in excess of either limit.
+   Senders MUST NOT send data in excess of either limit.
 
    A receiver sets initial limits for all streams by sending transport
    parameters during the handshake (Section 7.4).  A receiver sends
