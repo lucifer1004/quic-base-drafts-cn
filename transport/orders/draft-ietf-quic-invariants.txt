@@ -4,8 +4,8 @@
 
 QUIC                                                          M. Thomson
 Internet-Draft                                                   Mozilla
-Intended status: Standards Track                            21 July 2020
-Expires: 22 January 2021
+Intended status: Standards Track                          20 August 2020
+Expires: 21 February 2021
 
 
                  Version-Independent Properties of QUIC
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 January 2021.
+   This Internet-Draft will expire on 21 February 2021.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Thomson                  Expires 22 January 2021                [Page 1]
+Thomson                 Expires 21 February 2021                [Page 1]
 
-Internet-Draft               QUIC Invariants                   July 2020
+Internet-Draft               QUIC Invariants                 August 2020
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,14 +109,14 @@ Table of Contents
 
 
 
-Thomson                  Expires 22 January 2021                [Page 2]
+Thomson                 Expires 21 February 2021                [Page 2]
 
-Internet-Draft               QUIC Invariants                   July 2020
+Internet-Draft               QUIC Invariants                 August 2020
 
 
    The primary goal of this document is to ensure that it is possible to
    deploy new versions of QUIC.  By documenting the properties that
-   can't change, this document aims to preserve the ability for QUIC
+   cannot change, this document aims to preserve the ability for QUIC
    endpoints to negotiate changes to any other aspect of the protocol.
    As a consequence, this also guarantees a minimal amount of
    information that is made available to entities other than endpoints.
@@ -165,9 +165,9 @@ Internet-Draft               QUIC Invariants                   July 2020
 
 
 
-Thomson                  Expires 22 January 2021                [Page 3]
+Thomson                 Expires 21 February 2021                [Page 3]
 
-Internet-Draft               QUIC Invariants                   July 2020
+Internet-Draft               QUIC Invariants                 August 2020
 
 
       omitted to indicate a minimum of zero bits and B can be omitted to
@@ -221,9 +221,9 @@ Internet-Draft               QUIC Invariants                   July 2020
 
 
 
-Thomson                  Expires 22 January 2021                [Page 4]
+Thomson                 Expires 21 February 2021                [Page 4]
 
-Internet-Draft               QUIC Invariants                   July 2020
+Internet-Draft               QUIC Invariants                 August 2020
 
 
    Long Header Packet {
@@ -277,9 +277,9 @@ Internet-Draft               QUIC Invariants                   July 2020
 
 
 
-Thomson                  Expires 22 January 2021                [Page 5]
+Thomson                 Expires 21 February 2021                [Page 5]
 
-Internet-Draft               QUIC Invariants                   July 2020
+Internet-Draft               QUIC Invariants                 August 2020
 
 
    A QUIC packet with a short header includes a Destination Connection
@@ -296,7 +296,7 @@ Internet-Draft               QUIC Invariants                   July 2020
    A connection ID is an opaque field of arbitrary length.
 
    The primary function of a connection ID is to ensure that changes in
-   addressing at lower protocol layers (UDP, IP, and below) don't cause
+   addressing at lower protocol layers (UDP, IP, and below) do not cause
    packets for a QUIC connection to be delivered to the wrong QUIC
    endpoint.  The connection ID is used by endpoints and the
    intermediaries that support them to ensure that each QUIC packet can
@@ -310,14 +310,15 @@ Internet-Draft               QUIC Invariants                   July 2020
 
 5.4.  Version
 
-   QUIC versions are identified with a 32-bit integer, encoded in
-   network byte order.  Version 0 is reserved for version negotiation
-   (see Section 6).  All other version numbers are potentially valid.
+   The Version field contains a 4-byte identifier.  This value can be
+   used by endpoints to identify a QUIC Version.  A Version field with a
+   value of 0x00000000 is reserved for version negotiation; see
+   Section 6.  All other values are potentially valid.
 
    The properties described in this document apply to all versions of
    QUIC.  A protocol that does not conform to the properties described
    in this document is not QUIC.  Future documents might describe
-   additional properties which apply to a specific QUIC version, or to a
+   additional properties that apply to a specific QUIC version, or to a
    range of QUIC versions.
 
 6.  Version Negotiation
@@ -332,10 +333,9 @@ Internet-Draft               QUIC Invariants                   July 2020
 
 
 
-
-Thomson                  Expires 22 January 2021                [Page 6]
+Thomson                 Expires 21 February 2021                [Page 6]
 
-Internet-Draft               QUIC Invariants                   July 2020
+Internet-Draft               QUIC Invariants                 August 2020
 
 
    A Version Negotiation packet sets the high bit of the first byte, and
@@ -389,9 +389,9 @@ Internet-Draft               QUIC Invariants                   July 2020
 
 
 
-Thomson                  Expires 22 January 2021                [Page 7]
+Thomson                 Expires 21 February 2021                [Page 7]
 
-Internet-Draft               QUIC Invariants                   July 2020
+Internet-Draft               QUIC Invariants                 August 2020
 
 
    See [QUIC-TRANSPORT] for a more thorough description of how an
@@ -445,21 +445,22 @@ Internet-Draft               QUIC Invariants                   July 2020
 
 
 
-Thomson                  Expires 22 January 2021                [Page 8]
+Thomson                 Expires 21 February 2021                [Page 8]
 
-Internet-Draft               QUIC Invariants                   July 2020
+Internet-Draft               QUIC Invariants                 August 2020
 
 
    [QUIC-TLS] Thomson, M., Ed. and S. Turner, Ed., "Using Transport
               Layer Security (TLS) to Secure QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-tls-latest, 21 July 2020,
+              Internet-Draft, draft-ietf-quic-tls-latest, 20 August
+              2020,
               <https://tools.ietf.org/html/draft-ietf-quic-tls-latest>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport-latest, 21 July
-              2020, <https://tools.ietf.org/html/draft-ietf-quic-
+              Internet-Draft, draft-ietf-quic-transport-latest, 20
+              August 2020, <https://tools.ietf.org/html/draft-ietf-quic-
               transport-latest>.
 
    [RFC5116]  McGrew, D., "An Interface and Algorithms for Authenticated
@@ -500,10 +501,9 @@ Appendix A.  Incorrect Assumptions
 
 
 
-
-Thomson                  Expires 22 January 2021                [Page 9]
+Thomson                 Expires 21 February 2021                [Page 9]
 
-Internet-Draft               QUIC Invariants                   July 2020
+Internet-Draft               QUIC Invariants                 August 2020
 
 
    *  QUIC packet numbers are encrypted and appear as the first
@@ -526,8 +526,11 @@ Internet-Draft               QUIC Invariants                   July 2020
    *  QUIC endpoints change the version they speak if they are sent a
       Version Negotiation packet
 
-   *  The version field in a QUIC long header is the same in both
+   *  The Version field in a QUIC long header is the same in both
       directions
+
+   *  A QUIC packet with a particular value in the Version field means
+      that the corresponding version of QUIC is in use
 
    *  Only one connection at a time is established between any pair of
       QUIC endpoints
@@ -554,7 +557,4 @@ Author's Address
 
 
 
-
-
-
-Thomson                  Expires 22 January 2021               [Page 10]
+Thomson                 Expires 21 February 2021               [Page 10]

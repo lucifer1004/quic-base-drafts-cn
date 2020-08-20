@@ -12,7 +12,7 @@
 documents describe QUIC's loss detection and congestion control and the use of
 TLS for key negotiation. 
     " name="description">
-<meta content="xml2rfc 2.46.0" name="generator">
+<meta content="xml2rfc 2.47.0" name="generator">
 <meta content="draft-ietf-quic-transport-latest" name="ietf.draft">
 <link href="draft-ietf-quic-transport.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -802,11 +802,11 @@ address div.right {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">QUIC Transport Protocol</td>
-<td class="right">July 2020</td>
+<td class="right">August 2020</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Iyengar &amp; Thomson</td>
-<td class="center">Expires 22 January 2021</td>
+<td class="center">Expires 21 February 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -819,12 +819,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-quic-transport-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-07-21" class="published">21 July 2020</time>
+<time datetime="2020-08-20" class="published">20 August 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-01-22">22 January 2021</time></dd>
+<dd class="expires"><time datetime="2021-02-21">21 February 2021</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -877,7 +877,7 @@ code and issues list for this draft can be found at
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 January 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 February 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1233,19 +1233,16 @@ code and issues list for this draft can be found at
                     <p id="section-toc.1-1.13.2.2.2.3.1"><a href="#section-13.2.3" class="xref">13.2.3</a>.  <a href="#name-managing-ack-ranges" class="xref">Managing ACK Ranges</a><a href="#section-toc.1-1.13.2.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="ulEmpty toc compact" id="section-toc.1-1.13.2.2.2.4">
-                    <p id="section-toc.1-1.13.2.2.2.4.1"><a href="#section-13.2.4" class="xref">13.2.4</a>.  <a href="#name-receiver-tracking-of-ack-fr" class="xref">Receiver Tracking of ACK Frames</a><a href="#section-toc.1-1.13.2.2.2.4.1" class="pilcrow">¶</a></p>
+                    <p id="section-toc.1-1.13.2.2.2.4.1"><a href="#section-13.2.4" class="xref">13.2.4</a>.  <a href="#name-limiting-ranges-by-tracking" class="xref">Limiting Ranges by Tracking ACK Frames</a><a href="#section-toc.1-1.13.2.2.2.4.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="ulEmpty toc compact" id="section-toc.1-1.13.2.2.2.5">
-                    <p id="section-toc.1-1.13.2.2.2.5.1"><a href="#section-13.2.5" class="xref">13.2.5</a>.  <a href="#name-limiting-ack-ranges" class="xref">Limiting ACK Ranges</a><a href="#section-toc.1-1.13.2.2.2.5.1" class="pilcrow">¶</a></p>
+                    <p id="section-toc.1-1.13.2.2.2.5.1"><a href="#section-13.2.5" class="xref">13.2.5</a>.  <a href="#name-measuring-and-reporting-hos" class="xref">Measuring and Reporting Host Delay</a><a href="#section-toc.1-1.13.2.2.2.5.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="ulEmpty toc compact" id="section-toc.1-1.13.2.2.2.6">
-                    <p id="section-toc.1-1.13.2.2.2.6.1"><a href="#section-13.2.6" class="xref">13.2.6</a>.  <a href="#name-measuring-and-reporting-hos" class="xref">Measuring and Reporting Host Delay</a><a href="#section-toc.1-1.13.2.2.2.6.1" class="pilcrow">¶</a></p>
+                    <p id="section-toc.1-1.13.2.2.2.6.1"><a href="#section-13.2.6" class="xref">13.2.6</a>.  <a href="#name-ack-frames-and-packet-prote" class="xref">ACK Frames and Packet Protection</a><a href="#section-toc.1-1.13.2.2.2.6.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="ulEmpty toc compact" id="section-toc.1-1.13.2.2.2.7">
-                    <p id="section-toc.1-1.13.2.2.2.7.1"><a href="#section-13.2.7" class="xref">13.2.7</a>.  <a href="#name-ack-frames-and-packet-prote" class="xref">ACK Frames and Packet Protection</a><a href="#section-toc.1-1.13.2.2.2.7.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="ulEmpty toc compact" id="section-toc.1-1.13.2.2.2.8">
-                    <p id="section-toc.1-1.13.2.2.2.8.1"><a href="#section-13.2.8" class="xref">13.2.8</a>.  <a href="#name-padding-frames-consume-cong" class="xref">PADDING Frames Consume Congestion Window</a><a href="#section-toc.1-1.13.2.2.2.8.1" class="pilcrow">¶</a></p>
+                    <p id="section-toc.1-1.13.2.2.2.7.1"><a href="#section-13.2.7" class="xref">13.2.7</a>.  <a href="#name-padding-frames-consume-cong" class="xref">PADDING Frames Consume Congestion Window</a><a href="#section-toc.1-1.13.2.2.2.7.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
@@ -1360,10 +1357,10 @@ code and issues list for this draft can be found at
             <p id="section-toc.1-1.19.1"><a href="#section-19" class="xref">19</a>. <a href="#name-frame-types-and-formats" class="xref">Frame Types and Formats</a><a href="#section-toc.1-1.19.1" class="pilcrow">¶</a></p>
 <ul class="ulEmpty toc compact">
 <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.1">
-                <p id="section-toc.1-1.19.2.1.1"><a href="#section-19.1" class="xref">19.1</a>.  <a href="#name-padding-frame" class="xref">PADDING Frame</a><a href="#section-toc.1-1.19.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.1.1"><a href="#section-19.1" class="xref">19.1</a>.  <a href="#name-padding-frames" class="xref">PADDING Frames</a><a href="#section-toc.1-1.19.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.2">
-                <p id="section-toc.1-1.19.2.2.1"><a href="#section-19.2" class="xref">19.2</a>.  <a href="#name-ping-frame" class="xref">PING Frame</a><a href="#section-toc.1-1.19.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.2.1"><a href="#section-19.2" class="xref">19.2</a>.  <a href="#name-ping-frames" class="xref">PING Frames</a><a href="#section-toc.1-1.19.2.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.3">
                 <p id="section-toc.1-1.19.2.3.1"><a href="#section-19.3" class="xref">19.3</a>.  <a href="#name-ack-frames" class="xref">ACK Frames</a><a href="#section-toc.1-1.19.2.3.1" class="pilcrow">¶</a></p>
@@ -1377,55 +1374,55 @@ code and issues list for this draft can be found at
                 </ul>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.4">
-                <p id="section-toc.1-1.19.2.4.1"><a href="#section-19.4" class="xref">19.4</a>.  <a href="#name-reset_stream-frame" class="xref">RESET_STREAM Frame</a><a href="#section-toc.1-1.19.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.4.1"><a href="#section-19.4" class="xref">19.4</a>.  <a href="#name-reset_stream-frames" class="xref">RESET_STREAM Frames</a><a href="#section-toc.1-1.19.2.4.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.5">
-                <p id="section-toc.1-1.19.2.5.1"><a href="#section-19.5" class="xref">19.5</a>.  <a href="#name-stop_sending-frame" class="xref">STOP_SENDING Frame</a><a href="#section-toc.1-1.19.2.5.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.5.1"><a href="#section-19.5" class="xref">19.5</a>.  <a href="#name-stop_sending-frames" class="xref">STOP_SENDING Frames</a><a href="#section-toc.1-1.19.2.5.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.6">
-                <p id="section-toc.1-1.19.2.6.1"><a href="#section-19.6" class="xref">19.6</a>.  <a href="#name-crypto-frame" class="xref">CRYPTO Frame</a><a href="#section-toc.1-1.19.2.6.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.6.1"><a href="#section-19.6" class="xref">19.6</a>.  <a href="#name-crypto-frames" class="xref">CRYPTO Frames</a><a href="#section-toc.1-1.19.2.6.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.7">
-                <p id="section-toc.1-1.19.2.7.1"><a href="#section-19.7" class="xref">19.7</a>.  <a href="#name-new_token-frame" class="xref">NEW_TOKEN Frame</a><a href="#section-toc.1-1.19.2.7.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.7.1"><a href="#section-19.7" class="xref">19.7</a>.  <a href="#name-new_token-frames" class="xref">NEW_TOKEN Frames</a><a href="#section-toc.1-1.19.2.7.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.8">
                 <p id="section-toc.1-1.19.2.8.1"><a href="#section-19.8" class="xref">19.8</a>.  <a href="#name-stream-frames" class="xref">STREAM Frames</a><a href="#section-toc.1-1.19.2.8.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.9">
-                <p id="section-toc.1-1.19.2.9.1"><a href="#section-19.9" class="xref">19.9</a>.  <a href="#name-max_data-frame" class="xref">MAX_DATA Frame</a><a href="#section-toc.1-1.19.2.9.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.9.1"><a href="#section-19.9" class="xref">19.9</a>.  <a href="#name-max_data-frames" class="xref">MAX_DATA Frames</a><a href="#section-toc.1-1.19.2.9.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.10">
-                <p id="section-toc.1-1.19.2.10.1"><a href="#section-19.10" class="xref">19.10</a>. <a href="#name-max_stream_data-frame" class="xref">MAX_STREAM_DATA Frame</a><a href="#section-toc.1-1.19.2.10.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.10.1"><a href="#section-19.10" class="xref">19.10</a>. <a href="#name-max_stream_data-frames" class="xref">MAX_STREAM_DATA Frames</a><a href="#section-toc.1-1.19.2.10.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.11">
                 <p id="section-toc.1-1.19.2.11.1"><a href="#section-19.11" class="xref">19.11</a>. <a href="#name-max_streams-frames" class="xref">MAX_STREAMS Frames</a><a href="#section-toc.1-1.19.2.11.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.12">
-                <p id="section-toc.1-1.19.2.12.1"><a href="#section-19.12" class="xref">19.12</a>. <a href="#name-data_blocked-frame" class="xref">DATA_BLOCKED Frame</a><a href="#section-toc.1-1.19.2.12.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.12.1"><a href="#section-19.12" class="xref">19.12</a>. <a href="#name-data_blocked-frames" class="xref">DATA_BLOCKED Frames</a><a href="#section-toc.1-1.19.2.12.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.13">
-                <p id="section-toc.1-1.19.2.13.1"><a href="#section-19.13" class="xref">19.13</a>. <a href="#name-stream_data_blocked-frame" class="xref">STREAM_DATA_BLOCKED Frame</a><a href="#section-toc.1-1.19.2.13.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.13.1"><a href="#section-19.13" class="xref">19.13</a>. <a href="#name-stream_data_blocked-frames" class="xref">STREAM_DATA_BLOCKED Frames</a><a href="#section-toc.1-1.19.2.13.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.14">
                 <p id="section-toc.1-1.19.2.14.1"><a href="#section-19.14" class="xref">19.14</a>. <a href="#name-streams_blocked-frames" class="xref">STREAMS_BLOCKED Frames</a><a href="#section-toc.1-1.19.2.14.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.15">
-                <p id="section-toc.1-1.19.2.15.1"><a href="#section-19.15" class="xref">19.15</a>. <a href="#name-new_connection_id-frame" class="xref">NEW_CONNECTION_ID Frame</a><a href="#section-toc.1-1.19.2.15.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.15.1"><a href="#section-19.15" class="xref">19.15</a>. <a href="#name-new_connection_id-frames" class="xref">NEW_CONNECTION_ID Frames</a><a href="#section-toc.1-1.19.2.15.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.16">
-                <p id="section-toc.1-1.19.2.16.1"><a href="#section-19.16" class="xref">19.16</a>. <a href="#name-retire_connection_id-frame" class="xref">RETIRE_CONNECTION_ID Frame</a><a href="#section-toc.1-1.19.2.16.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.16.1"><a href="#section-19.16" class="xref">19.16</a>. <a href="#name-retire_connection_id-frames" class="xref">RETIRE_CONNECTION_ID Frames</a><a href="#section-toc.1-1.19.2.16.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.17">
-                <p id="section-toc.1-1.19.2.17.1"><a href="#section-19.17" class="xref">19.17</a>. <a href="#name-path_challenge-frame" class="xref">PATH_CHALLENGE Frame</a><a href="#section-toc.1-1.19.2.17.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.17.1"><a href="#section-19.17" class="xref">19.17</a>. <a href="#name-path_challenge-frames" class="xref">PATH_CHALLENGE Frames</a><a href="#section-toc.1-1.19.2.17.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.18">
-                <p id="section-toc.1-1.19.2.18.1"><a href="#section-19.18" class="xref">19.18</a>. <a href="#name-path_response-frame" class="xref">PATH_RESPONSE Frame</a><a href="#section-toc.1-1.19.2.18.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.18.1"><a href="#section-19.18" class="xref">19.18</a>. <a href="#name-path_response-frames" class="xref">PATH_RESPONSE Frames</a><a href="#section-toc.1-1.19.2.18.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.19">
                 <p id="section-toc.1-1.19.2.19.1"><a href="#section-19.19" class="xref">19.19</a>. <a href="#name-connection_close-frames" class="xref">CONNECTION_CLOSE Frames</a><a href="#section-toc.1-1.19.2.19.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.20">
-                <p id="section-toc.1-1.19.2.20.1"><a href="#section-19.20" class="xref">19.20</a>. <a href="#name-handshake_done-frame" class="xref">HANDSHAKE_DONE Frame</a><a href="#section-toc.1-1.19.2.20.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.20.1"><a href="#section-19.20" class="xref">19.20</a>. <a href="#name-handshake_done-frames" class="xref">HANDSHAKE_DONE Frames</a><a href="#section-toc.1-1.19.2.20.1" class="pilcrow">¶</a></p>
 </li>
               <li class="ulEmpty toc compact" id="section-toc.1-1.19.2.21">
                 <p id="section-toc.1-1.19.2.21.1"><a href="#section-19.21" class="xref">19.21</a>. <a href="#name-extension-frames" class="xref">Extension Frames</a><a href="#section-toc.1-1.19.2.21.1" class="pilcrow">¶</a></p>
@@ -1433,10 +1430,13 @@ code and issues list for this draft can be found at
             </ul>
 </li>
           <li class="ulEmpty toc compact" id="section-toc.1-1.20">
-            <p id="section-toc.1-1.20.1"><a href="#section-20" class="xref">20</a>. <a href="#name-transport-error-codes" class="xref">Transport Error Codes</a><a href="#section-toc.1-1.20.1" class="pilcrow">¶</a></p>
+            <p id="section-toc.1-1.20.1"><a href="#section-20" class="xref">20</a>. <a href="#name-error-codes" class="xref">Error Codes</a><a href="#section-toc.1-1.20.1" class="pilcrow">¶</a></p>
 <ul class="ulEmpty toc compact">
 <li class="ulEmpty toc compact" id="section-toc.1-1.20.2.1">
-                <p id="section-toc.1-1.20.2.1.1"><a href="#section-20.1" class="xref">20.1</a>.  <a href="#name-application-protocol-error-" class="xref">Application Protocol Error Codes</a><a href="#section-toc.1-1.20.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.20.2.1.1"><a href="#section-20.1" class="xref">20.1</a>.  <a href="#name-transport-error-codes" class="xref">Transport Error Codes</a><a href="#section-toc.1-1.20.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty toc compact" id="section-toc.1-1.20.2.2">
+                <p id="section-toc.1-1.20.2.2.1"><a href="#section-20.2" class="xref">20.2</a>.  <a href="#name-application-protocol-error-" class="xref">Application Protocol Error Codes</a><a href="#section-toc.1-1.20.2.2.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
@@ -2131,9 +2131,10 @@ to open in both directions.<a href="#section-3-2" class="pilcrow">¶</a></p>
 document uses stream states to describe rules for when and how different types
 of frames can be sent and the reactions that are expected when different types
 of frames are received.  Though these state machines are intended to be useful
-in implementing QUIC, these states aren't intended to constrain implementations.
-An implementation can define a different state machine as long as its behavior
-is consistent with an implementation that implements these states.<a href="#section-3-3" class="pilcrow">¶</a></p>
+in implementing QUIC, these states are not intended to constrain
+implementations. An implementation can define a different state machine as long
+as its behavior is consistent with an implementation that implements these
+states.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-3-4">
         <dt id="section-3-4.1">Note:</dt>
         <dd id="section-3-4.2">
@@ -2544,7 +2545,7 @@ buffer capacity for the connection, by limiting the total bytes of stream data
 sent in STREAM frames on all streams.<a href="#section-4.1-2.2" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-4.1-3">Senders MUST not send data in excess of either limit.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1-3">Senders MUST NOT send data in excess of either limit.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <p id="section-4.1-4">A receiver sets initial limits for all streams by sending transport parameters
 during the handshake (<a href="#transport-parameters" class="xref">Section 7.4</a>).  A receiver sends
 MAX_STREAM_DATA (<a href="#frame-max-stream-data" class="xref">Section 19.10</a>) or MAX_DATA (<a href="#frame-max-data" class="xref">Section 19.9</a>)
@@ -2557,9 +2558,9 @@ control offset to be advertised.<a href="#section-4.1-5" class="pilcrow">¶</a><
 <p id="section-4.1-6">A receiver can advertise a larger limit for a connection by sending a MAX_DATA
 frame, which indicates the maximum of the sum of the absolute byte offsets of
 all streams.  A receiver maintains a cumulative sum of bytes received on all
-streams, which is used to check for flow control violations. A receiver might
-use a sum of bytes consumed on all streams to determine the maximum data limit
-to be advertised.<a href="#section-4.1-6" class="pilcrow">¶</a></p>
+streams, which is used to check for violations of the advertised connection or
+stream data limits. A receiver might use a sum of bytes consumed on all streams
+to determine the maximum data limit to be advertised.<a href="#section-4.1-6" class="pilcrow">¶</a></p>
 <p id="section-4.1-7">Once a receiver advertises a limit for the connection or a stream, it MAY
 advertise a smaller limit, but this has no effect.<a href="#section-4.1-7" class="pilcrow">¶</a></p>
 <p id="section-4.1-8">A receiver MUST close the connection with a FLOW_CONTROL_ERROR error
@@ -2677,7 +2678,7 @@ unidirectional and bidirectional streams.<a href="#section-4.5-1" class="pilcrow
 value greater than 2^60, this would allow a maximum stream ID that cannot be
 expressed as a variable-length integer; see <a href="#integer-encoding" class="xref">Section 16</a>.
 If either is received, the connection MUST be closed immediately with a
-connection error of type STREAM_LIMIT_ERROR; see <a href="#immediate-close" class="xref">Section 10.2</a>.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
+connection error of type FRAME_ENCODING_ERROR; see <a href="#immediate-close" class="xref">Section 10.2</a>.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
 <p id="section-4.5-3">Endpoints MUST NOT exceed the limit set by their peer.  An endpoint that
 receives a frame with a stream ID exceeding the limit it has sent MUST treat
 this as a connection error of type STREAM_LIMIT_ERROR (<a href="#error-handling" class="xref">Section 11</a>).<a href="#section-4.5-3" class="pilcrow">¶</a></p>
@@ -2749,10 +2750,10 @@ each of which can identify the connection.  Connection IDs are independently
 selected by endpoints; each endpoint selects the connection IDs that its peer
 uses.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1-2">The primary function of a connection ID is to ensure that changes in addressing
-at lower protocol layers (UDP, IP) don't cause packets for a QUIC
+at lower protocol layers (UDP, IP) do not cause packets for a QUIC
 connection to be delivered to the wrong endpoint.  Each endpoint selects
 connection IDs using an implementation-specific (and perhaps
-deployment-specific) method which will allow packets with that connection ID to
+deployment-specific) method that will allow packets with that connection ID to
 be routed back to the endpoint and to be identified by the endpoint upon
 receipt.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">Connection IDs MUST NOT contain any information that can be used by an external
@@ -2913,10 +2914,11 @@ are inconsistent with the state of that connection.  For example, packets are
 discarded if they indicate a different protocol version than that of the
 connection, or if the removal of packet protection is unsuccessful once the
 expected keys are available.<a href="#section-5.2-5" class="pilcrow">¶</a></p>
-<p id="section-5.2-6">Invalid packets without packet protection, such as Initial, Retry, or Version
-Negotiation, MAY be discarded.  An endpoint MUST generate a connection error if
-processing of the contents of these packets prior to discovering an error
-resulted in changes to the state of a connection that cannot be reverted.<a href="#section-5.2-6" class="pilcrow">¶</a></p>
+<p id="section-5.2-6">Invalid packets that lack strong integrity protection, such as Initial, Retry,
+or Version Negotiation, MAY be discarded. An endpoint MUST generate a
+connection error if processing the contents of these packets prior to
+discovering an error resulted in changes to connection state that
+cannot be reverted.<a href="#section-5.2-6" class="pilcrow">¶</a></p>
 <div id="client-pkt-handling">
 <section id="section-5.2.1">
           <h4 id="name-client-packet-handling">
@@ -2925,7 +2927,7 @@ resulted in changes to the state of a connection that cannot be reverted.<a href
 <p id="section-5.2.1-1">Valid packets sent to clients always include a Destination Connection ID that
 matches a value the client selects.  Clients that choose to receive
 zero-length connection IDs can use the local address and port to identify a
-connection.  Packets that don't match an existing connection are discarded.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+connection.  Packets that do not match an existing connection are discarded.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-2">Due to packet reordering or loss, a client might receive packets for a
 connection that are encrypted with a key it has not yet computed. The client MAY
 drop these packets, or MAY buffer them in anticipation of later packets that
@@ -3189,7 +3191,7 @@ first packets it sends, as described in <a href="#ecn-validation" class="xref">S
 (<a href="#packet-numbers" class="xref">Section 12.3</a>).  The offsets used by CRYPTO frames to ensure ordered
 delivery of cryptographic handshake data start from zero in each packet number
 space.<a href="#section-7-5" class="pilcrow">¶</a></p>
-<p id="section-7-6"><a href="#fig-hs" class="xref">Figure 4</a> shows a simplied handshake and the exchange of packets and frames
+<p id="section-7-6"><a href="#fig-hs" class="xref">Figure 4</a> shows a simplified handshake and the exchange of packets and frames
 that are used to advance the handshake.  Exchange of application data during the
 handshake is enabled where possible, shown with a '*'.  Once completed,
 endpoints are able to exchange application data.<a href="#section-7-6" class="pilcrow">¶</a></p>
@@ -3472,6 +3474,14 @@ parameters extension.  An endpoint SHOULD treat receipt of duplicate transport
 parameters as a connection error of type TRANSPORT_PARAMETER_ERROR.<a href="#section-7.4-7" class="pilcrow">¶</a></p>
 <p id="section-7.4-8">Endpoints use transport parameters to authenticate the negotiation of
 connection IDs during the handshake; see <a href="#cid-auth" class="xref">Section 7.3</a>.<a href="#section-7.4-8" class="pilcrow">¶</a></p>
+<p id="section-7.4-9">Application Layer Protocol Negotiation (ALPN; see <span>[<a href="#ALPN" class="xref">ALPN</a>]</span>) allows
+clients to offer multiple application protocols during connection
+establishment. The transport parameters that a client includes during the
+handshake apply to all application protocols that the client offers. Application
+protocols can recommend values for transport parameters, such as the initial
+flow control limits. However, application protocols that set constraints on
+values for transport parameters could make it impossible for a client to offer
+multiple application protocols if these constraints conflict.<a href="#section-7.4-9" class="pilcrow">¶</a></p>
 <div id="zerortt-parameters">
 <section id="section-7.4.1">
           <h4 id="name-values-of-transport-paramet">
@@ -3495,8 +3505,8 @@ not store a transport parameter it cannot process.<a href="#section-7.4.1-3" cla
 ack_delay_exponent, max_ack_delay, initial_source_connection_id,
 original_destination_connection_id, preferred_address,
 retry_source_connection_id, and stateless_reset_token. The client MUST use the
-server's new values in the handshake instead, and absent new values from the
-server, the default value.<a href="#section-7.4.1-4" class="pilcrow">¶</a></p>
+server's new values in the handshake instead; if the server does not provide new
+values, the default value is used.<a href="#section-7.4.1-4" class="pilcrow">¶</a></p>
 <p id="section-7.4.1-5">A client that attempts to send 0-RTT data MUST remember all other transport
 parameters used by the server. The server can remember these transport
 parameters, or store an integrity-protected copy of the values in the ticket
@@ -3530,7 +3540,7 @@ values for 0-RTT.  This includes initial_max_data and either
 initial_max_streams_bidi and initial_max_stream_data_bidi_remote, or
 initial_max_streams_uni and initial_max_stream_data_uni.<a href="#section-7.4.1-8" class="pilcrow">¶</a></p>
 <p id="section-7.4.1-9">A server MAY store and recover the previously sent values of the
-max_idle_timout, max_udp_payload_size, and disable_active_migration parameters
+max_idle_timeout, max_udp_payload_size, and disable_active_migration parameters
 and reject 0-RTT if it selects smaller values. Lowering the values of these
 parameters while also accepting 0-RTT data could degrade the performance of the
 connection. Specifically, lowering the max_udp_payload_size could result in
@@ -3618,19 +3628,22 @@ endpoints.  In particular, receipt of a packet protected with Handshake keys
 confirms that the client received the Initial packet from the server.  Once the
 server has successfully processed a Handshake packet from the client, it can
 consider the client address to have been validated.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
-<p id="section-8.1-2">Prior to validating the client address, servers MUST NOT send more than three
+<p id="section-8.1-2">Additionally, a server MAY consider the client address valididated if the
+client uses a connection ID chosen by the server and the connection ID contains
+at least 64 bits of entropy.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
+<p id="section-8.1-3">Prior to validating the client address, servers MUST NOT send more than three
 times as many bytes as the number of bytes they have received.  This limits the
 magnitude of any amplification attack that can be mounted using spoofed source
 addresses.  For the purposes of avoiding amplification prior to address
 validation, servers MUST count all of the payload bytes received in datagrams
 that are uniquely attributed to a single connection. This includes datagrams
 that contain packets that are successfully processed and datagrams that contain
-packets that are all discarded.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
-<p id="section-8.1-3">Clients MUST ensure that UDP datagrams containing Initial packets have UDP
+packets that are all discarded.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
+<p id="section-8.1-4">Clients MUST ensure that UDP datagrams containing Initial packets have UDP
 payloads of at least 1200 bytes, adding padding to packets in the datagram as
 necessary. A client that sends padded datagrams allows the server to send more
-data prior to completing address validation.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
-<p id="section-8.1-4">Loss of an Initial or Handshake packet from the server can cause a deadlock if
+data prior to completing address validation.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
+<p id="section-8.1-5">Loss of an Initial or Handshake packet from the server can cause a deadlock if
 the client does not send additional Initial or Handshake packets. A deadlock
 could occur when the server reaches its anti-amplification limit and the client
 has received acknowledgements for all the data it has sent.  In this case, when
@@ -3639,16 +3652,16 @@ to send more data because it has not validated the client's address. To prevent
 this deadlock, clients MUST send a packet on a probe timeout (PTO, see Section
 6.2 of <span>[<a href="#QUIC-RECOVERY" class="xref">QUIC-RECOVERY</a>]</span>). Specifically, the client MUST send an Initial packet
 in a UDP datagram that contains at least 1200 bytes if it does not have
-Handshake keys, and otherwise send a Handshake packet.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
-<p id="section-8.1-5">A server might wish to validate the client address before starting the
+Handshake keys, and otherwise send a Handshake packet.<a href="#section-8.1-5" class="pilcrow">¶</a></p>
+<p id="section-8.1-6">A server might wish to validate the client address before starting the
 cryptographic handshake. QUIC uses a token in the Initial packet to provide
 address validation prior to completing the handshake. This token is delivered to
 the client during connection establishment with a Retry packet (see
 <a href="#validate-retry" class="xref">Section 8.1.2</a>) or in a previous connection using the NEW_TOKEN frame (see
-<a href="#validate-future" class="xref">Section 8.1.3</a>).<a href="#section-8.1-5" class="pilcrow">¶</a></p>
-<p id="section-8.1-6">In addition to sending limits imposed prior to address validation, servers are
+<a href="#validate-future" class="xref">Section 8.1.3</a>).<a href="#section-8.1-6" class="pilcrow">¶</a></p>
+<p id="section-8.1-7">In addition to sending limits imposed prior to address validation, servers are
 also constrained in what they can send by the limits set by the congestion
-controller.  Clients are only constrained by the congestion controller.<a href="#section-8.1-6" class="pilcrow">¶</a></p>
+controller.  Clients are only constrained by the congestion controller.<a href="#section-8.1-7" class="pilcrow">¶</a></p>
 <div id="token-construction">
 <section id="section-8.1.1">
           <h4 id="name-token-construction">
@@ -4022,8 +4035,8 @@ Therefore, a migrating endpoint can send to its peer knowing that the peer is
 willing to receive at the peer's current address. Thus an endpoint can migrate
 to a new local address without first validating the peer's address.<a href="#section-9.2-2" class="pilcrow">¶</a></p>
 <p id="section-9.2-3">When migrating, the new path might not support the endpoint's current sending
-rate. Therefore, the endpoint resets its congestion controller, as described in
-<a href="#migration-cc" class="xref">Section 9.4</a>.<a href="#section-9.2-3" class="pilcrow">¶</a></p>
+rate. Therefore, the endpoint resets its congestion controller and RTT estimate,
+as described in <a href="#migration-cc" class="xref">Section 9.4</a>.<a href="#section-9.2-3" class="pilcrow">¶</a></p>
 <p id="section-9.2-4">The new path might not have the same ECN capability. Therefore, the endpoint
 verifies ECN capability as described in <a href="#ecn" class="xref">Section 13.4</a>.<a href="#section-9.2-4" class="pilcrow">¶</a></p>
 <p id="section-9.2-5">To establish reachability on the new path, an endpoint initiates path
@@ -4124,37 +4137,35 @@ this will appear as a NAT rebinding.  Any genuine packet will be discarded as a
 duplicate.  If the attacker is able to continue forwarding packets, it might be
 able to cause migration to a path via the attacker.  This places the attacker on
 path, giving it the ability to observe or drop all subsequent packets.<a href="#section-9.3.3-1" class="pilcrow">¶</a></p>
-<p id="section-9.3.3-2">Unlike the attack described in <a href="#on-path-spoofing" class="xref">Section 9.3.2</a>, the attacker can ensure
-that the new path is successfully validated.<a href="#section-9.3.3-2" class="pilcrow">¶</a></p>
-<p id="section-9.3.3-3">This style of attack relies on the attacker using a path that is approximately
+<p id="section-9.3.3-2">This style of attack relies on the attacker using a path that is approximately
 as fast as the direct path between endpoints.  The attack is more reliable if
 relatively few packets are sent or if packet loss coincides with the attempted
-attack.<a href="#section-9.3.3-3" class="pilcrow">¶</a></p>
-<p id="section-9.3.3-4">A non-probing packet received on the original path that increases the maximum
+attack.<a href="#section-9.3.3-2" class="pilcrow">¶</a></p>
+<p id="section-9.3.3-3">A non-probing packet received on the original path that increases the maximum
 received packet number will cause the endpoint to move back to that path.
 Eliciting packets on this path increases the likelihood that the attack is
 unsuccessful.  Therefore, mitigation of this attack relies on triggering the
-exchange of packets.<a href="#section-9.3.3-4" class="pilcrow">¶</a></p>
-<p id="section-9.3.3-5">In response to an apparent migration, endpoints MUST validate the previously
+exchange of packets.<a href="#section-9.3.3-3" class="pilcrow">¶</a></p>
+<p id="section-9.3.3-4">In response to an apparent migration, endpoints MUST validate the previously
 active path using a PATH_CHALLENGE frame.  This induces the sending of new
 packets on that path.  If the path is no longer viable, the validation attempt
 will time out and fail; if the path is viable, but no longer desired, the
 validation will succeed, but only results in probing packets being sent on the
-path.<a href="#section-9.3.3-5" class="pilcrow">¶</a></p>
-<p id="section-9.3.3-6">An endpoint that receives a PATH_CHALLENGE on an active path SHOULD send a
+path.<a href="#section-9.3.3-4" class="pilcrow">¶</a></p>
+<p id="section-9.3.3-5">An endpoint that receives a PATH_CHALLENGE on an active path SHOULD send a
 non-probing packet in response.  If the non-probing packet arrives before any
 copy made by an attacker, this results in the connection being migrated back to
 the original path.  Any subsequent migration to another path restarts this
-entire process.<a href="#section-9.3.3-6" class="pilcrow">¶</a></p>
-<p id="section-9.3.3-7">This defense is imperfect, but this is not considered a serious problem. If the
+entire process.<a href="#section-9.3.3-5" class="pilcrow">¶</a></p>
+<p id="section-9.3.3-6">This defense is imperfect, but this is not considered a serious problem. If the
 path via the attack is reliably faster than the original path despite multiple
 attempts to use that original path, it is not possible to distinguish between
-attack and an improvement in routing.<a href="#section-9.3.3-7" class="pilcrow">¶</a></p>
-<p id="section-9.3.3-8">An endpoint could also use heuristics to improve detection of this style of
+attack and an improvement in routing.<a href="#section-9.3.3-6" class="pilcrow">¶</a></p>
+<p id="section-9.3.3-7">An endpoint could also use heuristics to improve detection of this style of
 attack.  For instance, NAT rebinding is improbable if packets were recently
 received on the old path, similarly rebinding is rare on IPv6 paths.  Endpoints
 can also look for duplicated packets.  Conversely, a change in connection ID is
-more likely to indicate an intentional migration rather than an attack.<a href="#section-9.3.3-8" class="pilcrow">¶</a></p>
+more likely to indicate an intentional migration rather than an attack.<a href="#section-9.3.3-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -4245,8 +4256,8 @@ those paths to be linked by entities other than the peer.<a href="#section-9.5-7
 source UDP port when sending traffic after a period of inactivity.  Changing the
 UDP port from which it sends packets at the same time might cause the packet to
 appear as a connection migration. This ensures that the mechanisms that support
-migration are exercised even for clients that don't experience NAT rebindings or
-genuine migrations.  Changing port number can cause a peer to reset its
+migration are exercised even for clients that do not experience NAT rebindings
+or genuine migrations.  Changing port number can cause a peer to reset its
 congestion state (see <a href="#migration-cc" class="xref">Section 9.4</a>), so the port SHOULD only be changed
 infrequently.<a href="#section-9.5-8" class="pilcrow">¶</a></p>
 <p id="section-9.5-9">An endpoint that exhausts available connection IDs cannot probe new paths or
@@ -4414,8 +4425,8 @@ idle timeout period to be at least three times the current Probe Timeout (PTO).<
 <a href="#section-10.1.1" class="section-number selfRef">10.1.1. </a><a href="#name-liveness-testing" class="section-name selfRef">Liveness Testing</a>
           </h4>
 <p id="section-10.1.1-1">An endpoint that sends packets close to the effective timeout risks having
-them be discarded at the peer, since the peer might enter its draining state
-before these packets arrive.<a href="#section-10.1.1-1" class="pilcrow">¶</a></p>
+them be discarded at the peer, since the idle timeout period might have expired
+at the peer before these packets arrive.<a href="#section-10.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-10.1.1-2">An endpoint can send a PING or another ack-eliciting frame to test the
 connection for liveness if the peer could time out soon, such as within a PTO;
 see Section 6.2 of <span>[<a href="#QUIC-RECOVERY" class="xref">QUIC-RECOVERY</a>]</span>.  This is especially useful if any
@@ -4435,8 +4446,12 @@ application data.<a href="#section-10.1.2-1" class="pilcrow">¶</a></p>
 idle timeout.  This facility could be used when the application wishes to avoid
 losing state that has been associated with an open connection, but does not
 expect to exchange application data for some time.  With this option, an
-endpoint could send a PING frame periodically to defer an idle timeout; see
-<a href="#frame-ping" class="xref">Section 19.2</a>.<a href="#section-10.1.2-2" class="pilcrow">¶</a></p>
+endpoint could send a PING frame (<a href="#frame-ping" class="xref">Section 19.2</a>) periodically, which will cause
+the peer to restart its idle timeout period.  Sending a packet containing a PING
+frame restarts the idle timeout for this endpoint also if this is the first
+ack-eliciting packet sent since receiving a packet.  Sending a PING frame causes
+the peer to respond with an acknowledgment, which also restarts the idle
+timeout for the endpoint.<a href="#section-10.1.2-2" class="pilcrow">¶</a></p>
 <p id="section-10.1.2-3">Application protocols that use QUIC SHOULD provide guidance on when deferring an
 idle timeout is appropriate.  Unnecessary sending of PING frames could have a
 detrimental effect on performance.<a href="#section-10.1.2-3" class="pilcrow">¶</a></p>
@@ -4472,10 +4487,11 @@ amount of time before responding to a received packet.<a href="#section-10.2-3" 
 closing period (<a href="#draining" class="xref">Section 10.4</a>) and send a packet containing a CONNECTION_CLOSE in
 response to any UDP datagram that is received.  However, an endpoint without the
 packet protection keys cannot identify and discard invalid packets.  To avoid
-creating an unwitting amplification attack, such endpoints MUST reduce the
-frequency with which it sends packets containing a CONNECTION_CLOSE frame.  To
-minimize the state that an endpoint maintains for a closing connection,
-endpoints MAY send the exact same packet.<a href="#section-10.2-4" class="pilcrow">¶</a></p>
+creating an unwitting amplification attack, such endpoints MUST limit the
+cumulative size of packets containing a CONNECTION_CLOSE frame to 3 times the
+cumulative size of the packets that cause those packets to be sent.  To minimize
+the state that an endpoint maintains for a closing connection, endpoints MAY
+send the exact same packet.<a href="#section-10.2-4" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-10.2-5">
           <dt id="section-10.2-5.1">Note:</dt>
           <dd id="section-10.2-5.2">
@@ -4545,8 +4561,8 @@ the value of the Reason Phrase field and SHOULD use the APPLICATION_ERROR code
 when converting to a CONNECTION_CLOSE of type 0x1c.<a href="#section-10.2.1-3" class="pilcrow">¶</a></p>
 <p id="section-10.2.1-4">CONNECTION_CLOSE frames sent in multiple packet types can be coalesced into a
 single UDP datagram; see <a href="#packet-coalesce" class="xref">Section 12.2</a>.<a href="#section-10.2.1-4" class="pilcrow">¶</a></p>
-<p id="section-10.2.1-5">An endpoint might send a CONNECTION_CLOSE frame in an Initial packet or in
-response to unauthenticated information received in Initial or Handshake
+<p id="section-10.2.1-5">An endpoint can send a CONNECTION_CLOSE frame in an Initial packet.  This might
+be in response to unauthenticated information received in Initial or Handshake
 packets.  Such an immediate close might expose legitimate connections to a
 denial of service.  QUIC does not include defensive measures for on-path attacks
 during the handshake; see <a href="#handshake-dos" class="xref">Section 21.1</a>.  However, at the cost of reducing
@@ -4581,7 +4597,7 @@ CONNECTION_CLOSE frame if it has sufficient state to do so.<a href="#section-10.
 the Stateless Reset Token field of a NEW_CONNECTION_ID frame.  Servers can also
 specify a stateless_reset_token transport parameter during the handshake that
 applies to the connection ID that it selected during the handshake; clients
-cannot use this transport parameter because their transport parameters don't
+cannot use this transport parameter because their transport parameters do not
 have confidentiality protection.  These tokens are protected by encryption, so
 only client and server know their value.  Tokens are invalidated when their
 associated connection ID is retired via a RETIRE_CONNECTION_ID frame
@@ -4613,14 +4629,15 @@ from random.  The last 16 bytes of the datagram contain a Stateless Reset Token.
 be a packet with a short header.  For the stateless reset to appear as a valid
 QUIC packet, the Unpredictable Bits field needs to include at least 38 bits of
 data (or 5 bytes, less the two fixed bits).<a href="#section-10.3-8" class="pilcrow">¶</a></p>
-<p id="section-10.3-9">A minimum size of 21 bytes does not guarantee that a stateless reset is
-difficult to distinguish from other packets if the recipient requires the use of
-a connection ID.  To prevent a resulting stateless reset from being trivially
-distinguishable from a valid packet, all packets sent by an endpoint SHOULD be
-padded to at least 22 bytes longer than the minimum connection ID that the
-endpoint might use.  An endpoint that sends a stateless reset in response to a
-packet that is 43 bytes or less in length SHOULD send a stateless reset that is
-one byte shorter than the packet it responds to.<a href="#section-10.3-9" class="pilcrow">¶</a></p>
+<p id="section-10.3-9">The resulting minimum size of 21 bytes does not guarantee that a stateless reset
+is difficult to distinguish from other packets if the recipient requires the use
+of a connection ID. To achieve that end, the endpoint SHOULD pad all packets it
+sends to at least 22 bytes longer than the minimum connection ID that it might
+request the peer to include in packets that the peer sends.  This ensures that
+any stateless reset sent by the peer is indistinguishable from a valid packet
+sent to the endpoint.  An endpoint that sends a stateless reset in response to a
+packet that is 43 bytes or shorter SHOULD send a stateless reset that is one
+byte shorter than the packet it responds to.<a href="#section-10.3-9" class="pilcrow">¶</a></p>
 <p id="section-10.3-10">These values assume that the Stateless Reset Token is the same length as the
 minimum expansion of the packet protection AEAD.  Additional unpredictable bytes
 are necessary if the endpoint could have negotiated a packet protection scheme
@@ -4759,7 +4776,7 @@ token it is indistinguishable from a valid packet.  For instance, if a server
 sends a Stateless Reset to another server it might receive another Stateless
 Reset in response, which could lead to an infinite exchange.<a href="#section-10.3.3-1" class="pilcrow">¶</a></p>
 <p id="section-10.3.3-2">An endpoint MUST ensure that every Stateless Reset that it sends is smaller than
-the packet which triggered it, unless it maintains state sufficient to prevent
+the packet that triggered it, unless it maintains state sufficient to prevent
 looping.  In the event of a loop, this results in packets eventually being too
 small to trigger a response.<a href="#section-10.3.3-2" class="pilcrow">¶</a></p>
 <p id="section-10.3.3-3">An endpoint can remember the number of Stateless Reset packets that it has sent
@@ -4809,7 +4826,7 @@ same end time, but cease retransmission of the closing packet.<a href="#section-
 could cause delayed or reordered packets to generate an unnecessary stateless
 reset. Endpoints that have some alternative means to ensure that late-arriving
 packets on the connection do not induce a response, such as those that are able
-to close the UDP socket, MAY use an abbreviated draining period which can allow
+to close the UDP socket, MAY use an abbreviated draining period to allow
 for faster resource recovery.  Servers that retain an open socket for accepting
 new connections SHOULD NOT exit the closing or draining period early.<a href="#section-10.4-5" class="pilcrow">¶</a></p>
 <p id="section-10.4-6">Once the closing or draining period has ended, an endpoint SHOULD discard all
@@ -4921,27 +4938,30 @@ after a connection is established and 1-RTT keys are available; see
         <h3 id="name-protected-packets">
 <a href="#section-12.1" class="section-number selfRef">12.1. </a><a href="#name-protected-packets" class="section-name selfRef">Protected Packets</a>
         </h3>
-<p id="section-12.1-1">All QUIC packets except Version Negotiation packets use authenticated encryption
-with associated data (AEAD) <span>[<a href="#RFC5116" class="xref">RFC5116</a>]</span> to provide confidentiality and
-integrity protection.  Retry packets use AEAD to provide integrity protection.
-Details of packet protection are found in <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span>; this section includes an
-overview of the process.<a href="#section-12.1-1" class="pilcrow">¶</a></p>
-<p id="section-12.1-2">Initial packets are protected using keys that are statically derived. This
-packet protection is not effective confidentiality protection.  Initial
-protection only exists to ensure that the sender of the packet is on the network
-path. Any entity that receives the Initial packet from a client can recover the
-keys necessary to remove packet protection or to generate packets that will be
-successfully authenticated.<a href="#section-12.1-2" class="pilcrow">¶</a></p>
-<p id="section-12.1-3">All other packets are protected with keys derived from the cryptographic
-handshake. The type of the packet from the long header or key phase from the
-short header are used to identify which encryption keys are used. Packets
-protected with 0-RTT and 1-RTT keys are expected to have confidentiality and
-data origin authentication; the cryptographic handshake ensures that only the
-communicating endpoints receive the corresponding keys.<a href="#section-12.1-3" class="pilcrow">¶</a></p>
-<p id="section-12.1-4">The packet number field contains a packet number, which has additional
-confidentiality protection that is applied after packet protection is applied;
-see <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span> for details.  The underlying packet number increases with each
-packet sent in a given packet number space; see <a href="#packet-numbers" class="xref">Section 12.3</a> for details.<a href="#section-12.1-4" class="pilcrow">¶</a></p>
+<p id="section-12.1-1">QUIC packets have different levels of cryptographic protection based on the
+type of packet. Details of packet protection are found in <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span>; this
+section includes an overview of the protections that are provided.<a href="#section-12.1-1" class="pilcrow">¶</a></p>
+<p id="section-12.1-2">Version Negotiation packets have no cryptographic protection; see
+<span>[<a href="#QUIC-INVARIANTS" class="xref">QUIC-INVARIANTS</a>]</span>.<a href="#section-12.1-2" class="pilcrow">¶</a></p>
+<p id="section-12.1-3">Retry packets use an authenticated encryption with associated data function
+(AEAD; <span>[<a href="#AEAD" class="xref">AEAD</a>]</span>) to protect against accidental modification.<a href="#section-12.1-3" class="pilcrow">¶</a></p>
+<p id="section-12.1-4">Initial packets use an AEAD, the keys for which are derived using a value that
+is visible on the wire. Initial packets therefore do not have effective
+confidentiality protection. Initial protection exists to ensure that the sender
+of the packet is on the network path. Any entity that receives an Initial packet
+from a client can recover the keys that will allow them to both read the
+contents of the packet and generate Initial packets that will be successfully
+authenticated at either endpoint.<a href="#section-12.1-4" class="pilcrow">¶</a></p>
+<p id="section-12.1-5">All other packets are protected with keys derived from the cryptographic
+handshake.  The cryptographic handshake ensures that only the communicating
+endpoints receive the corresponding keys for Handshake, 0-RTT, and 1-RTT
+packets.  Packets protected with 0-RTT and 1-RTT keys have strong
+confidentiality and integrity protection.<a href="#section-12.1-5" class="pilcrow">¶</a></p>
+<p id="section-12.1-6">The Packet Number field that appears in some packet types has alternative
+confidentiality protection that is applied as part of header protection; see
+Section 5.4 of <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span> for details. The underlying packet number increases
+with each packet sent in a given packet number space; see <a href="#packet-numbers" class="xref">Section 12.3</a> for
+details.<a href="#section-12.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="packet-coalesce">
@@ -4950,7 +4970,7 @@ packet sent in a given packet number space; see <a href="#packet-numbers" class=
 <a href="#section-12.2" class="section-number selfRef">12.2. </a><a href="#name-coalescing-packets" class="section-name selfRef">Coalescing Packets</a>
         </h3>
 <p id="section-12.2-1">Initial (<a href="#packet-initial" class="xref">Section 17.2.2</a>), 0-RTT (<a href="#packet-0rtt" class="xref">Section 17.2.3</a>), and Handshake
-(<a href="#packet-handshake" class="xref">Section 17.2.4</a>) packets contain a Length field, which determines the end
+(<a href="#packet-handshake" class="xref">Section 17.2.4</a>) packets contain a Length field that determines the end
 of the packet.  The length includes both the Packet Number and Payload
 fields, both of which are confidentiality protected and initially of unknown
 length. The length of the Payload field is learned once header protection is
@@ -4968,9 +4988,10 @@ packet included in a UDP datagram.  An endpoint SHOULD include multiple frames
 in a single packet if they are to be sent at the same encryption level, instead
 of coalescing multiple packets at the same encryption level.<a href="#section-12.2-3" class="pilcrow">¶</a></p>
 <p id="section-12.2-4">Receivers MAY route based on the information in the first packet contained in a
-UDP datagram.  Senders MUST NOT coalesce QUIC packets for different connections
-into a single UDP datagram.  Receivers SHOULD ignore any subsequent packets with
-a different Destination Connection ID than the first packet in the datagram.<a href="#section-12.2-4" class="pilcrow">¶</a></p>
+UDP datagram.  Senders MUST NOT coalesce QUIC packets with different connection
+IDs into a single UDP datagram.  Receivers SHOULD ignore any subsequent packets
+with a different Destination Connection ID than the first packet in the
+datagram.<a href="#section-12.2-4" class="pilcrow">¶</a></p>
 <p id="section-12.2-5">Every QUIC packet that is coalesced into a single UDP datagram is separate and
 complete.  The receiver of coalesced QUIC packets MUST individually process each
 QUIC packet and separately acknowledge them, as if they were received as the
@@ -5013,7 +5034,7 @@ space.<a href="#section-12.3-5.2" class="pilcrow">¶</a>
 <p id="section-12.3-6">As described in <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span>, each packet type uses different protection keys.<a href="#section-12.3-6" class="pilcrow">¶</a></p>
 <p id="section-12.3-7">Conceptually, a packet number space is the context in which a packet can be
 processed and acknowledged.  Initial packets can only be sent with Initial
-packet protection keys and acknowledged in packets which are also Initial
+packet protection keys and acknowledged in packets that are also Initial
 packets.  Similarly, Handshake packets are sent at the Handshake encryption
 level and can only be acknowledged in Handshake packets.<a href="#section-12.3-7" class="pilcrow">¶</a></p>
 <p id="section-12.3-8">This enforces cryptographic separation between the data sent in the different
@@ -5316,7 +5337,9 @@ packets.<a href="#section-12.4-9.10" class="pilcrow">¶</a>
         <dd class="break"></dd>
 </dl>
 <p id="section-12.4-10">Section 4 of <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span> provides more detail about these restrictions.  Note
-that all frames can appear in 1-RTT packets.<a href="#section-12.4-10" class="pilcrow">¶</a></p>
+that all frames can appear in 1-RTT packets.  An endpoint MUST treat receipt of
+a frame in a packet type that is not permitted as a connection error of type
+PROTOCOL_VIOLATION.<a href="#section-12.4-10" class="pilcrow">¶</a></p>
 <p id="section-12.4-11">The "Spec" column in  <a href="#frame-types" class="xref">Table 3</a> summarizes any special rules governing the
 processing or generation of the frame type, as indicated by the following
 characters:<a href="#section-12.4-11" class="pilcrow">¶</a></p>
@@ -5434,8 +5457,8 @@ guidance offered below seeks to strike this balance.<a href="#section-13.2-3" cl
 <a href="#section-13.2.1" class="section-number selfRef">13.2.1. </a><a href="#name-sending-ack-frames" class="section-name selfRef">Sending ACK Frames</a>
           </h4>
 <p id="section-13.2.1-1">Every packet SHOULD be acknowledged at least once, and ack-eliciting packets
-MUST be acknowledged at least once within the maximum ack delay. An endpoint
-communicates its maximum delay using the max_ack_delay transport parameter; see
+MUST be acknowledged at least once within the maximum delay an endpoint
+communicated using the max_ack_delay transport parameter; see
 <a href="#transport-parameter-definitions" class="xref">Section 18.2</a>.  max_ack_delay declares an explicit
 contract: an endpoint promises to never intentionally delay acknowledgments of
 an ack-eliciting packet by more than the indicated value. If it does, any excess
@@ -5448,7 +5471,7 @@ in determining timeouts for timer-based retransmission, as detailed in Section
 endpoint MUST NOT send more than one such packet in response to receiving an
 ack-eliciting packet.<a href="#section-13.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-13.2.1-3">An endpoint MUST NOT send a non-ack-eliciting packet in response to a
-non-ack-eliciting packet, even if there are packet gaps which precede the
+non-ack-eliciting packet, even if there are packet gaps that precede the
 received packet. This avoids an infinite feedback loop of acknowledgements,
 which could prevent the connection from ever becoming idle.  Non-ack-eliciting
 packets are eventually acknowledged when the endpoint sends an ACK frame in
@@ -5474,6 +5497,9 @@ when there are new ack-eliciting packets to acknowledge.  When only
 non-ack-eliciting packets need to be acknowledged, an endpoint MAY wait until an
 ack-eliciting packet has been received to include an ACK frame with outgoing
 frames.<a href="#section-13.2.1-7" class="pilcrow">¶</a></p>
+<p id="section-13.2.1-8">A receiver MUST NOT send an ack-eliciting frame in all packets that would
+otherwise be non-ack-eliciting, to avoid an infinite feedback loop of
+acknowledgements.<a href="#section-13.2.1-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="acknowledgement-frequency">
@@ -5518,113 +5544,106 @@ ACK frame quickly, to prevent the peer from declaring a packet as lost and
 spuriously retransmitting the frames it contains.  An ACK frame is expected
 to fit within a single QUIC packet.  If it does not, then older ranges
 (those with the smallest packet numbers) are omitted.<a href="#section-13.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-13.2.3-3"><a href="#ack-tracking" class="xref">Section 13.2.4</a> and <a href="#ack-limiting" class="xref">Section 13.2.5</a> describe an exemplary approach for
-determining what packets to acknowledge in each ACK frame.  Though the goal of
-these algorithms is to generate an acknowledgment for every packet that is
-processed, it is still possible for acknowledgments to be lost.  A sender cannot
-expect to receive an acknowledgment for every packet that the receiver
-processes.<a href="#section-13.2.3-3" class="pilcrow">¶</a></p>
+<p id="section-13.2.3-3">A receiver limits the number of ACK Ranges (<a href="#ack-ranges" class="xref">Section 19.3.1</a>) it remembers and
+sends in ACK frames, both to limit the size of ACK frames and to avoid resource
+exhaustion. After receiving acknowledgments for an ACK frame, the receiver
+SHOULD stop tracking those acknowledged ACK Ranges.  Senders can expect
+acknowledgements for most packets, but QUIC does not guarantee receipt of an
+acknowledgment for every packet that the receiver processes.<a href="#section-13.2.3-3" class="pilcrow">¶</a></p>
+<p id="section-13.2.3-4">It is possible that retaining many ACK Ranges could cause an ACK frame to become
+too large. A receiver can discard unacknowledged ACK Ranges to limit ACK frame
+size, at the cost of increased retransmissions from the sender. This is
+necessary if an ACK frame would be too large to fit in a packet.
+Receivers MAY also limit ACK frame size further to preserve space for other
+frames or to limit the capacity that acknowledgments consume.<a href="#section-13.2.3-4" class="pilcrow">¶</a></p>
+<p id="section-13.2.3-5">A receiver MUST retain an ACK Range unless it can ensure that it will not
+subsequently accept packets with numbers in that range. Maintaining a minimum
+packet number that increases as ranges are discarded is one way to achieve this
+with minimal state.<a href="#section-13.2.3-5" class="pilcrow">¶</a></p>
+<p id="section-13.2.3-6">Receivers can discard all ACK Ranges, but they MUST retain the largest packet
+number that has been successfully processed as that is used to recover packet
+numbers from subsequent packets; see <a href="#packet-encoding" class="xref">Section 17.1</a>.<a href="#section-13.2.3-6" class="pilcrow">¶</a></p>
+<p id="section-13.2.3-7">A receiver SHOULD include an ACK Range containing the largest received packet
+number in every ACK frame. The Largest Acknowledged field is used in ECN
+validation at a sender and including a lower value than what was included in a
+previous ACK frame could cause ECN to be unnecessarily disabled; see
+<a href="#ecn-validation" class="xref">Section 13.4.2</a>.<a href="#section-13.2.3-7" class="pilcrow">¶</a></p>
+<p id="section-13.2.3-8"><a href="#ack-tracking" class="xref">Section 13.2.4</a> describes an exemplary approach for determining what packets
+to acknowledge in each ACK frame.  Though the goal of this algorithm is to
+generate an acknowledgment for every packet that is processed, it is still
+possible for acknowledgments to be lost.<a href="#section-13.2.3-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="ack-tracking">
 <section id="section-13.2.4">
-          <h4 id="name-receiver-tracking-of-ack-fr">
-<a href="#section-13.2.4" class="section-number selfRef">13.2.4. </a><a href="#name-receiver-tracking-of-ack-fr" class="section-name selfRef">Receiver Tracking of ACK Frames</a>
+          <h4 id="name-limiting-ranges-by-tracking">
+<a href="#section-13.2.4" class="section-number selfRef">13.2.4. </a><a href="#name-limiting-ranges-by-tracking" class="section-name selfRef">Limiting Ranges by Tracking ACK Frames</a>
           </h4>
 <p id="section-13.2.4-1">When a packet containing an ACK frame is sent, the largest acknowledged in that
 frame may be saved.  When a packet containing an ACK frame is acknowledged, the
 receiver can stop acknowledging packets less than or equal to the largest
 acknowledged in the sent ACK frame.<a href="#section-13.2.4-1" class="pilcrow">¶</a></p>
-<p id="section-13.2.4-2">In cases without ACK frame loss, this algorithm allows for a minimum of 1 RTT of
+<p id="section-13.2.4-2">A receiver that sends only non-ack-eliciting packets, such as ACK frames, might
+not receive an acknowledgement for a long period of time.  This could cause the
+receiver to maintain state for a large number of ACK frames for a long period of
+time, and ACK frames it sends could be unnecessarily large.  In such a case, a
+receiver could send a PING or other small ack-eliciting frame occasionally,
+such as once per round trip, to elicit an ACK from the peer.<a href="#section-13.2.4-2" class="pilcrow">¶</a></p>
+<p id="section-13.2.4-3">In cases without ACK frame loss, this algorithm allows for a minimum of 1 RTT of
 reordering. In cases with ACK frame loss and reordering, this approach does not
 guarantee that every acknowledgement is seen by the sender before it is no
 longer included in the ACK frame. Packets could be received out of order and all
 subsequent ACK frames containing them could be lost. In this case, the loss
 recovery algorithm could cause spurious retransmissions, but the sender will
-continue making forward progress.<a href="#section-13.2.4-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="ack-limiting">
-<section id="section-13.2.5">
-          <h4 id="name-limiting-ack-ranges">
-<a href="#section-13.2.5" class="section-number selfRef">13.2.5. </a><a href="#name-limiting-ack-ranges" class="section-name selfRef">Limiting ACK Ranges</a>
-          </h4>
-<p id="section-13.2.5-1">A receiver limits the number of ACK Ranges (<a href="#ack-ranges" class="xref">Section 19.3.1</a>) it remembers and
-sends in ACK frames, both to limit the size of ACK frames and to avoid resource
-exhaustion. After receiving acknowledgments for an ACK frame, the receiver
-SHOULD stop tracking those acknowledged ACK Ranges.<a href="#section-13.2.5-1" class="pilcrow">¶</a></p>
-<p id="section-13.2.5-2">It is possible that retaining many ACK Ranges could cause an ACK frame to become
-too large. A receiver can discard unacknowledged ACK Ranges to limit ACK frame
-size, at the cost of increased retransmissions from the sender. This is
-necessary if an ACK frame would be too large to fit in a packet.
-Receivers MAY also limit ACK frame size further to preserve space for other
-frames or to limit the capacity that acknowledgments consume.<a href="#section-13.2.5-2" class="pilcrow">¶</a></p>
-<p id="section-13.2.5-3">A receiver MUST retain an ACK Range unless it can ensure that it will not
-subsequently accept packets with numbers in that range. Maintaining a minimum
-packet number that increases as ranges are discarded is one way to achieve this
-with minimal state.<a href="#section-13.2.5-3" class="pilcrow">¶</a></p>
-<p id="section-13.2.5-4">Receivers can discard all ACK Ranges, but they MUST retain the largest packet
-number that has been successfully processed as that is used to recover packet
-numbers from subsequent packets; see <a href="#packet-encoding" class="xref">Section 17.1</a>.<a href="#section-13.2.5-4" class="pilcrow">¶</a></p>
-<p id="section-13.2.5-5">A receiver SHOULD include an ACK Range containing the largest received packet
-number in every ACK frame. The Largest Acknowledged field is used in ECN
-validation at a sender and including a lower value than what was included in a
-previous ACK frame could cause ECN to be unnecessarily disabled; see
-<a href="#ecn-validation" class="xref">Section 13.4.2</a>.<a href="#section-13.2.5-5" class="pilcrow">¶</a></p>
-<p id="section-13.2.5-6">A receiver that sends only non-ack-eliciting packets, such as ACK frames, might
-not receive an acknowledgement for a long period of time.  This could cause the
-receiver to maintain state for a large number of ACK frames for a long period of
-time, and ACK frames it sends could be unnecessarily large.  In such a case, a
-receiver could send a PING or other small ack-eliciting frame occasionally,
-such as once per round trip, to elicit an ACK from the peer.<a href="#section-13.2.5-6" class="pilcrow">¶</a></p>
-<p id="section-13.2.5-7">A receiver MUST NOT send an ack-eliciting frame in all packets that would
-otherwise be non-ack-eliciting, to avoid an infinite feedback loop of
-acknowledgements.<a href="#section-13.2.5-7" class="pilcrow">¶</a></p>
+continue making forward progress.<a href="#section-13.2.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="host-delay">
-<section id="section-13.2.6">
+<section id="section-13.2.5">
           <h4 id="name-measuring-and-reporting-hos">
-<a href="#section-13.2.6" class="section-number selfRef">13.2.6. </a><a href="#name-measuring-and-reporting-hos" class="section-name selfRef">Measuring and Reporting Host Delay</a>
+<a href="#section-13.2.5" class="section-number selfRef">13.2.5. </a><a href="#name-measuring-and-reporting-hos" class="section-name selfRef">Measuring and Reporting Host Delay</a>
           </h4>
-<p id="section-13.2.6-1">An endpoint measures the delays intentionally introduced between the time the
+<p id="section-13.2.5-1">An endpoint measures the delays intentionally introduced between the time the
 packet with the largest packet number is received and the time an acknowledgment
-is sent.  The endpoint encodes this delay in the Ack Delay field of an ACK
-frame; see <a href="#frame-ack" class="xref">Section 19.3</a>.  This allows the receiver of the ACK to adjust for any
-intentional delays, which is important for getting a better estimate of the path
-RTT when acknowledgments are delayed.  A packet might be held in the OS kernel
-or elsewhere on the host before being processed.  An endpoint MUST NOT include
-delays that it does not control when populating the Ack Delay field in an ACK
-frame.<a href="#section-13.2.6-1" class="pilcrow">¶</a></p>
+is sent.  The endpoint encodes this acknowledgement delay in the ACK Delay field
+of an ACK frame; see <a href="#frame-ack" class="xref">Section 19.3</a>.  This allows the receiver of the ACK frame
+to adjust for any intentional delays, which is important for getting a better
+estimate of the path RTT when acknowledgments are delayed.  A packet might be
+held in the OS kernel or elsewhere on the host before being processed.  An
+endpoint MUST NOT include delays that it does not control when populating the
+ACK Delay field in an ACK frame.<a href="#section-13.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-13.2.5-2">Since the acknowledgement delay is not used for Initial and Handshake
+packets, the ACK Delay field in acknowledgements for those packet types
+SHOULD be set to 0.<a href="#section-13.2.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="ack-frames-and-packet-protection">
-<section id="section-13.2.7">
+<section id="section-13.2.6">
           <h4 id="name-ack-frames-and-packet-prote">
-<a href="#section-13.2.7" class="section-number selfRef">13.2.7. </a><a href="#name-ack-frames-and-packet-prote" class="section-name selfRef">ACK Frames and Packet Protection</a>
+<a href="#section-13.2.6" class="section-number selfRef">13.2.6. </a><a href="#name-ack-frames-and-packet-prote" class="section-name selfRef">ACK Frames and Packet Protection</a>
           </h4>
-<p id="section-13.2.7-1">ACK frames MUST only be carried in a packet that has the same packet number
+<p id="section-13.2.6-1">ACK frames MUST only be carried in a packet that has the same packet number
 space as the packet being acknowledged; see <a href="#packet-protected" class="xref">Section 12.1</a>.  For instance,
 packets that are protected with 1-RTT keys MUST be acknowledged in packets that
-are also protected with 1-RTT keys.<a href="#section-13.2.7-1" class="pilcrow">¶</a></p>
-<p id="section-13.2.7-2">Packets that a client sends with 0-RTT packet protection MUST be acknowledged by
+are also protected with 1-RTT keys.<a href="#section-13.2.6-1" class="pilcrow">¶</a></p>
+<p id="section-13.2.6-2">Packets that a client sends with 0-RTT packet protection MUST be acknowledged by
 the server in packets protected by 1-RTT keys.  This can mean that the client is
 unable to use these acknowledgments if the server cryptographic handshake
 messages are delayed or lost.  Note that the same limitation applies to other
-data sent by the server protected by the 1-RTT keys.<a href="#section-13.2.7-2" class="pilcrow">¶</a></p>
+data sent by the server protected by the 1-RTT keys.<a href="#section-13.2.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="padding-frames-consume-congestion-window">
-<section id="section-13.2.8">
+<section id="section-13.2.7">
           <h4 id="name-padding-frames-consume-cong">
-<a href="#section-13.2.8" class="section-number selfRef">13.2.8. </a><a href="#name-padding-frames-consume-cong" class="section-name selfRef">PADDING Frames Consume Congestion Window</a>
+<a href="#section-13.2.7" class="section-number selfRef">13.2.7. </a><a href="#name-padding-frames-consume-cong" class="section-name selfRef">PADDING Frames Consume Congestion Window</a>
           </h4>
-<p id="section-13.2.8-1">Packets containing PADDING frames are considered to be in flight for congestion
+<p id="section-13.2.7-1">Packets containing PADDING frames are considered to be in flight for congestion
 control purposes <span>[<a href="#QUIC-RECOVERY" class="xref">QUIC-RECOVERY</a>]</span>. Packets containing only PADDING frames
 therefore consume congestion window but do not generate acknowledgments that
 will open the congestion window. To avoid a deadlock, a sender SHOULD ensure
 that other frames are sent periodically in addition to PADDING frames to elicit
-acknowledgments from the receiver.<a href="#section-13.2.8-1" class="pilcrow">¶</a></p>
+acknowledgments from the receiver.<a href="#section-13.2.7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -5652,11 +5671,11 @@ corresponding packet number space are discarded.<a href="#section-13.3-3.1" clas
 unless the endpoint has sent a RESET_STREAM for that stream.  Once an endpoint
 sends a RESET_STREAM frame, no further STREAM frames are needed.<a href="#section-13.3-3.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-13.3-3.3">ACK frames carry the most recent set of acknowledgements and the Ack Delay
-from the largest acknowledged packet, as described in
-<a href="#sending-acknowledgements" class="xref">Section 13.2.1</a>. Delaying the transmission of packets
-containing ACK frames or resending old ACK frames can cause the peer to
-generate an inflated RTT sample or unnecessarily disable ECN.<a href="#section-13.3-3.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-13.3-3.3">ACK frames carry the most recent set of acknowledgements and the
+acknowledgement delay from the largest acknowledged packet, as described in
+<a href="#sending-acknowledgements" class="xref">Section 13.2.1</a>. Delaying the transmission of packets containing
+ACK frames or resending old ACK frames can cause the peer to generate an
+inflated RTT sample or unnecessarily disable ECN.<a href="#section-13.3-3.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-13.3-3.4">Cancellation of stream transmission, as carried in a RESET_STREAM frame, is
 sent until acknowledged or until all stream data is acknowledged by the peer
@@ -6309,8 +6328,8 @@ Packet types are listed in <a href="#long-packet-types" class="xref">Table 5</a>
 <dt id="section-17.2-3.9">Version:</dt>
           <dd id="section-17.2-3.10">
   The QUIC Version is a 32-bit field that follows the first byte.  This field
-indicates which version of QUIC is in use and determines how the rest of the
-protocol fields are interpreted.<a href="#section-17.2-3.10" class="pilcrow">¶</a>
+indicates the version of QUIC that is in use and determines how the rest of
+the protocol fields are interpreted.<a href="#section-17.2-3.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-17.2-3.11">Destination Connection ID Length:</dt>
@@ -6318,10 +6337,9 @@ protocol fields are interpreted.<a href="#section-17.2-3.10" class="pilcrow">¶<
   The byte following the version contains the length in bytes of the Destination
 Connection ID field that follows it.  This length is encoded as an 8-bit
 unsigned integer.  In QUIC version 1, this value MUST NOT exceed 20.
-Endpoints that receive a version 1 long header with a value larger than
-20 MUST drop the packet. Servers SHOULD be able to read longer connection IDs
-from other QUIC versions in order to properly form a version negotiation
-packet.<a href="#section-17.2-3.12" class="pilcrow">¶</a>
+Endpoints that receive a version 1 long header with a value larger than 20
+MUST drop the packet.  In order to properly form a Version Negotiation packet,
+servers SHOULD be able to read longer connection IDs from other QUIC versions.<a href="#section-17.2-3.12" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-17.2-3.13">Destination Connection ID:</dt>
@@ -6336,10 +6354,10 @@ Length field, which indicates the length of this field.
   The byte following the Destination Connection ID contains the length in bytes
 of the Source Connection ID field that follows it.  This length is encoded as
 a 8-bit unsigned integer.  In QUIC version 1, this value MUST NOT exceed 20
-bytes. Endpoints that receive a version 1 long header with a value larger than
-20 MUST drop the packet. Servers SHOULD be able to read longer connection IDs
-from other QUIC versions in order to properly form a version negotiation
-packet.<a href="#section-17.2-3.16" class="pilcrow">¶</a>
+bytes.  Endpoints that receive a version 1 long header with a value larger
+than 20 MUST drop the packet.  In order to properly form a Version Negotiation
+packet, servers SHOULD be able to read longer connection IDs from other QUIC
+versions.<a href="#section-17.2-3.16" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-17.2-3.17">Source Connection ID:</dt>
@@ -6421,7 +6439,7 @@ header protection can expose the endpoint to attacks; see Section 9.3 of
           <dd class="break"></dd>
 <dt id="section-17.2-8.3">Packet Number Length:</dt>
           <dd id="section-17.2-8.4">
-  In packet types which contain a Packet Number field, the least significant two
+  In packet types that contain a Packet Number field, the least significant two
 bits (those with a mask of 0x03) of byte 0 contain the length of the packet
 number, encoded as an unsigned, two-bit integer that is one less than the
 length of the packet number field in bytes.  That is, the length of the packet
@@ -6492,7 +6510,7 @@ attacker.<a href="#section-17.2.1-7" class="pilcrow">¶</a></p>
 limit, Version Negotiation packets could carry Connection IDs that are longer
 than 20 bytes.<a href="#section-17.2.1-8" class="pilcrow">¶</a></p>
 <p id="section-17.2.1-9">The remainder of the Version Negotiation packet is a list of 32-bit versions
-which the server supports.<a href="#section-17.2.1-9" class="pilcrow">¶</a></p>
+that the server supports.<a href="#section-17.2.1-9" class="pilcrow">¶</a></p>
 <p id="section-17.2.1-10">A Version Negotiation packet is not acknowledged.  It is only sent in response
 to a packet that indicates an unsupported version; see <a href="#server-pkt-handling" class="xref">Section 5.2.2</a>.<a href="#section-17.2.1-10" class="pilcrow">¶</a></p>
 <p id="section-17.2.1-11">The Version Negotiation packet does not include the Packet Number and Length
@@ -6601,7 +6619,7 @@ first Handshake packet.  A server stops sending and processing Initial packets
 when it receives its first Handshake packet.  Though packets might still be in
 flight or awaiting acknowledgment, no further Initial packets need to be
 exchanged beyond this point.  Initial packet protection keys are discarded (see
-Section 4.11.1 of <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span>) along with any loss recovery and congestion
+Section 4.9.1 of <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span>) along with any loss recovery and congestion
 control state; see Section 6.4 of <span>[<a href="#QUIC-RECOVERY" class="xref">QUIC-RECOVERY</a>]</span>.<a href="#section-17.2.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-17.2.2.1-2">Any data in CRYPTO frames is discarded - and no longer retransmitted - when
 Initial keys are discarded.<a href="#section-17.2.2.1-2" class="pilcrow">¶</a></p>
@@ -6855,7 +6873,7 @@ PROTOCOL_VIOLATION.<a href="#section-17.2.5.3-5" class="pilcrow">¶</a></p>
         <h3 id="name-short-header-packets">
 <a href="#section-17.3" class="section-number selfRef">17.3. </a><a href="#name-short-header-packets" class="section-name selfRef">Short Header Packets</a>
         </h3>
-<p id="section-17.3-1">This version of QUIC defines a single packet type which uses the
+<p id="section-17.3-1">This version of QUIC defines a single packet type that uses the
 short packet header.<a href="#section-17.3-1" class="pilcrow">¶</a></p>
 <span id="name-short-header-packet-format"></span><div id="fig-short-header">
 <figure id="figure-19">
@@ -6978,20 +6996,19 @@ MUST ignore any incoming value. It is RECOMMENDED that endpoints set the spin
 bit to a random value either chosen independently for each packet or chosen
 independently for each connection ID.<a href="#section-17.3.1-4" class="pilcrow">¶</a></p>
 <p id="section-17.3.1-5">If the spin bit is enabled for the connection, the endpoint maintains a spin
-value and sets the spin bit in the short header to the currently stored
-value when a packet with a short header is sent out. The spin value is
-initialized to 0 in the endpoint at connection start.  Each endpoint also
-remembers the highest packet number seen from its peer on the connection.<a href="#section-17.3.1-5" class="pilcrow">¶</a></p>
-<p id="section-17.3.1-6">When a server receives a short header packet that increments the highest
-packet number seen by the server from the client, it sets the spin value to be
-equal to the spin bit in the received packet.<a href="#section-17.3.1-6" class="pilcrow">¶</a></p>
-<p id="section-17.3.1-7">When a client receives a short header packet that increments the highest
-packet number seen by the client from the server, it sets the spin value to the
-inverse of the spin bit in the received packet.<a href="#section-17.3.1-7" class="pilcrow">¶</a></p>
-<p id="section-17.3.1-8">An endpoint resets its spin value to zero when sending the first packet of a
-given connection with a new connection ID. This reduces the risk that transient
-spin bit state can be used to link flows across connection migration or ID
-change.<a href="#section-17.3.1-8" class="pilcrow">¶</a></p>
+value for each network path and sets the spin bit in the short header to the
+currently stored value when a packet with a short header is sent on that path.
+The spin value is initialized to 0 in the endpoint for each network path. Each
+endpoint also remembers the highest packet number seen from its peer on each
+path.<a href="#section-17.3.1-5" class="pilcrow">¶</a></p>
+<p id="section-17.3.1-6">When a server receives a short header packet that increases the highest packet
+number seen by the server from the client on a given network path, it sets the
+spin value for that path to be equal to the spin bit in the received packet.<a href="#section-17.3.1-6" class="pilcrow">¶</a></p>
+<p id="section-17.3.1-7">When a client receives a short header packet that increases the highest packet
+number seen by the client from the server on a given network path, it sets the
+spin value for that path to the inverse of the spin bit in the received packet.<a href="#section-17.3.1-7" class="pilcrow">¶</a></p>
+<p id="section-17.3.1-8">An endpoint resets the spin value for a network path to zero when changing the
+connection ID being used on that network path.<a href="#section-17.3.1-8" class="pilcrow">¶</a></p>
 <p id="section-17.3.1-9">With this mechanism, the server reflects the spin value received, while the
 client 'spins' it after one RTT. On-path observers can measure the time
 between two spin bit toggle events to estimate the end-to-end RTT of a
@@ -7042,7 +7059,7 @@ Transport Parameter {
 </div>
 <p id="section-18-5">The Transport Parameter Length field contains the length of the Transport
 Parameter Value field.<a href="#section-18-5" class="pilcrow">¶</a></p>
-<p id="section-18-6">QUIC encodes transport parameters into a sequence of bytes, which are then
+<p id="section-18-6">QUIC encodes transport parameters into a sequence of bytes, which is then
 included in the cryptographic handshake.<a href="#section-18-6" class="pilcrow">¶</a></p>
 <div id="transport-parameter-grease">
 <section id="section-18.1">
@@ -7174,21 +7191,21 @@ the corresponding type with the same value.<a href="#section-18.2-4.24" class="p
           <dd class="break"></dd>
 <dt id="section-18.2-4.25">ack_delay_exponent (0x0a):</dt>
           <dd id="section-18.2-4.26">
-  The ACK delay exponent is an integer value indicating an
-exponent used to decode the ACK Delay field in the ACK frame (<a href="#frame-ack" class="xref">Section 19.3</a>).
-If this value is absent, a default value of 3 is assumed (indicating a
-multiplier of 8). Values above 20 are invalid.<a href="#section-18.2-4.26" class="pilcrow">¶</a>
+  The acknowledgement delay exponent is an integer value indicating an exponent
+used to decode the ACK Delay field in the ACK frame (<a href="#frame-ack" class="xref">Section 19.3</a>). If this
+value is absent, a default value of 3 is assumed (indicating a multiplier of
+8). Values above 20 are invalid.<a href="#section-18.2-4.26" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-18.2-4.27">max_ack_delay (0x0b):</dt>
           <dd id="section-18.2-4.28">
-  The maximum ACK delay is an integer value indicating the
-maximum amount of time in milliseconds by which the endpoint will delay
-sending acknowledgments.  This value SHOULD include the receiver's expected
-delays in alarms firing.  For example, if a receiver sets a timer for 5ms
-and alarms commonly fire up to 1ms late, then it should send a max_ack_delay
-of 6ms.  If this value is absent, a default of 25 milliseconds is assumed.
-Values of 2^14 or greater are invalid.<a href="#section-18.2-4.28" class="pilcrow">¶</a>
+  The maximum acknowledgement delay is an integer value indicating the maximum
+amount of time in milliseconds by which the endpoint will delay sending
+acknowledgments.  This value SHOULD include the receiver's expected delays in
+alarms firing.  For example, if a receiver sets a timer for 5ms and alarms
+commonly fire up to 1ms late, then it should send a max_ack_delay of 6ms.  If
+this value is absent, a default of 25 milliseconds is assumed. Values of 2^14
+or greater are invalid.<a href="#section-18.2-4.28" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-18.2-4.29">disable_active_migration (0x0c):</dt>
@@ -7316,16 +7333,16 @@ TRANSPORT_PARAMETER_ERROR.<a href="#section-18.2-8" class="pilcrow">¶</a></p>
 describes the format and semantics of the core QUIC frame types.<a href="#section-19-1" class="pilcrow">¶</a></p>
 <div id="frame-padding">
 <section id="section-19.1">
-        <h3 id="name-padding-frame">
-<a href="#section-19.1" class="section-number selfRef">19.1. </a><a href="#name-padding-frame" class="section-name selfRef">PADDING Frame</a>
+        <h3 id="name-padding-frames">
+<a href="#section-19.1" class="section-number selfRef">19.1. </a><a href="#name-padding-frames" class="section-name selfRef">PADDING Frames</a>
         </h3>
-<p id="section-19.1-1">The PADDING frame (type=0x00) has no semantic value.  PADDING frames can be used
+<p id="section-19.1-1">A PADDING frame (type=0x00) has no semantic value.  PADDING frames can be used
 to increase the size of a packet.  Padding can be used to increase an initial
 client packet to the minimum required size, or to provide protection against
 traffic analysis for protected packets.<a href="#section-19.1-1" class="pilcrow">¶</a></p>
-<p id="section-19.1-2">As shown in <a href="#padding-format" class="xref">Figure 23</a>, a PADDING frame has no content.  That is, a
-PADDING frame consists of the single byte that identifies the frame as a PADDING
-frame.<a href="#section-19.1-2" class="pilcrow">¶</a></p>
+<p id="section-19.1-2">PADDING frames are formatted as shown in <a href="#padding-format" class="xref">Figure 23</a>, which shows that
+PADDING frames have no content. That is, a PADDING frame consists of the single
+byte that identifies the frame as a PADDING frame.<a href="#section-19.1-2" class="pilcrow">¶</a></p>
 <span id="name-padding-frame-format"></span><div id="padding-format">
 <figure id="figure-23">
           <div class="artwork art-text alignLeft" id="section-19.1-3.1">
@@ -7343,15 +7360,16 @@ PADDING Frame {
 </div>
 <div id="frame-ping">
 <section id="section-19.2">
-        <h3 id="name-ping-frame">
-<a href="#section-19.2" class="section-number selfRef">19.2. </a><a href="#name-ping-frame" class="section-name selfRef">PING Frame</a>
+        <h3 id="name-ping-frames">
+<a href="#section-19.2" class="section-number selfRef">19.2. </a><a href="#name-ping-frames" class="section-name selfRef">PING Frames</a>
         </h3>
 <p id="section-19.2-1">Endpoints can use PING frames (type=0x01) to verify that their peers are still
-alive or to check reachability to the peer. As shown in <a href="#ping-format" class="xref">Figure 24</a>, a PING
-frame has no content.<a href="#section-19.2-1" class="pilcrow">¶</a></p>
+alive or to check reachability to the peer.<a href="#section-19.2-1" class="pilcrow">¶</a></p>
+<p id="section-19.2-2">PING frames are formatted as shown in <a href="#ping-format" class="xref">Figure 24</a>, which shows that PING
+frames have no content.<a href="#section-19.2-2" class="pilcrow">¶</a></p>
 <span id="name-ping-frame-format"></span><div id="ping-format">
 <figure id="figure-24">
-          <div class="artwork art-text alignLeft" id="section-19.2-2.1">
+          <div class="artwork art-text alignLeft" id="section-19.2-3.1">
 <pre>
 PING Frame {
   Type (i) = 0x01,
@@ -7362,11 +7380,11 @@ PING Frame {
 <a href="#name-ping-frame-format" class="selfRef">PING Frame Format</a>
           </figcaption></figure>
 </div>
-<p id="section-19.2-3">The receiver of a PING frame simply needs to acknowledge the packet containing
-this frame.<a href="#section-19.2-3" class="pilcrow">¶</a></p>
-<p id="section-19.2-4">The PING frame can be used to keep a connection alive when an application or
+<p id="section-19.2-4">The receiver of a PING frame simply needs to acknowledge the packet containing
+this frame.<a href="#section-19.2-4" class="pilcrow">¶</a></p>
+<p id="section-19.2-5">The PING frame can be used to keep a connection alive when an application or
 application protocol wishes to prevent the connection from timing out; see
-<a href="#defer-idle" class="xref">Section 10.1.2</a>.<a href="#section-19.2-4" class="pilcrow">¶</a></p>
+<a href="#defer-idle" class="xref">Section 10.1.2</a>.<a href="#section-19.2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="frame-ack">
@@ -7392,7 +7410,7 @@ ACK frame is contained.<a href="#section-19.3-3" class="pilcrow">¶</a></p>
 <p id="section-19.3-4">Version Negotiation and Retry packets cannot be acknowledged because they do not
 contain a packet number.  Rather than relying on ACK frames, these packets are
 implicitly acknowledged by the next Initial packet sent by the client.<a href="#section-19.3-4" class="pilcrow">¶</a></p>
-<p id="section-19.3-5">An ACK frame is shown in <a href="#ack-format" class="xref">Figure 25</a>.<a href="#section-19.3-5" class="pilcrow">¶</a></p>
+<p id="section-19.3-5">ACK frames are formatted as shown in <a href="#ack-format" class="xref">Figure 25</a>.<a href="#section-19.3-5" class="pilcrow">¶</a></p>
 <span id="name-ack-frame-format"></span><div id="ack-format">
 <figure id="figure-25">
           <div class="artwork art-text alignLeft" id="section-19.3-6.1">
@@ -7424,15 +7442,13 @@ QUIC long or short header, the value in an ACK frame is not truncated.<a href="#
           <dd class="break"></dd>
 <dt id="section-19.3-8.3">ACK Delay:</dt>
           <dd id="section-19.3-8.4">
-  A variable-length integer representing the time delta in microseconds between
-when the ACK frame was sent and when the largest acknowledged packet, as
-indicated in the Largest Acknowledged field, was received by this peer.  The
-value of the ACK Delay field is scaled by multiplying the encoded value by 2
-to the power of the value of the ack_delay_exponent transport parameter set by
-the sender of the ACK frame; see <a href="#transport-parameter-definitions" class="xref">Section 18.2</a>.  Scaling
-in this fashion allows for a larger range of values with a shorter encoding at
-the cost of lower resolution.  Because the receiver doesn't use the ACK Delay
-for Initial and Handshake packets, a sender SHOULD send a value of 0.<a href="#section-19.3-8.4" class="pilcrow">¶</a>
+  A variable-length integer encoding the acknowledgement delay in
+microseconds; see <a href="#host-delay" class="xref">Section 13.2.5</a>. It is decoded by multiplying the
+value in the field by 2 to the power of the ack_delay_exponent transport
+parameter sent by the sender of the ACK frame; see
+<a href="#transport-parameter-definitions" class="xref">Section 18.2</a>. Compared to simply expressing
+the delay as an integer, this encoding allows for a larger range of
+values within the same number of bytes, at the cost of lower resolution.<a href="#section-19.3-8.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-19.3-8.5">ACK Range Count:</dt>
@@ -7453,7 +7469,7 @@ Acknowledged.<a href="#section-19.3-8.8" class="pilcrow">¶</a>
           <dd class="break"></dd>
 <dt id="section-19.3-8.9">ACK Ranges:</dt>
           <dd id="section-19.3-8.10">
-  Contains additional ranges of packets which are alternately not
+  Contains additional ranges of packets that are alternately not
 acknowledged (Gap) and acknowledged (ACK Range); see <a href="#ack-ranges" class="xref">Section 19.3.1</a>.<a href="#section-19.3-8.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -7590,8 +7606,8 @@ with the CE codepoint in the packet number space of the ACK frame.<a href="#sect
 </div>
 <div id="frame-reset-stream">
 <section id="section-19.4">
-        <h3 id="name-reset_stream-frame">
-<a href="#section-19.4" class="section-number selfRef">19.4. </a><a href="#name-reset_stream-frame" class="section-name selfRef">RESET_STREAM Frame</a>
+        <h3 id="name-reset_stream-frames">
+<a href="#section-19.4" class="section-number selfRef">19.4. </a><a href="#name-reset_stream-frames" class="section-name selfRef">RESET_STREAM Frames</a>
         </h3>
 <p id="section-19.4-1">An endpoint uses a RESET_STREAM frame (type=0x04) to abruptly terminate the
 sending part of a stream.<a href="#section-19.4-1" class="pilcrow">¶</a></p>
@@ -7600,7 +7616,7 @@ of STREAM frames on the identified stream.  A receiver of RESET_STREAM can
 discard any data that it already received on that stream.<a href="#section-19.4-2" class="pilcrow">¶</a></p>
 <p id="section-19.4-3">An endpoint that receives a RESET_STREAM frame for a send-only stream MUST
 terminate the connection with error STREAM_STATE_ERROR.<a href="#section-19.4-3" class="pilcrow">¶</a></p>
-<p id="section-19.4-4">The RESET_STREAM frame is shown in <a href="#fig-reset-stream" class="xref">Figure 28</a>.<a href="#section-19.4-4" class="pilcrow">¶</a></p>
+<p id="section-19.4-4">RESET_STREAM frames are formatted as shown in <a href="#fig-reset-stream" class="xref">Figure 28</a>.<a href="#section-19.4-4" class="pilcrow">¶</a></p>
 <span id="name-reset_stream-frame-format"></span><div id="fig-reset-stream">
 <figure id="figure-28">
           <div class="artwork art-text alignLeft" id="section-19.4-5.1">
@@ -7628,7 +7644,7 @@ terminated.<a href="#section-19.4-7.2" class="pilcrow">¶</a>
 <dt id="section-19.4-7.3">Application Protocol Error Code:</dt>
           <dd id="section-19.4-7.4">
   A variable-length integer containing the application protocol error
-code (see <a href="#app-error-codes" class="xref">Section 20.1</a>) which indicates why the stream is being
+code (see <a href="#app-error-codes" class="xref">Section 20.2</a>) that indicates why the stream is being
 closed.<a href="#section-19.4-7.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -7643,8 +7659,8 @@ RESET_STREAM sender, in unit of bytes; see <a href="#final-size" class="xref">Se
 </div>
 <div id="frame-stop-sending">
 <section id="section-19.5">
-        <h3 id="name-stop_sending-frame">
-<a href="#section-19.5" class="section-number selfRef">19.5. </a><a href="#name-stop_sending-frame" class="section-name selfRef">STOP_SENDING Frame</a>
+        <h3 id="name-stop_sending-frames">
+<a href="#section-19.5" class="section-number selfRef">19.5. </a><a href="#name-stop_sending-frames" class="section-name selfRef">STOP_SENDING Frames</a>
         </h3>
 <p id="section-19.5-1">An endpoint uses a STOP_SENDING frame (type=0x05) to communicate that incoming
 data is being discarded on receipt at application request.  STOP_SENDING
@@ -7655,7 +7671,7 @@ locally-initiated stream that has not yet been created MUST be treated as a
 connection error of type STREAM_STATE_ERROR.  An endpoint that receives a
 STOP_SENDING frame for a receive-only stream MUST terminate the connection with
 error STREAM_STATE_ERROR.<a href="#section-19.5-2" class="pilcrow">¶</a></p>
-<p id="section-19.5-3">The STOP_SENDING frame is shown in <a href="#fig-stop-sending" class="xref">Figure 29</a>.<a href="#section-19.5-3" class="pilcrow">¶</a></p>
+<p id="section-19.5-3">STOP_SENDING frames are formatted as shown in <a href="#fig-stop-sending" class="xref">Figure 29</a>.<a href="#section-19.5-3" class="pilcrow">¶</a></p>
 <span id="name-stop_sending-frame-format"></span><div id="fig-stop-sending">
 <figure id="figure-29">
           <div class="artwork art-text alignLeft" id="section-19.5-4.1">
@@ -7681,7 +7697,7 @@ STOP_SENDING Frame {
 <dt id="section-19.5-6.3">Application Protocol Error Code:</dt>
           <dd id="section-19.5-6.4">
   A variable-length integer containing the application-specified reason the
-sender is ignoring the stream; see <a href="#app-error-codes" class="xref">Section 20.1</a>.<a href="#section-19.5-6.4" class="pilcrow">¶</a>
+sender is ignoring the stream; see <a href="#app-error-codes" class="xref">Section 20.2</a>.<a href="#section-19.5-6.4" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -7689,16 +7705,16 @@ sender is ignoring the stream; see <a href="#app-error-codes" class="xref">Secti
 </div>
 <div id="frame-crypto">
 <section id="section-19.6">
-        <h3 id="name-crypto-frame">
-<a href="#section-19.6" class="section-number selfRef">19.6. </a><a href="#name-crypto-frame" class="section-name selfRef">CRYPTO Frame</a>
+        <h3 id="name-crypto-frames">
+<a href="#section-19.6" class="section-number selfRef">19.6. </a><a href="#name-crypto-frames" class="section-name selfRef">CRYPTO Frames</a>
         </h3>
-<p id="section-19.6-1">The CRYPTO frame (type=0x06) is used to transmit cryptographic handshake
-messages. It can be sent in all packet types except 0-RTT. The CRYPTO frame
-offers the cryptographic protocol an in-order stream of bytes.  CRYPTO frames
-are functionally identical to STREAM frames, except that they do not bear a
-stream identifier; they are not flow controlled; and they do not carry markers
-for optional offset, optional length, and the end of the stream.<a href="#section-19.6-1" class="pilcrow">¶</a></p>
-<p id="section-19.6-2">The CRYPTO frame is shown in <a href="#fig-crypto" class="xref">Figure 30</a>.<a href="#section-19.6-2" class="pilcrow">¶</a></p>
+<p id="section-19.6-1">A CRYPTO frame (type=0x06) is used to transmit cryptographic handshake messages.
+It can be sent in all packet types except 0-RTT. The CRYPTO frame offers the
+cryptographic protocol an in-order stream of bytes.  CRYPTO frames are
+functionally identical to STREAM frames, except that they do not bear a stream
+identifier; they are not flow controlled; and they do not carry markers for
+optional offset, optional length, and the end of the stream.<a href="#section-19.6-1" class="pilcrow">¶</a></p>
+<p id="section-19.6-2">CRYPTO frames are formatted as shown in <a href="#fig-crypto" class="xref">Figure 30</a>.<a href="#section-19.6-2" class="pilcrow">¶</a></p>
 <span id="name-crypto-frame-format"></span><div id="fig-crypto">
 <figure id="figure-30">
           <div class="artwork art-text alignLeft" id="section-19.6-3.1">
@@ -7750,12 +7766,12 @@ FIN bit.<a href="#section-19.6-8" class="pilcrow">¶</a></p>
 </div>
 <div id="frame-new-token">
 <section id="section-19.7">
-        <h3 id="name-new_token-frame">
-<a href="#section-19.7" class="section-number selfRef">19.7. </a><a href="#name-new_token-frame" class="section-name selfRef">NEW_TOKEN Frame</a>
+        <h3 id="name-new_token-frames">
+<a href="#section-19.7" class="section-number selfRef">19.7. </a><a href="#name-new_token-frames" class="section-name selfRef">NEW_TOKEN Frames</a>
         </h3>
 <p id="section-19.7-1">A server sends a NEW_TOKEN frame (type=0x07) to provide the client with a token
 to send in the header of an Initial packet for a future connection.<a href="#section-19.7-1" class="pilcrow">¶</a></p>
-<p id="section-19.7-2">The NEW_TOKEN frame is shown in <a href="#fig-new-token" class="xref">Figure 31</a>.<a href="#section-19.7-2" class="pilcrow">¶</a></p>
+<p id="section-19.7-2">NEW_TOKEN frames are formatted as shown in <a href="#fig-new-token" class="xref">Figure 31</a>.<a href="#section-19.7-2" class="pilcrow">¶</a></p>
 <span id="name-new_token-frame-format"></span><div id="fig-new-token">
 <figure id="figure-31">
           <div class="artwork art-text alignLeft" id="section-19.7-3.1">
@@ -7823,7 +7839,7 @@ marks the end of the stream.<a href="#section-19.8-2.3" class="pilcrow">¶</a>
 <p id="section-19.8-3">An endpoint MUST terminate the connection with error STREAM_STATE_ERROR if it
 receives a STREAM frame for a locally-initiated stream that has not yet been
 created, or for a send-only stream.<a href="#section-19.8-3" class="pilcrow">¶</a></p>
-<p id="section-19.8-4">The STREAM frames are shown in <a href="#fig-stream" class="xref">Figure 32</a>.<a href="#section-19.8-4" class="pilcrow">¶</a></p>
+<p id="section-19.8-4">STREAM frames are formatted as shown in <a href="#fig-stream" class="xref">Figure 32</a>.<a href="#section-19.8-4" class="pilcrow">¶</a></p>
 <span id="name-stream-frame-format"></span><div id="fig-stream">
 <figure id="figure-32">
           <div class="artwork art-text alignLeft" id="section-19.8-5.1">
@@ -7881,12 +7897,12 @@ FRAME_ENCODING_ERROR or FLOW_CONTROL_ERROR.<a href="#section-19.8-9" class="pilc
 </div>
 <div id="frame-max-data">
 <section id="section-19.9">
-        <h3 id="name-max_data-frame">
-<a href="#section-19.9" class="section-number selfRef">19.9. </a><a href="#name-max_data-frame" class="section-name selfRef">MAX_DATA Frame</a>
+        <h3 id="name-max_data-frames">
+<a href="#section-19.9" class="section-number selfRef">19.9. </a><a href="#name-max_data-frames" class="section-name selfRef">MAX_DATA Frames</a>
         </h3>
-<p id="section-19.9-1">The MAX_DATA frame (type=0x10) is used in flow control to inform the peer of
-the maximum amount of data that can be sent on the connection as a whole.<a href="#section-19.9-1" class="pilcrow">¶</a></p>
-<p id="section-19.9-2">The MAX_DATA frame is shown in <a href="#fig-max-data" class="xref">Figure 33</a>.<a href="#section-19.9-2" class="pilcrow">¶</a></p>
+<p id="section-19.9-1">A MAX_DATA frame (type=0x10) is used in flow control to inform the peer of the
+maximum amount of data that can be sent on the connection as a whole.<a href="#section-19.9-1" class="pilcrow">¶</a></p>
+<p id="section-19.9-2">MAX_DATA frames are formatted as shown in <a href="#fig-max-data" class="xref">Figure 33</a>.<a href="#section-19.9-2" class="pilcrow">¶</a></p>
 <span id="name-max_data-frame-format"></span><div id="fig-max-data">
 <figure id="figure-33">
           <div class="artwork art-text alignLeft" id="section-19.9-3.1">
@@ -7920,10 +7936,10 @@ limits in Early Data; see <a href="#zerortt-parameters" class="xref">Section 7.4
 </div>
 <div id="frame-max-stream-data">
 <section id="section-19.10">
-        <h3 id="name-max_stream_data-frame">
-<a href="#section-19.10" class="section-number selfRef">19.10. </a><a href="#name-max_stream_data-frame" class="section-name selfRef">MAX_STREAM_DATA Frame</a>
+        <h3 id="name-max_stream_data-frames">
+<a href="#section-19.10" class="section-number selfRef">19.10. </a><a href="#name-max_stream_data-frames" class="section-name selfRef">MAX_STREAM_DATA Frames</a>
         </h3>
-<p id="section-19.10-1">The MAX_STREAM_DATA frame (type=0x11) is used in flow control to inform a peer
+<p id="section-19.10-1">A MAX_STREAM_DATA frame (type=0x11) is used in flow control to inform a peer
 of the maximum amount of data that can be sent on a stream.<a href="#section-19.10-1" class="pilcrow">¶</a></p>
 <p id="section-19.10-2">A MAX_STREAM_DATA frame can be sent for streams in the Recv state; see
 <a href="#stream-send-states" class="xref">Section 3.1</a>. Receiving a MAX_STREAM_DATA frame for a
@@ -7931,7 +7947,7 @@ locally-initiated stream that has not yet been created MUST be treated as a
 connection error of type STREAM_STATE_ERROR.  An endpoint that receives a
 MAX_STREAM_DATA frame for a receive-only stream MUST terminate the connection
 with error STREAM_STATE_ERROR.<a href="#section-19.10-2" class="pilcrow">¶</a></p>
-<p id="section-19.10-3">The MAX_STREAM_DATA frame is shown in <a href="#fig-max-stream-data" class="xref">Figure 34</a>.<a href="#section-19.10-3" class="pilcrow">¶</a></p>
+<p id="section-19.10-3">MAX_STREAM_DATA frames are formatted as shown in <a href="#fig-max-stream-data" class="xref">Figure 34</a>.<a href="#section-19.10-3" class="pilcrow">¶</a></p>
 <span id="name-max_stream_data-frame-forma"></span><div id="fig-max-stream-data">
 <figure id="figure-34">
           <div class="artwork art-text alignLeft" id="section-19.10-4.1">
@@ -7979,11 +7995,11 @@ of remembered limits in Early Data; see <a href="#zerortt-parameters" class="xre
         <h3 id="name-max_streams-frames">
 <a href="#section-19.11" class="section-number selfRef">19.11. </a><a href="#name-max_streams-frames" class="section-name selfRef">MAX_STREAMS Frames</a>
         </h3>
-<p id="section-19.11-1">The MAX_STREAMS frames (type=0x12 and 0x13) inform the peer of the cumulative
+<p id="section-19.11-1">A MAX_STREAMS frame (type=0x12 or 0x13) inform the peer of the cumulative
 number of streams of a given type it is permitted to open.  A MAX_STREAMS frame
 with a type of 0x12 applies to bidirectional streams, and a MAX_STREAMS frame
 with a type of 0x13 applies to unidirectional streams.<a href="#section-19.11-1" class="pilcrow">¶</a></p>
-<p id="section-19.11-2">The MAX_STREAMS frames are shown in <a href="#fig-max-streams" class="xref">Figure 35</a>;<a href="#section-19.11-2" class="pilcrow">¶</a></p>
+<p id="section-19.11-2">MAX_STREAMS frames are formatted as shown in <a href="#fig-max-streams" class="xref">Figure 35</a>;<a href="#section-19.11-2" class="pilcrow">¶</a></p>
 <span id="name-max_streams-frame-format"></span><div id="fig-max-streams">
 <figure id="figure-35">
           <div class="artwork art-text alignLeft" id="section-19.11-3.1">
@@ -8010,9 +8026,9 @@ MUST be treated as a FRAME_ENCODING_ERROR.<a href="#section-19.11-5.2" class="pi
 </dd>
         <dd class="break"></dd>
 </dl>
-<p id="section-19.11-6">Loss or reordering can cause a MAX_STREAMS frame to be received which states a
+<p id="section-19.11-6">Loss or reordering can cause a MAX_STREAMS frame to be received that state a
 lower stream limit than an endpoint has previously received.  MAX_STREAMS frames
-which do not increase the stream limit MUST be ignored.<a href="#section-19.11-6" class="pilcrow">¶</a></p>
+that do not increase the stream limit MUST be ignored.<a href="#section-19.11-6" class="pilcrow">¶</a></p>
 <p id="section-19.11-7">An endpoint MUST NOT open more streams than permitted by the current stream
 limit set by its peer.  For instance, a server that receives a unidirectional
 stream limit of 3 is permitted to open stream 3, 7, and 11, but not stream 15.
@@ -8026,14 +8042,14 @@ includes streams that have been closed as well as those that are open.<a href="#
 </div>
 <div id="frame-data-blocked">
 <section id="section-19.12">
-        <h3 id="name-data_blocked-frame">
-<a href="#section-19.12" class="section-number selfRef">19.12. </a><a href="#name-data_blocked-frame" class="section-name selfRef">DATA_BLOCKED Frame</a>
+        <h3 id="name-data_blocked-frames">
+<a href="#section-19.12" class="section-number selfRef">19.12. </a><a href="#name-data_blocked-frames" class="section-name selfRef">DATA_BLOCKED Frames</a>
         </h3>
 <p id="section-19.12-1">A sender SHOULD send a DATA_BLOCKED frame (type=0x14) when it wishes to send
 data, but is unable to do so due to connection-level flow control; see
 <a href="#flow-control" class="xref">Section 4</a>.  DATA_BLOCKED frames can be used as input to tuning of flow
 control algorithms; see <a href="#fc-credit" class="xref">Section 4.2</a>.<a href="#section-19.12-1" class="pilcrow">¶</a></p>
-<p id="section-19.12-2">The DATA_BLOCKED frame is shown in <a href="#fig-data-blocked" class="xref">Figure 36</a>.<a href="#section-19.12-2" class="pilcrow">¶</a></p>
+<p id="section-19.12-2">DATA_BLOCKED frames are formatted as shown in <a href="#fig-data-blocked" class="xref">Figure 36</a>.<a href="#section-19.12-2" class="pilcrow">¶</a></p>
 <span id="name-data_blocked-frame-format"></span><div id="fig-data-blocked">
 <figure id="figure-36">
           <div class="artwork art-text alignLeft" id="section-19.12-3.1">
@@ -8061,15 +8077,16 @@ blocking occurred.<a href="#section-19.12-5.2" class="pilcrow">¶</a>
 </div>
 <div id="frame-stream-data-blocked">
 <section id="section-19.13">
-        <h3 id="name-stream_data_blocked-frame">
-<a href="#section-19.13" class="section-number selfRef">19.13. </a><a href="#name-stream_data_blocked-frame" class="section-name selfRef">STREAM_DATA_BLOCKED Frame</a>
+        <h3 id="name-stream_data_blocked-frames">
+<a href="#section-19.13" class="section-number selfRef">19.13. </a><a href="#name-stream_data_blocked-frames" class="section-name selfRef">STREAM_DATA_BLOCKED Frames</a>
         </h3>
 <p id="section-19.13-1">A sender SHOULD send a STREAM_DATA_BLOCKED frame (type=0x15) when it wishes to
 send data, but is unable to do so due to stream-level flow control.  This frame
 is analogous to DATA_BLOCKED (<a href="#frame-data-blocked" class="xref">Section 19.12</a>).<a href="#section-19.13-1" class="pilcrow">¶</a></p>
 <p id="section-19.13-2">An endpoint that receives a STREAM_DATA_BLOCKED frame for a send-only stream
 MUST terminate the connection with error STREAM_STATE_ERROR.<a href="#section-19.13-2" class="pilcrow">¶</a></p>
-<p id="section-19.13-3">The STREAM_DATA_BLOCKED frame is shown in <a href="#fig-stream-data-blocked" class="xref">Figure 37</a>.<a href="#section-19.13-3" class="pilcrow">¶</a></p>
+<p id="section-19.13-3">STREAM_DATA_BLOCKED frames are formatted as shown in
+<a href="#fig-stream-data-blocked" class="xref">Figure 37</a>.<a href="#section-19.13-3" class="pilcrow">¶</a></p>
 <span id="name-stream_data_blocked-frame-f"></span><div id="fig-stream-data-blocked">
 <figure id="figure-37">
           <div class="artwork art-text alignLeft" id="section-19.13-4.1">
@@ -8089,7 +8106,7 @@ STREAM_DATA_BLOCKED Frame {
 <span class="break"></span><dl class="dlParallel" id="section-19.13-6">
           <dt id="section-19.13-6.1">Stream ID:</dt>
           <dd id="section-19.13-6.2">
-  A variable-length integer indicating the stream which is blocked due to flow
+  A variable-length integer indicating the stream that is blocked due to flow
 control.<a href="#section-19.13-6.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -8114,7 +8131,7 @@ to indicate reaching the bidirectional stream limit, and a STREAMS_BLOCKED frame
 of type 0x17 is used to indicate reaching the unidirectional stream limit.<a href="#section-19.14-1" class="pilcrow">¶</a></p>
 <p id="section-19.14-2">A STREAMS_BLOCKED frame does not open the stream, but informs the peer that a
 new stream was needed and the stream limit prevented the creation of the stream.<a href="#section-19.14-2" class="pilcrow">¶</a></p>
-<p id="section-19.14-3">The STREAMS_BLOCKED frames are shown in <a href="#fig-streams-blocked" class="xref">Figure 38</a>.<a href="#section-19.14-3" class="pilcrow">¶</a></p>
+<p id="section-19.14-3">STREAMS_BLOCKED frames are formatted as shown in <a href="#fig-streams-blocked" class="xref">Figure 38</a>.<a href="#section-19.14-3" class="pilcrow">¶</a></p>
 <span id="name-streams_blocked-frame-forma"></span><div id="fig-streams-blocked">
 <figure id="figure-38">
           <div class="artwork art-text alignLeft" id="section-19.14-4.1">
@@ -8145,13 +8162,13 @@ FRAME_ENCODING_ERROR.<a href="#section-19.14-6.2" class="pilcrow">¶</a>
 </div>
 <div id="frame-new-connection-id">
 <section id="section-19.15">
-        <h3 id="name-new_connection_id-frame">
-<a href="#section-19.15" class="section-number selfRef">19.15. </a><a href="#name-new_connection_id-frame" class="section-name selfRef">NEW_CONNECTION_ID Frame</a>
+        <h3 id="name-new_connection_id-frames">
+<a href="#section-19.15" class="section-number selfRef">19.15. </a><a href="#name-new_connection_id-frames" class="section-name selfRef">NEW_CONNECTION_ID Frames</a>
         </h3>
 <p id="section-19.15-1">An endpoint sends a NEW_CONNECTION_ID frame (type=0x18) to provide its peer with
 alternative connection IDs that can be used to break linkability when migrating
 connections; see <a href="#migration-linkability" class="xref">Section 9.5</a>.<a href="#section-19.15-1" class="pilcrow">¶</a></p>
-<p id="section-19.15-2">The NEW_CONNECTION_ID frame is shown in <a href="#fig-new-connection-id" class="xref">Figure 39</a>.<a href="#section-19.15-2" class="pilcrow">¶</a></p>
+<p id="section-19.15-2">NEW_CONNECTION_ID frames are formatted as shown in <a href="#fig-new-connection-id" class="xref">Figure 39</a>.<a href="#section-19.15-2" class="pilcrow">¶</a></p>
 <span id="name-new_connection_id-frame-for"></span><div id="fig-new-connection-id">
 <figure id="figure-39">
           <div class="artwork art-text alignLeft" id="section-19.15-3.1">
@@ -8237,8 +8254,8 @@ for that sequence number.<a href="#section-19.15-11" class="pilcrow">¶</a></p>
 </div>
 <div id="frame-retire-connection-id">
 <section id="section-19.16">
-        <h3 id="name-retire_connection_id-frame">
-<a href="#section-19.16" class="section-number selfRef">19.16. </a><a href="#name-retire_connection_id-frame" class="section-name selfRef">RETIRE_CONNECTION_ID Frame</a>
+        <h3 id="name-retire_connection_id-frames">
+<a href="#section-19.16" class="section-number selfRef">19.16. </a><a href="#name-retire_connection_id-frames" class="section-name selfRef">RETIRE_CONNECTION_ID Frames</a>
         </h3>
 <p id="section-19.16-1">An endpoint sends a RETIRE_CONNECTION_ID frame (type=0x19) to indicate that it
 will no longer use a connection ID that was issued by its peer. This may include
@@ -8248,7 +8265,8 @@ future use; see <a href="#connection-id" class="xref">Section 5.1</a>.  New conn
 peer using the NEW_CONNECTION_ID frame (<a href="#frame-new-connection-id" class="xref">Section 19.15</a>).<a href="#section-19.16-1" class="pilcrow">¶</a></p>
 <p id="section-19.16-2">Retiring a connection ID invalidates the stateless reset token associated with
 that connection ID.<a href="#section-19.16-2" class="pilcrow">¶</a></p>
-<p id="section-19.16-3">The RETIRE_CONNECTION_ID frame is shown in <a href="#fig-retire-connection-id" class="xref">Figure 40</a>.<a href="#section-19.16-3" class="pilcrow">¶</a></p>
+<p id="section-19.16-3">RETIRE_CONNECTION_ID frames are formatted as shown in
+<a href="#fig-retire-connection-id" class="xref">Figure 40</a>.<a href="#section-19.16-3" class="pilcrow">¶</a></p>
 <span id="name-retire_connection_id-frame-"></span><div id="fig-retire-connection-id">
 <figure id="figure-40">
           <div class="artwork art-text alignLeft" id="section-19.16-4.1">
@@ -8277,7 +8295,7 @@ type PROTOCOL_VIOLATION.<a href="#section-19.16-7" class="pilcrow">¶</a></p>
 <p id="section-19.16-8">The sequence number specified in a RETIRE_CONNECTION_ID frame MUST NOT refer
 to the Destination Connection ID field of the packet in which the frame is
 contained.  The peer MAY treat this as a connection error of type
-FRAME_ENCODING_ERROR.<a href="#section-19.16-8" class="pilcrow">¶</a></p>
+PROTOCOL_VIOLATION.<a href="#section-19.16-8" class="pilcrow">¶</a></p>
 <p id="section-19.16-9">An endpoint cannot send this frame if it was provided with a zero-length
 connection ID by its peer.  An endpoint that provides a zero-length connection
 ID MUST treat receipt of a RETIRE_CONNECTION_ID frame as a connection error of
@@ -8286,12 +8304,12 @@ type PROTOCOL_VIOLATION.<a href="#section-19.16-9" class="pilcrow">¶</a></p>
 </div>
 <div id="frame-path-challenge">
 <section id="section-19.17">
-        <h3 id="name-path_challenge-frame">
-<a href="#section-19.17" class="section-number selfRef">19.17. </a><a href="#name-path_challenge-frame" class="section-name selfRef">PATH_CHALLENGE Frame</a>
+        <h3 id="name-path_challenge-frames">
+<a href="#section-19.17" class="section-number selfRef">19.17. </a><a href="#name-path_challenge-frames" class="section-name selfRef">PATH_CHALLENGE Frames</a>
         </h3>
 <p id="section-19.17-1">Endpoints can use PATH_CHALLENGE frames (type=0x1a) to check reachability to the
 peer and for path validation during connection migration.<a href="#section-19.17-1" class="pilcrow">¶</a></p>
-<p id="section-19.17-2">The PATH_CHALLENGE frame is shown in <a href="#fig-path-challenge" class="xref">Figure 41</a>.<a href="#section-19.17-2" class="pilcrow">¶</a></p>
+<p id="section-19.17-2">PATH_CHALLENGE frames are formatted as shown in <a href="#fig-path-challenge" class="xref">Figure 41</a>.<a href="#section-19.17-2" class="pilcrow">¶</a></p>
 <span id="name-path_challenge-frame-format"></span><div id="fig-path-challenge">
 <figure id="figure-41">
           <div class="artwork art-text alignLeft" id="section-19.17-3.1">
@@ -8322,15 +8340,15 @@ to receive the packet than it is to guess the value correctly.<a href="#section-
 </div>
 <div id="frame-path-response">
 <section id="section-19.18">
-        <h3 id="name-path_response-frame">
-<a href="#section-19.18" class="section-number selfRef">19.18. </a><a href="#name-path_response-frame" class="section-name selfRef">PATH_RESPONSE Frame</a>
+        <h3 id="name-path_response-frames">
+<a href="#section-19.18" class="section-number selfRef">19.18. </a><a href="#name-path_response-frames" class="section-name selfRef">PATH_RESPONSE Frames</a>
         </h3>
-<p id="section-19.18-1">The PATH_RESPONSE frame (type=0x1b) is sent in response to a PATH_CHALLENGE
-frame.  Its format, shown in <a href="#fig-path-response" class="xref">Figure 42</a> is identical to the
-PATH_CHALLENGE frame (<a href="#frame-path-challenge" class="xref">Section 19.17</a>).<a href="#section-19.18-1" class="pilcrow">¶</a></p>
+<p id="section-19.18-1">A PATH_RESPONSE frame (type=0x1b) is sent in response to a PATH_CHALLENGE frame.<a href="#section-19.18-1" class="pilcrow">¶</a></p>
+<p id="section-19.18-2">PATH_RESPONSE frames are formatted as shown in <a href="#fig-path-response" class="xref">Figure 42</a>, which is
+identical to the PATH_CHALLENGE frame (<a href="#frame-path-challenge" class="xref">Section 19.17</a>).<a href="#section-19.18-2" class="pilcrow">¶</a></p>
 <span id="name-path_response-frame-format"></span><div id="fig-path-response">
 <figure id="figure-42">
-          <div class="artwork art-text alignLeft" id="section-19.18-2.1">
+          <div class="artwork art-text alignLeft" id="section-19.18-3.1">
 <pre>
 PATH_RESPONSE Frame {
   Type (i) = 0x1b,
@@ -8342,9 +8360,9 @@ PATH_RESPONSE Frame {
 <a href="#name-path_response-frame-format" class="selfRef">PATH_RESPONSE Frame Format</a>
           </figcaption></figure>
 </div>
-<p id="section-19.18-3">If the content of a PATH_RESPONSE frame does not match the content of a
+<p id="section-19.18-4">If the content of a PATH_RESPONSE frame does not match the content of a
 PATH_CHALLENGE frame previously sent by the endpoint, the endpoint MAY generate
-a connection error of type PROTOCOL_VIOLATION.<a href="#section-19.18-3" class="pilcrow">¶</a></p>
+a connection error of type PROTOCOL_VIOLATION.<a href="#section-19.18-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="frame-connection-close">
@@ -8357,9 +8375,9 @@ peer that the connection is being closed.  The CONNECTION_CLOSE with a frame
 type of 0x1c is used to signal errors at only the QUIC layer, or the absence of
 errors (with the NO_ERROR code).  The CONNECTION_CLOSE frame with a type of 0x1d
 is used to signal an error with the application that uses QUIC.<a href="#section-19.19-1" class="pilcrow">¶</a></p>
-<p id="section-19.19-2">If there are open streams that haven't been explicitly closed, they are
+<p id="section-19.19-2">If there are open streams that have not been explicitly closed, they are
 implicitly closed when the connection is closed.<a href="#section-19.19-2" class="pilcrow">¶</a></p>
-<p id="section-19.19-3">The CONNECTION_CLOSE frames are shown in <a href="#fig-connection-close" class="xref">Figure 43</a>.<a href="#section-19.19-3" class="pilcrow">¶</a></p>
+<p id="section-19.19-3">CONNECTION_CLOSE frames are formatted as shown in <a href="#fig-connection-close" class="xref">Figure 43</a>.<a href="#section-19.19-3" class="pilcrow">¶</a></p>
 <span id="name-connection_close-frame-form"></span><div id="fig-connection-close">
 <figure id="figure-43">
           <div class="artwork art-text alignLeft" id="section-19.19-4.1">
@@ -8381,11 +8399,11 @@ CONNECTION_CLOSE Frame {
 <span class="break"></span><dl class="dlParallel" id="section-19.19-6">
           <dt id="section-19.19-6.1">Error Code:</dt>
           <dd id="section-19.19-6.2">
-  A variable-length integer error code which indicates the reason for
+  A variable-length integer error code that indicates the reason for
 closing this connection.  A CONNECTION_CLOSE frame of type 0x1c uses codes
-from the space defined in <a href="#error-codes" class="xref">Section 20</a>.  A CONNECTION_CLOSE frame of
-type 0x1d uses codes from the application protocol error code space;
-see <a href="#app-error-codes" class="xref">Section 20.1</a>.<a href="#section-19.19-6.2" class="pilcrow">¶</a>
+from the space defined in <a href="#transport-error-codes" class="xref">Section 20.1</a>.  A CONNECTION_CLOSE frame
+of type 0x1d uses codes from the application protocol error code space; see
+<a href="#app-error-codes" class="xref">Section 20.2</a>.<a href="#section-19.19-6.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-19.19-6.3">Frame Type:</dt>
@@ -8420,15 +8438,16 @@ APPLICATION_ERROR in an Initial or a Handshake packet.<a href="#section-19.19-7"
 </div>
 <div id="frame-handshake-done">
 <section id="section-19.20">
-        <h3 id="name-handshake_done-frame">
-<a href="#section-19.20" class="section-number selfRef">19.20. </a><a href="#name-handshake_done-frame" class="section-name selfRef">HANDSHAKE_DONE Frame</a>
+        <h3 id="name-handshake_done-frames">
+<a href="#section-19.20" class="section-number selfRef">19.20. </a><a href="#name-handshake_done-frames" class="section-name selfRef">HANDSHAKE_DONE Frames</a>
         </h3>
-<p id="section-19.20-1">The server uses the HANDSHAKE_DONE frame (type=0x1e) to signal confirmation of
-the handshake to the client.  As shown in <a href="#handshake-done-format" class="xref">Figure 44</a>, a
-HANDSHAKE_DONE frame has no content.<a href="#section-19.20-1" class="pilcrow">¶</a></p>
+<p id="section-19.20-1">The server uses a HANDSHAKE_DONE frame (type=0x1e) to signal confirmation of
+the handshake to the client.<a href="#section-19.20-1" class="pilcrow">¶</a></p>
+<p id="section-19.20-2">HANDSHAKE_DONE frames are formatted as shown in <a href="#handshake-done-format" class="xref">Figure 44</a>, which
+shows that HANDSHAKE_DONE frames have no content.<a href="#section-19.20-2" class="pilcrow">¶</a></p>
 <span id="name-handshake_done-frame-format"></span><div id="handshake-done-format">
 <figure id="figure-44">
-          <div class="artwork art-text alignLeft" id="section-19.20-2.1">
+          <div class="artwork art-text alignLeft" id="section-19.20-3.1">
 <pre>
 HANDSHAKE_DONE Frame {
   Type (i) = 0x1e,
@@ -8439,10 +8458,10 @@ HANDSHAKE_DONE Frame {
 <a href="#name-handshake_done-frame-format" class="selfRef">HANDSHAKE_DONE Frame Format</a>
           </figcaption></figure>
 </div>
-<p id="section-19.20-3">A HANDSHAKE_DONE frame can only be sent by the server. Servers MUST NOT send a
+<p id="section-19.20-4">A HANDSHAKE_DONE frame can only be sent by the server. Servers MUST NOT send a
 HANDSHAKE_DONE frame before completing the handshake.  A server MUST treat
 receipt of a HANDSHAKE_DONE frame as a connection error of type
-PROTOCOL_VIOLATION.<a href="#section-19.20-3" class="pilcrow">¶</a></p>
+PROTOCOL_VIOLATION.<a href="#section-19.20-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="extension-frames">
@@ -8475,126 +8494,134 @@ in the extension.<a href="#section-19.21-4" class="pilcrow">¶</a></p>
 </div>
 <div id="error-codes">
 <section id="section-20">
-      <h2 id="name-transport-error-codes">
-<a href="#section-20" class="section-number selfRef">20. </a><a href="#name-transport-error-codes" class="section-name selfRef">Transport Error Codes</a>
+      <h2 id="name-error-codes">
+<a href="#section-20" class="section-number selfRef">20. </a><a href="#name-error-codes" class="section-name selfRef">Error Codes</a>
       </h2>
-<p id="section-20-1">QUIC error codes are 62-bit unsigned integers.<a href="#section-20-1" class="pilcrow">¶</a></p>
-<p id="section-20-2">This section lists the defined QUIC transport error codes that may be used in a
-CONNECTION_CLOSE frame.  These errors apply to the entire connection.<a href="#section-20-2" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-20-3">
-        <dt id="section-20-3.1">NO_ERROR (0x0):</dt>
-        <dd id="section-20-3.2">
+<p id="section-20-1">QUIC transport error codes and application error codes are 62-bit unsigned
+integers.<a href="#section-20-1" class="pilcrow">¶</a></p>
+<div id="transport-error-codes">
+<section id="section-20.1">
+        <h3 id="name-transport-error-codes">
+<a href="#section-20.1" class="section-number selfRef">20.1. </a><a href="#name-transport-error-codes" class="section-name selfRef">Transport Error Codes</a>
+        </h3>
+<p id="section-20.1-1">This section lists the defined QUIC transport error codes that may be used in a
+CONNECTION_CLOSE frame with a type of 0x1c.  These errors apply to the entire
+connection.<a href="#section-20.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-20.1-2">
+          <dt id="section-20.1-2.1">NO_ERROR (0x0):</dt>
+          <dd id="section-20.1-2.2">
   An endpoint uses this with CONNECTION_CLOSE to signal that the connection is
-being closed abruptly in the absence of any error.<a href="#section-20-3.2" class="pilcrow">¶</a>
+being closed abruptly in the absence of any error.<a href="#section-20.1-2.2" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.3">INTERNAL_ERROR (0x1):</dt>
-        <dd id="section-20-3.4">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.3">INTERNAL_ERROR (0x1):</dt>
+          <dd id="section-20.1-2.4">
   The endpoint encountered an internal error and cannot continue with the
-connection.<a href="#section-20-3.4" class="pilcrow">¶</a>
+connection.<a href="#section-20.1-2.4" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.5">CONNECTION_REFUSED (0x2):</dt>
-        <dd id="section-20-3.6">
-  The server refused to accept a new connection.<a href="#section-20-3.6" class="pilcrow">¶</a>
+          <dd class="break"></dd>
+<dt id="section-20.1-2.5">CONNECTION_REFUSED (0x2):</dt>
+          <dd id="section-20.1-2.6">
+  The server refused to accept a new connection.<a href="#section-20.1-2.6" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.7">FLOW_CONTROL_ERROR (0x3):</dt>
-        <dd id="section-20-3.8">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.7">FLOW_CONTROL_ERROR (0x3):</dt>
+          <dd id="section-20.1-2.8">
   An endpoint received more data than it permitted in its advertised data
-limits; see <a href="#flow-control" class="xref">Section 4</a>.<a href="#section-20-3.8" class="pilcrow">¶</a>
+limits; see <a href="#flow-control" class="xref">Section 4</a>.<a href="#section-20.1-2.8" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.9">STREAM_LIMIT_ERROR (0x4):</dt>
-        <dd id="section-20-3.10">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.9">STREAM_LIMIT_ERROR (0x4):</dt>
+          <dd id="section-20.1-2.10">
   An endpoint received a frame for a stream identifier that exceeded its
-advertised stream limit for the corresponding stream type.<a href="#section-20-3.10" class="pilcrow">¶</a>
+advertised stream limit for the corresponding stream type.<a href="#section-20.1-2.10" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.11">STREAM_STATE_ERROR (0x5):</dt>
-        <dd id="section-20-3.12">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.11">STREAM_STATE_ERROR (0x5):</dt>
+          <dd id="section-20.1-2.12">
   An endpoint received a frame for a stream that was not in a state that
-permitted that frame; see <a href="#stream-states" class="xref">Section 3</a>.<a href="#section-20-3.12" class="pilcrow">¶</a>
+permitted that frame; see <a href="#stream-states" class="xref">Section 3</a>.<a href="#section-20.1-2.12" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.13">FINAL_SIZE_ERROR (0x6):</dt>
-        <dd id="section-20-3.14">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.13">FINAL_SIZE_ERROR (0x6):</dt>
+          <dd id="section-20.1-2.14">
   An endpoint received a STREAM frame containing data that exceeded the
 previously established final size.  Or an endpoint received a STREAM frame or
 a RESET_STREAM frame containing a final size that was lower than the size of
 stream data that was already received.  Or an endpoint received a STREAM frame
 or a RESET_STREAM frame containing a different final size to the one already
-established.<a href="#section-20-3.14" class="pilcrow">¶</a>
+established.<a href="#section-20.1-2.14" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.15">FRAME_ENCODING_ERROR (0x7):</dt>
-        <dd id="section-20-3.16">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.15">FRAME_ENCODING_ERROR (0x7):</dt>
+          <dd id="section-20.1-2.16">
   An endpoint received a frame that was badly formatted.  For instance, a frame
 of an unknown type, or an ACK frame that has more acknowledgment ranges than
-the remainder of the packet could carry.<a href="#section-20-3.16" class="pilcrow">¶</a>
+the remainder of the packet could carry.<a href="#section-20.1-2.16" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.17">TRANSPORT_PARAMETER_ERROR (0x8):</dt>
-        <dd id="section-20-3.18">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.17">TRANSPORT_PARAMETER_ERROR (0x8):</dt>
+          <dd id="section-20.1-2.18">
   An endpoint received transport parameters that were badly formatted, included
 an invalid value, was absent even though it is mandatory, was present though
-it is forbidden, or is otherwise in error.<a href="#section-20-3.18" class="pilcrow">¶</a>
+it is forbidden, or is otherwise in error.<a href="#section-20.1-2.18" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.19">CONNECTION_ID_LIMIT_ERROR (0x9):</dt>
-        <dd id="section-20-3.20">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.19">CONNECTION_ID_LIMIT_ERROR (0x9):</dt>
+          <dd id="section-20.1-2.20">
   The number of connection IDs provided by the peer exceeds the advertised
-active_connection_id_limit.<a href="#section-20-3.20" class="pilcrow">¶</a>
+active_connection_id_limit.<a href="#section-20.1-2.20" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.21">PROTOCOL_VIOLATION (0xA):</dt>
-        <dd id="section-20-3.22">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.21">PROTOCOL_VIOLATION (0xa):</dt>
+          <dd id="section-20.1-2.22">
   An endpoint detected an error with protocol compliance that was not covered by
-more specific error codes.<a href="#section-20-3.22" class="pilcrow">¶</a>
+more specific error codes.<a href="#section-20.1-2.22" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.23">INVALID_TOKEN (0xB):</dt>
-        <dd id="section-20-3.24">
-  A server received a client Initial that contained an invalid Token field.<a href="#section-20-3.24" class="pilcrow">¶</a>
+          <dd class="break"></dd>
+<dt id="section-20.1-2.23">INVALID_TOKEN (0xb):</dt>
+          <dd id="section-20.1-2.24">
+  A server received a client Initial that contained an invalid Token field.<a href="#section-20.1-2.24" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.25">APPLICATION_ERROR (0xC):</dt>
-        <dd id="section-20-3.26">
-  The application or application protocol caused the connection to be closed.<a href="#section-20-3.26" class="pilcrow">¶</a>
+          <dd class="break"></dd>
+<dt id="section-20.1-2.25">APPLICATION_ERROR (0xc):</dt>
+          <dd id="section-20.1-2.26">
+  The application or application protocol caused the connection to be closed.<a href="#section-20.1-2.26" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.27">CRYPTO_BUFFER_EXCEEDED (0xD):</dt>
-        <dd id="section-20-3.28">
-  An endpoint has received more data in CRYPTO frames than it can buffer.<a href="#section-20-3.28" class="pilcrow">¶</a>
+          <dd class="break"></dd>
+<dt id="section-20.1-2.27">CRYPTO_BUFFER_EXCEEDED (0xd):</dt>
+          <dd id="section-20.1-2.28">
+  An endpoint has received more data in CRYPTO frames than it can buffer.<a href="#section-20.1-2.28" class="pilcrow">¶</a>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-20-3.29">CRYPTO_ERROR (0x1XX):</dt>
-        <dd id="section-20-3.30">
+          <dd class="break"></dd>
+<dt id="section-20.1-2.29">CRYPTO_ERROR (0x1XX):</dt>
+          <dd id="section-20.1-2.30">
   The cryptographic handshake failed.  A range of 256 values is reserved for
 carrying error codes specific to the cryptographic handshake that is used.
 Codes for errors occurring when TLS is used for the crypto handshake are
-described in Section 4.8 of <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span>.<a href="#section-20-3.30" class="pilcrow">¶</a>
+described in Section 4.8 of <span>[<a href="#QUIC-TLS" class="xref">QUIC-TLS</a>]</span>.<a href="#section-20.1-2.30" class="pilcrow">¶</a>
 </dd>
-      <dd class="break"></dd>
+        <dd class="break"></dd>
 </dl>
-<p id="section-20-4">See <a href="#iana-error-codes" class="xref">Section 22.4</a> for details of registering new error codes.<a href="#section-20-4" class="pilcrow">¶</a></p>
-<p id="section-20-5">In defining these error codes, several principles are applied.  Error conditions
+<p id="section-20.1-3">See <a href="#iana-error-codes" class="xref">Section 22.4</a> for details of registering new error codes.<a href="#section-20.1-3" class="pilcrow">¶</a></p>
+<p id="section-20.1-4">In defining these error codes, several principles are applied.  Error conditions
 that might require specific action on the part of a recipient are given unique
 codes.  Errors that represent common conditions are given specific codes.
 Absent either of these conditions, error codes are used to identify a general
 function of the stack, like flow control or transport parameter handling.
 Finally, generic errors are provided for conditions where implementations are
-unable or unwilling to use more specific codes.<a href="#section-20-5" class="pilcrow">¶</a></p>
+unable or unwilling to use more specific codes.<a href="#section-20.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
 <div id="app-error-codes">
-<section id="section-20.1">
+<section id="section-20.2">
         <h3 id="name-application-protocol-error-">
-<a href="#section-20.1" class="section-number selfRef">20.1. </a><a href="#name-application-protocol-error-" class="section-name selfRef">Application Protocol Error Codes</a>
+<a href="#section-20.2" class="section-number selfRef">20.2. </a><a href="#name-application-protocol-error-" class="section-name selfRef">Application Protocol Error Codes</a>
         </h3>
-<p id="section-20.1-1">Application protocol error codes are 62-bit unsigned integers, but the
-management of application error codes is left to application protocols.
+<p id="section-20.2-1">The management of application error codes is left to application protocols.
 Application protocol error codes are used for the RESET_STREAM frame
 (<a href="#frame-reset-stream" class="xref">Section 19.4</a>), the STOP_SENDING frame (<a href="#frame-stop-sending" class="xref">Section 19.5</a>), and
-the CONNECTION_CLOSE frame with a type of 0x1d (<a href="#frame-connection-close" class="xref">Section 19.19</a>).<a href="#section-20.1-1" class="pilcrow">¶</a></p>
+the CONNECTION_CLOSE frame with a type of 0x1d (<a href="#frame-connection-close" class="xref">Section 19.19</a>).<a href="#section-20.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -8616,7 +8643,7 @@ ability of an attacker to interfere with existing connections.<a href="#section-
 <p id="section-21.1-2">Once a connection is established QUIC endpoints might accept some
 unauthenticated ICMP packets (see <a href="#pmtud" class="xref">Section 14.2.1</a>), but the use of these packets
 is extremely limited.  The only other type of packet that an endpoint might
-accept is a stateless reset (<a href="#stateless-reset" class="xref">Section 10.3</a>) which relies on the token
+accept is a stateless reset (<a href="#stateless-reset" class="xref">Section 10.3</a>), which relies on the token
 being kept secret until it is used.<a href="#section-21.1-2" class="pilcrow">¶</a></p>
 <p id="section-21.1-3">During the creation of a connection, QUIC only provides protection against
 attack from off the network path.  All QUIC packets contain proof that the
@@ -8702,12 +8729,12 @@ restricting the length of time an endpoint is allowed to stay connected.<a href=
         <h3 id="name-stream-fragmentation-and-re">
 <a href="#section-21.5" class="section-number selfRef">21.5. </a><a href="#name-stream-fragmentation-and-re" class="section-name selfRef">Stream Fragmentation and Reassembly Attacks</a>
         </h3>
-<p id="section-21.5-1">An adversarial sender might intentionally send fragments of stream data in
-order to cause disproportionate receive buffer memory commitment and/or
+<p id="section-21.5-1">An adversarial sender might intentionally send fragments of stream data in an
+attempt to cause disproportionate receive buffer memory commitment and/or
 creation of a large and inefficient data structure.<a href="#section-21.5-1" class="pilcrow">¶</a></p>
-<p id="section-21.5-2">An adversarial receiver might intentionally not acknowledge packets
-containing stream data in order to force the sender to store the
-unacknowledged stream data for retransmission.<a href="#section-21.5-2" class="pilcrow">¶</a></p>
+<p id="section-21.5-2">An adversarial receiver might intentionally not acknowledge packets containing
+stream data in an attempt to force the sender to store the unacknowledged stream
+data for retransmission.<a href="#section-21.5-2" class="pilcrow">¶</a></p>
 <p id="section-21.5-3">The attack on receivers is mitigated if flow control windows correspond to
 available memory.  However, some receivers will over-commit memory and
 advertise flow control offsets in the aggregate that exceed actual available
@@ -8814,7 +8841,7 @@ be influenced by an attacker.<a href="#section-21.9-4" class="pilcrow">¶</a></p
 <a href="#section-21.10" class="section-number selfRef">21.10. </a><a href="#name-version-downgrade" class="section-name selfRef">Version Downgrade</a>
         </h3>
 <p id="section-21.10-1">This document defines QUIC Version Negotiation packets in
-<a href="#version-negotiation" class="xref">Section 6</a>, which can be used to negotiate the QUIC version used
+<a href="#version-negotiation" class="xref">Section 6</a> that can be used to negotiate the QUIC version used
 between two endpoints. However, this document does not specify how this
 negotiation will be performed between this version and subsequent future
 versions.  In particular, Version Negotiation packets do not contain any
@@ -8902,9 +8929,9 @@ path are limited.<a href="#section-21.12.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-21.12.1.2-1">Computing the server's first flight for a full handshake is potentially
 expensive, requiring both a signature and a key exchange computation. In order
 to prevent computational DoS attacks, the Retry packet provides a cheap token
-exchange mechanism which allows servers to validate a client's IP address prior
+exchange mechanism that allows servers to validate a client's IP address prior
 to doing any expensive computations at the cost of a single round trip. After a
-successful handshake, servers can issue new tokens to a client which will allow
+successful handshake, servers can issue new tokens to a client, which will allow
 new connection establishment without incurring this cost.<a href="#section-21.12.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -8960,7 +8987,7 @@ save observed packets for an offline attack against packet protection at a
 future time; this is true for any observer of any packet on any network.<a href="#section-21.12.2-2" class="pilcrow">¶</a></p>
 <p id="section-21.12.2-3">A blind attacker, one who injects packets without being able to observe valid
 packets for a connection, is unlikely to be successful, since packet protection
-ensures that valid packets are only generated by endpoints which possess the
+ensures that valid packets are only generated by endpoints that possess the
 key material established during the handshake; see <a href="#handshake" class="xref">Section 7</a> and
 <a href="#handshake-properties" class="xref">Section 21.12.1</a>. Similarly, any active attacker that observes packets
 and attempts to insert new data or modify existing data in those packets should
@@ -9649,7 +9676,7 @@ specification reference is provided.<a href="#section-22.4-4.4" class="pilcrow">
 </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">0xA</td>
+              <td class="text-left" rowspan="1" colspan="1">0xa</td>
               <td class="text-left" rowspan="1" colspan="1">PROTOCOL_VIOLATION</td>
               <td class="text-left" rowspan="1" colspan="1">Generic protocol violation</td>
               <td class="text-left" rowspan="1" colspan="1">
@@ -9657,7 +9684,7 @@ specification reference is provided.<a href="#section-22.4-4.4" class="pilcrow">
 </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">0xB</td>
+              <td class="text-left" rowspan="1" colspan="1">0xb</td>
               <td class="text-left" rowspan="1" colspan="1">INVALID_TOKEN</td>
               <td class="text-left" rowspan="1" colspan="1">Invalid Token Received</td>
               <td class="text-left" rowspan="1" colspan="1">
@@ -9665,7 +9692,7 @@ specification reference is provided.<a href="#section-22.4-4.4" class="pilcrow">
 </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">0xC</td>
+              <td class="text-left" rowspan="1" colspan="1">0xc</td>
               <td class="text-left" rowspan="1" colspan="1">APPLICATION_ERROR</td>
               <td class="text-left" rowspan="1" colspan="1">Application error</td>
               <td class="text-left" rowspan="1" colspan="1">
@@ -9673,7 +9700,7 @@ specification reference is provided.<a href="#section-22.4-4.4" class="pilcrow">
 </td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">0xD</td>
+              <td class="text-left" rowspan="1" colspan="1">0xd</td>
               <td class="text-left" rowspan="1" colspan="1">CRYPTO_BUFFER_EXCEEDED</td>
               <td class="text-left" rowspan="1" colspan="1">CRYPTO data buffer overflowed</td>
               <td class="text-left" rowspan="1" colspan="1">
@@ -9706,11 +9733,11 @@ specification reference is provided.<a href="#section-22.4-4.4" class="pilcrow">
 <dd class="break"></dd>
 <dt id="QUIC-RECOVERY">[QUIC-RECOVERY]</dt>
         <dd>
-<span class="refAuthor">Iyengar, J., Ed.</span><span class="refAuthor"> and I. Swett, Ed.</span>, <span class="refTitle">"QUIC Loss Detection and Congestion Control"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-recovery-latest</span>, <time datetime="2020-07-21" class="refDate">21 July 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-recovery-latest">https://tools.ietf.org/html/draft-ietf-quic-recovery-latest</a>&gt;</span>. </dd>
+<span class="refAuthor">Iyengar, J., Ed.</span><span class="refAuthor"> and I. Swett, Ed.</span>, <span class="refTitle">"QUIC Loss Detection and Congestion Control"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-recovery-latest</span>, <time datetime="2020-08-20" class="refDate">20 August 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-recovery-latest">https://tools.ietf.org/html/draft-ietf-quic-recovery-latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QUIC-TLS">[QUIC-TLS]</dt>
         <dd>
-<span class="refAuthor">Thomson, M., Ed.</span><span class="refAuthor"> and S. Turner, Ed.</span>, <span class="refTitle">"Using Transport Layer Security (TLS) to Secure QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-tls-latest</span>, <time datetime="2020-07-21" class="refDate">21 July 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-tls-latest">https://tools.ietf.org/html/draft-ietf-quic-tls-latest</a>&gt;</span>. </dd>
+<span class="refAuthor">Thomson, M., Ed.</span><span class="refAuthor"> and S. Turner, Ed.</span>, <span class="refTitle">"Using Transport Layer Security (TLS) to Secure QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-tls-latest</span>, <time datetime="2020-08-20" class="refDate">20 August 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-tls-latest">https://tools.ietf.org/html/draft-ietf-quic-tls-latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC1191">[RFC1191]</dt>
         <dd>
@@ -9731,10 +9758,6 @@ specification reference is provided.<a href="#section-22.4-4.4" class="pilcrow">
 <dt id="RFC4086">[RFC4086]</dt>
         <dd>
 <span class="refAuthor">Eastlake 3rd, D.</span><span class="refAuthor">, Schiller, J.</span><span class="refAuthor">, and S. Crocker</span>, <span class="refTitle">"Randomness Requirements for Security"</span>, <span class="seriesInfo">BCP 106</span>, <span class="seriesInfo">RFC 4086</span>, <span class="seriesInfo">DOI 10.17487/RFC4086</span>, <time datetime="2005-06" class="refDate">June 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4086">https://www.rfc-editor.org/info/rfc4086</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC5116">[RFC5116]</dt>
-        <dd>
-<span class="refAuthor">McGrew, D.</span>, <span class="refTitle">"An Interface and Algorithms for Authenticated Encryption"</span>, <span class="seriesInfo">RFC 5116</span>, <span class="seriesInfo">DOI 10.17487/RFC5116</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5116">https://www.rfc-editor.org/info/rfc5116</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6437">[RFC6437]</dt>
         <dd>
@@ -9771,6 +9794,14 @@ specification reference is provided.<a href="#section-22.4-4.4" class="pilcrow">
 <a href="#section-23.2" class="section-number selfRef">23.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="AEAD">[AEAD]</dt>
+        <dd>
+<span class="refAuthor">McGrew, D.</span>, <span class="refTitle">"An Interface and Algorithms for Authenticated Encryption"</span>, <span class="seriesInfo">RFC 5116</span>, <span class="seriesInfo">DOI 10.17487/RFC5116</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5116">https://www.rfc-editor.org/info/rfc5116</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ALPN">[ALPN]</dt>
+        <dd>
+<span class="refAuthor">Friedl, S.</span><span class="refAuthor">, Popov, A.</span><span class="refAuthor">, Langley, A.</span><span class="refAuthor">, and E. Stephan</span>, <span class="refTitle">"Transport Layer Security (TLS) Application-Layer Protocol Negotiation Extension"</span>, <span class="seriesInfo">RFC 7301</span>, <span class="seriesInfo">DOI 10.17487/RFC7301</span>, <time datetime="2014-07" class="refDate">July 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7301">https://www.rfc-editor.org/info/rfc7301</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="ALTSVC">[ALTSVC]</dt>
         <dd>
 <span class="refAuthor">Nottingham, M.</span><span class="refAuthor">, McManus, P.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Alternative Services"</span>, <span class="seriesInfo">RFC 7838</span>, <span class="seriesInfo">DOI 10.17487/RFC7838</span>, <time datetime="2016-04" class="refDate">April 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7838">https://www.rfc-editor.org/info/rfc7838</a>&gt;</span>. </dd>
@@ -9793,7 +9824,7 @@ specification reference is provided.<a href="#section-22.4-4.4" class="pilcrow">
 <dd class="break"></dd>
 <dt id="QUIC-INVARIANTS">[QUIC-INVARIANTS]</dt>
         <dd>
-<span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Version-Independent Properties of QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-invariants-latest</span>, <time datetime="2020-07-21" class="refDate">21 July 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-invariants-latest">https://tools.ietf.org/html/draft-ietf-quic-invariants-latest</a>&gt;</span>. </dd>
+<span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Version-Independent Properties of QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-invariants-latest</span>, <time datetime="2020-08-20" class="refDate">20 August 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-invariants-latest">https://tools.ietf.org/html/draft-ietf-quic-invariants-latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QUIC-MANAGEABILITY">[QUIC-MANAGEABILITY]</dt>
         <dd>
@@ -9870,7 +9901,7 @@ DecodePacketNumber(largest_pn, truncated_pn, pn_nbits):
    // expected_pn - pn_hwin and less than or equal to
    // expected_pn + pn_hwin
    //
-   // This means we can't just strip the trailing bits from
+   // This means we cannot just strip the trailing bits from
    // expected_pn and add the truncated_pn because that might
    // yield a value outside the window.
    //
@@ -10639,7 +10670,7 @@ corresponding short header flag. (#1089, #1052, #1146, #821, #745, #821,
 </li>
           <li class="normal" id="section-c.21-1.9">initial_max_stream_id_x transport parameters are optional (#970, #971)<a href="#section-c.21-1.9" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.21-1.10">Ack Delay assumes a default value during the handshake (#1007, #1009)<a href="#section-c.21-1.10" class="pilcrow">¶</a>
+          <li class="normal" id="section-c.21-1.10">ACK delay assumes a default value during the handshake (#1007, #1009)<a href="#section-c.21-1.10" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-c.21-1.11">Removed transport parameters from NewSessionTicket (#1015)<a href="#section-c.21-1.11" class="pilcrow">¶</a>
 </li>
